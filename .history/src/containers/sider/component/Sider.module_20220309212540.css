@@ -1,0 +1,21 @@
+.sider{
+    background-color: #bdcfec !important;
+    height: 100vh;
+    display: flex;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.user_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user_name{
+    margin-left: 20px;
+    color: #0277bd;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
