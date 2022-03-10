@@ -7,14 +7,14 @@ import Search from '../../../components/Search/Search';
 
 
 const { Header } = Layout;
+const img_url = "https://seeklogo.com/images/S/svg-logo-A7D0801A11-seeklogo.com.png"
 
-
-const HeaderComponent = () => {
+const _Header = () => {
     return (
         <Header className={styles.header}>
             <div class={styles.header_left}>
                 <img className={styles.img_logo}
-                    src='https://images.yourstory.com/cs/images/companies/484073261089321671237850235461832427438080n-1609922812339.png'
+                    src={img_url}
                 />
                 <Search/>
             </div>
@@ -28,4 +28,4 @@ const HeaderComponent = () => {
     );
 };
 
-export default HeaderComponent;
+export default _Header;

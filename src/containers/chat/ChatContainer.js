@@ -1,11 +1,9 @@
 import React from 'react';
-import ChatComponent from './component/ChatComponent';
+import Chat from './component/Chat';
 
 const ChatContainer = () => {
     return (
-        <ChatComponent>
-            
-        </ChatComponent>
+        <Chat></Chat>
     );
 };
 

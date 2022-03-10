@@ -1,9 +1,9 @@
 import React from 'react';
-import HeaderComponent from './component/HeaderComponent';
+import _Header from './component/Header';
 
 const HeaderContainer = () => {
     return (
-        <HeaderComponent></HeaderComponent>
+        <_Header></_Header>
     );
 };
 

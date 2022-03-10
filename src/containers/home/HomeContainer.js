@@ -1,10 +1,10 @@
-import HomeComponent from "./component/HomeComponent"
+import Home from "./component/Home"
 import React from 'react';
 
 const HomeContainer = () => {
     return (
         <div>
-            <HomeComponent/>
+            <Home/>
         </div>
     );
 };

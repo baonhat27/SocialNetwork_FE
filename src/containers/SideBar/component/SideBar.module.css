@@ -1,4 +1,4 @@
-.sider{
+.sidebar{
     background-color: #bdcfec !important;
     height: 100vh;
     display: flex;
@@ -6,10 +6,10 @@
     display: flex;
     flex-direction: column;
 }
-.sider_item{
+.sidebar_item{
     margin: 10px 0px 10px 30px;
 }
-.sider_item:hover{
+.sidebar_item:hover{
     cursor: pointer;
     opacity: 75%;
     background-color: #0277bd;
