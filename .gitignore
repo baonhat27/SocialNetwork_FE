@@ -7,6 +7,9 @@
 node_modules/
 dist/
 
+# Swap files from vim
+*.swp
+
 # Compiled Java class files
 *.class
 
