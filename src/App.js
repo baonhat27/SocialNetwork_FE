@@ -1,5 +1,7 @@
 import { Route,Switch } from 'react-router-dom';
 import './App.css';
+import HeaderContainer from './containers/header/HeaderContainer';
+import HomeContainer from './containers/home/HomeContainer';
 import LoginPageContainer from './containers/loginPage/LoginPageContainer';
 function App() {
   return (
@@ -8,10 +10,8 @@ function App() {
         <Route path='/login'>
           <LoginPageContainer/>
         </Route>
-        <Route path="*">
-            <div>
-               Đây là trang home
-            </div>
+        <Route path="/home">
+            <HomeContainer/>
         </Route>
       </Switch>
     </div>

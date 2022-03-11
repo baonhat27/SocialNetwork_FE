@@ -1,7 +1,7 @@
 import styles from './LoginPageComponent.module.css';
 import React from 'react';
-import Input from '../../../conponents/Input/Input';
-import Button from '../../../conponents/Button/Button';
+import Input from '../../../components/Input/Input';
+import Button from '../../../components/Button/Button';
 
 const LoginPageComponent = (props) => {
     return (
