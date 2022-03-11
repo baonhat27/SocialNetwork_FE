@@ -12,6 +12,10 @@
     display: flex;
     align-items: center;
 }
+.header_mid{
+    display: flex;
+    align-items: center;
+}
 .search {
     margin-left: 50px;
     width: 400px !important;

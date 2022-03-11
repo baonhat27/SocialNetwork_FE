@@ -9,9 +9,7 @@ const Search = () => {
             placeholder='Tìm kiếm...'
             className='inputSearch'
         />
-        <SearchOutlined
-            className='iconSearch'
-        />
+        <i className="fa-solid fa-magnifying-glass iconSearch" ></i>
 
     </>
     );

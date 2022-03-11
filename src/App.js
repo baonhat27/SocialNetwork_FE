@@ -11,7 +11,6 @@ function App() {
           <LoginPageContainer/>
         </Route>
         <Route path="/home">
-            <HeaderContainer/>
             <HomeContainer/>
         </Route>
       </Switch>

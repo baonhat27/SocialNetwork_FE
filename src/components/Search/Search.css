@@ -1,19 +1,21 @@
 .inputSearch{
     border: none;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     width: 400px;
-    height: 30px;
+    height: 40px;
     margin-left: 10px;
     padding-left: 20px;
 }
 .iconSearch{
 
     background-color: white;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     display: flex;
-    padding: 8px 0px;
+    padding: 13px 13px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .iconSearch:hover{
     cursor: pointer;

@@ -16,13 +16,15 @@ const _Header = () => {
                 <img className={styles.img_logo}
                     src={img_url}
                 />
+            </div>
+            <div className={styles.header_mid}>
                 <Search/>
             </div>
             <div class={styles.header_right}>
                 <BellOutlined
                     style={{fontSize: '20px', color:'white'}}
                 />
-                <Avatar size="small" icon={<UserOutlined />} style={{marginLeft: 20,marginRight: 0}} />
+                <Avatar size="40" icon={<UserOutlined />} style={{marginLeft: 20,marginRight: 0}} />
             </div>
         </Header>
     );
