@@ -8,7 +8,7 @@ import ListImage from "./ListImage";
 import { uploadImages, createPost } from "../services";
 
 function PostCreateForm() {
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState("");
   const [isUpload, setIsUpload] = useState(false);
   const [images, setImages] = useState([]);
