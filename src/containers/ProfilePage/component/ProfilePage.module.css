@@ -1,0 +1,100 @@
+.profilePage{
+    width: 100vw;
+    background: #f5f8fa;
+}
+.avatarBackground{
+    height: 200px;
+    width: 100vw;
+    background: url(https://kiot37.com/wp-content/uploads/2020/12/02e3cb8734c99596e2d2ea8ec70bbc9c-1536x960.jpg);
+    position: relative;
+}
+.navbar{
+    background: white;
+    height: 50px;
+    border: 1px solid #ecf0f3;
+    position: relative;
+
+}
+/* .navbarButton{
+    position: absolute;
+    right: 40px;
+    top:10px;
+    border: 1px solid #f0f3f6;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.navbarButton:hover{
+    background: linear-gradient(#ecf0f3,#8cbbeb);
+} */
+.avatarBox{
+    position: absolute;
+    top:-120px;
+    left: 75px;
+    height: 250px;
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.avatar{
+    height: 200px;
+    width: 100%;
+    border: 4px solid white;
+    border-radius: 10px;
+}
+.body{
+    width: 100vw;
+    display: flex;
+}
+.bodyCol{
+    width: 1150px;
+    display: flex;
+    margin: 0 auto;
+}
+.infomationCol{
+    width: 40%;
+    margin-top: 80px;
+    margin-left: 15px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    height: 350px;
+} 
+.postList{
+    width: 55%;
+    margin-left: 20px;
+    margin-top: 80px;
+}
+.status{
+    height: 160px;
+    background: white;
+    border-radius: 10px;
+}
+.name{
+    font-size: 20px;
+    font-weight: 500;
+}
+.status_write{
+    height: 50%;
+    width: 95%;
+    border-bottom: 1px solid #e4e6eb;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.status_avatar{
+ 
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+.status_createNewPost{
+    width: 95%;
+    height: 55px;
+    border-radius: 30px;
+    border: none;
+    margin-left: 10px;
+    background: #f0f2f5;
+    cursor: pointer;
+}
