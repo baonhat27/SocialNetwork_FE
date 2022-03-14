@@ -25,7 +25,7 @@ function PostCreateForm() {
 
   return (
     <div
-      tabindex="0"
+      tabIndex="0"
       className={styles.form}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget))
@@ -66,5 +66,4 @@ function PostCreateForm() {
   );
 }
 
-export default PostCreateForm;
 export { PostCreateForm };
