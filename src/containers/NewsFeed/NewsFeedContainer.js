@@ -11,4 +11,3 @@ const NewsFeedContainer = () => {
 };
 
 export default NewsFeedContainer;
-

@@ -6,4 +6,3 @@ const NewsFeed = ({ children }) => {
 };
 
 export default NewsFeed;
-
