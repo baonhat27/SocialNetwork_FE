@@ -8,7 +8,7 @@ export const CREATE_POST_URL = `${HOST}/v1/posts`;
 export const uploadImages = async (files) => {
   const formData = new FormData();
 
-  Array.from(files).forEach((file) => formData.append("images", file));
+  files.forEach((file) => formData.append("images", file));
   return await wrapResponseHandler(() =>
     axios.post(UPLOAD_IMAGES_URL, formData)
   );
