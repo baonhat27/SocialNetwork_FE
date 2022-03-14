@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import HeaderContainer from "./containers/header/HeaderContainer";
 import HomeContainer from "./containers/HomePage/HomeContainer";
 import LoginPageContainer from "./containers/LoginPage/LoginPage";
 import ProfilePageContainer from "./containers/ProfilePage/ProfilePage";
@@ -9,7 +8,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/login">
-          <LoginPageContainer />
+          <LoginPageContainer/>
         </Route>
         <Route path="/profile">
           <ProfilePageContainer/>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUserInfomation } from "../../shared/store/redux/actions";
-import LoginPageComponent from "./component/LoginPage";
+import LoginPage from "./component/LoginPage"
 import { login } from "./service";
 export default function LoginPageContainer(props){
     const dispatch=useDispatch();
@@ -29,7 +29,7 @@ export default function LoginPageContainer(props){
             window.location="/home";
         }
     }
-    return <LoginPageComponent 
+    return <LoginPage
     login={loginUser}
     showSignUp={showSignUp}
     setShowSignUp={setShowSignUp}

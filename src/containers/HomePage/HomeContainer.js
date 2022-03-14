@@ -1,7 +1,6 @@
 import Home from "./component/Home"
 import React from 'react';
-import HeaderContainer from "../header/HeaderContainer";
-
+import HeaderContainer from "../Header/HeaderContainer"
 const HomeContainer = () => {
     return (
         <div>

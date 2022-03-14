@@ -6,8 +6,10 @@ import {  Avatar, Image } from "antd";
 const SideBar = (props) => {
     return (
         <div className={styles.sidebar}>
-            <div className={`${styles.user_info} ${styles.sidebar_item}`} >
-                    <Avatar src={<Image src="https://joeschmoe.io/api/v1/random" style={{ width: 32 }} />} />
+            <div className={styles.user_info} >
+                    <Avatar src={<Image src="https://joeschmoe.io/api/v1/random"  />} size={50}
+                            style={{border:'1px solid #1c85c4'}}
+                    />
                     <div className={styles.user_name}> Nhật</div>
             </div>
             <div className={styles.sidebar_list}>

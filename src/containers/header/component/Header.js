@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout} from "antd";
 import { Avatar } from 'antd';
 import { UserOutlined, BellOutlined  } from '@ant-design/icons';
-import styles from "./header.module.css"
+import styles from "./Header.module.css"
 import Search from '../../../components/Search/Search';
 
 

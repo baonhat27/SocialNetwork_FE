@@ -1,9 +1,9 @@
-import styles from './LoginPageComponent.module.css';
+import styles from './LoginPage.module.css';
 import React from 'react';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 
-const LoginPageComponent = (props) => {
+const LoginPage = (props) => {
     return (
         <div className={styles.backgroundLogin}>
             <div className={styles.loginPage}>
@@ -58,4 +58,4 @@ const LoginPageComponent = (props) => {
     );
 };
 
-export default LoginPageComponent;
+export default LoginPage;
