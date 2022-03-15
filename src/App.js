@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomeContainer from "./containers/HomePage/HomeContainer";
-import LoginPageContainer from "./containers/LoginPage/LoginPage";
+import LoginPageContainer from "./containers/LoginPage/loginPage";
 import ProfilePageContainer from "./containers/ProfilePage/ProfilePage";
 function App() {
   return (

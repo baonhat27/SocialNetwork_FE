@@ -2,16 +2,15 @@ import React from "react";
 import { Layout } from "antd";
 import { Avatar } from "antd";
 import { UserOutlined, BellOutlined } from "@ant-design/icons";
-import styles from "./Header.module.css";
+import styles from "./header.module.css";
 import Search from "../../../components/Search/Search";
 
-const { Header } = Layout;
 const img_url =
   "https://seeklogo.com/images/S/svg-logo-A7D0801A11-seeklogo.com.png";
 
-const _Header = () => {
+const Header = () => {
   return (
-    <Header className={styles.header}>
+    <Layout.Header className={styles.header}>
       <div class={styles.header_left}>
         <img className={styles.img_logo} src={img_url} />
       </div>
@@ -26,6 +25,8 @@ const _Header = () => {
           style={{ marginLeft: 20, marginRight: 0 }}
         />
       </div>
-    </Header>
+    </Layout.Header>
   );
 };
+
+export default Header;
