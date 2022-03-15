@@ -1,4 +1,4 @@
-import { PostCreateForm } from "./components";
+import PostCreateForm from "./components";
 
 function PostCreateContainer() {
   return (
