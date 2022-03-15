@@ -25,7 +25,11 @@ function PostCreateForm() {
 
   return (
     <div
+<<<<<<< HEAD
       tabIndex="0"
+=======
+      tabindex="0"
+>>>>>>> 81b33b1dd34e74584fb3f13a3a79895d60b94400
       className={styles.form}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget))
@@ -66,4 +70,8 @@ function PostCreateForm() {
   );
 }
 
+<<<<<<< HEAD
+=======
+export default PostCreateForm;
+>>>>>>> 81b33b1dd34e74584fb3f13a3a79895d60b94400
 export { PostCreateForm };
