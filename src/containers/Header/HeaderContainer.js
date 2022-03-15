@@ -1,10 +1,9 @@
-import React from 'react';
-import _Header from './component/Header';
+import React from "react";
+import Header from "./component/Header";
 
 const HeaderContainer = () => {
-    return (
-        <_Header></_Header>
-    );
+  return <Header></Header>;
 };
 
 export default HeaderContainer;
+
