@@ -1,0 +1,42 @@
+@import "../../../App.css";
+
+.header {
+  background-color: white;
+  color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  margin: 0 16px;
+}
+
+.user_name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--blue);
+}
+
+.time_box {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  color: var(--dark-grey);
+  font-size: 0.8rem;
+}
+
+.clock {
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  filter: opacity(0.5);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-left: 32px;
+}

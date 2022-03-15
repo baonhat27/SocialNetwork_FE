@@ -1,6 +1,6 @@
 import { PostList } from "./components";
 
-function PostListContainer() {
+function NewFeedPostListContainer() {
   return (
     <>
       <PostList />
@@ -8,4 +8,4 @@ function PostListContainer() {
   );
 }
 
-export default PostListContainer;
+export default NewFeedPostListContainer;

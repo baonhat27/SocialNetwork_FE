@@ -1,5 +1,5 @@
 import axios from "axios";
-import wrapResponseHandler from "../../../shared/service/wrapResponse";
+import { wrapResponseHandler } from "../../../shared/service";
 
 const HOST = "http://localhost:8000";
 export const UPLOAD_IMAGES_URL = `${HOST}/v1/images`;

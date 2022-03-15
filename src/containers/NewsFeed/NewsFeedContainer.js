@@ -1,13 +1,13 @@
 import React from "react";
 import NewsFeed from "./component/NewsFeed";
 import PostCreateContainer from "../PostCreateForm/PostCreateContainer";
-import PostListContainer from "../PostList/PostListContainer";
+import NewFeedPostListContainer from "../NewFeedPostList/NewFeedPostListContainer";
 
 const NewsFeedContainer = () => {
   return (
     <NewsFeed>
       <PostCreateContainer />
-      <PostListContainer />
+      <NewFeedPostListContainer />
     </NewsFeed>
   );
 };

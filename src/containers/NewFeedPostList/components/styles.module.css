@@ -1,0 +1,8 @@
+@import "../../../App.css";
+
+.post_item {
+  border: solid var(--grey) 1px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 16px;
+}
