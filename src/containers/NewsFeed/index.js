@@ -1,14 +1,15 @@
 import React from "react";
-import NewsFeed from "./NewsFeed";
 import PostCreateContainer from "../PostCreateForm/index.js";
-import NewFeedPostListContainer from "../NewFeedPostList";
+import PostList from "../PostList";
 
-const NewsFeed= () => {
+import styles from "./NewsFeed.module.css";
+
+const NewsFeed = () => {
   return (
-    <NewsFeed>
+    <div className={styles.newsfeed}>
       <PostCreateContainer />
-      <NewFeedPostListContainer />
-    </NewsFeed>
+      <PostList />
+    </div>
   );
 };
 

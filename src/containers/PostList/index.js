@@ -1,10 +1,5 @@
-import _PostList from "./components/_PostList";
 function PostList() {
-  return (
-    <>
-      <_PostList />
-    </>
-  );
+  return <>post</>;
 }
 
 export default PostList;
