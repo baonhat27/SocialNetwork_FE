@@ -15,6 +15,7 @@ const pReducer = persistReducer(persistConfig, reducer);
 const it={
     searchkey:'',
     user:{
+        _id:"",
         email: "",
         firstName:"",
         lastName:"",
