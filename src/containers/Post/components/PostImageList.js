@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 
-import { getImage } from "../services";
+import { getImage } from "../../../shared/service";
 
 export default function PostImageList({ images }) {
   return (
