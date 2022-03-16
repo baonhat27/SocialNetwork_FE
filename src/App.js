@@ -1,20 +1,20 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import HomeContainer from "./containers/HomePage/HomeContainer";
-import LoginPageContainer from "./containers/LoginPage/LoginPage";
-import ProfilePageContainer from "./containers/ProfilePage/ProfilePage";
+import HomePage from "./page/HomePage";
+import LoginPage from "./page/LoginPage";
+import ProfilePage from "./page/ProfilePage";
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
-          <LoginPageContainer />
+          <LoginPage />
         </Route>
         <Route path="/profile">
-          <ProfilePageContainer />
+          <ProfilePage />
         </Route>
         <Route path="/home">
-          <HomeContainer />
+          <HomePage/>
         </Route>
       </Switch>
     </div>
