@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getUserProfile } from "../services";
+import { getUserProfile } from "../../shared/service"
 import PostBody from "./component/PostBody";
 import PostHeader from "./components/PostHeader";
 import styles from "./styles.module.css";

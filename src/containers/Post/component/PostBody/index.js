@@ -1,6 +1,5 @@
 import PostContent from "../../components/PostContent"
-import PostImageList from "./components/PostImageList";
-
+import PostImageList from "../../PostImageList"
 export default function PostBody({ content, images }) {
   return (
     <>
