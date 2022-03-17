@@ -4,7 +4,7 @@ function ListImage({ images, handleDeleteImage }) {
   return (
     <div className={styles["list_img"]}>
       {images.map((image, index) => (
-        <div className={styles.img_wrap}>
+        <div key={index} className={styles.img_wrap}>
           <img
             className={styles["upload_img"]}
             key={index}

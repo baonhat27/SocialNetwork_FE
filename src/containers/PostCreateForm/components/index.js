@@ -59,7 +59,7 @@ function PostCreateForm() {
               }}
               onChange={(e) => setImages(Array.from(e.target.files))}
             />
-            <label for="postImages">Select images</label>
+            <label htmlFor="postImages">Select images</label>
           </div>
           <button className={styles.btn} onClick={onClickSubmit}>
             Submit
