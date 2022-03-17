@@ -1,12 +1,17 @@
-:root{
+:root {
   --main-color: #0277bd;
   --primary-color: #f0f2f5;
   --white-color: #ffffff;
-  --hover-select-color : #1c85c4;
+  --hover-select-color: #1c85c4;
   --hover-select-background: #eeeeee;
 }
 
 * {
   box-sizing: border-box;
 }
-
+.ck-editor__editable {
+  min-width: 500px !important;
+  max-width: 500px !important;
+  min-height: 100px !important;
+  max-height: 100px !important;
+}

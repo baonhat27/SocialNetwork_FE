@@ -5,7 +5,6 @@ function ProfilePageComponent(props) {
     return (
         <div className={styles.profilePage}>
             <div className={styles.avatarBackground}>
-                
             </div>
             <div className={styles.navbar}>
                 <div className={styles.avatarBox}>
@@ -58,12 +57,11 @@ function ProfilePageComponent(props) {
                                             <input placeholder="First name" onChange={props.handleChangeFirstName} className={styles.input} value={props.firstName}> 
                                             </input>
                                         </div>
-                                        <div className={styles.profileSetting_lastName+" "+styles.inputBox}>
-                                            
+                                        <div className={styles.profileSetting_lastName+" "+styles.inputBox}>                             
                                             <input placeholder="Last name" value={props.lastName} onChange={props.handleChangeLastName} className={styles.input}>
                                             </input>
                                         </div>
-                                        
+
                                     </div>
                                     <div className={styles.profileSetting_email+" "+styles.inputBox}>
                                             <input placeholder="Email" value={props.email} onChange={props.handleChangeEmail} className={styles.input}>

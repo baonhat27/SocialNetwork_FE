@@ -26,6 +26,8 @@
   font-weight: bold;
   font-size: 1rem;
   color: var(--blue);
+  margin-left: 5px;
+  align-items: center;
 }
 
 .time_box {
@@ -67,6 +69,17 @@
   border-radius: 10px;
   border: solid 1px var(--grey);
   margin: 16px;
-  margin-bottom: 0;
   width: 100%;
+}
+.comment_box{
+  background-color: white;
+  color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+.comment_content{
+    color:black;
+    display: flex;
+    align-items: center;
 }

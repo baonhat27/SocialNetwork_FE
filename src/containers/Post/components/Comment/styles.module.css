@@ -1,0 +1,155 @@
+@import "../../../../App.css";
+.header {
+  background-color: white;
+  color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  width: 20%;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.user_name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--blue);
+  margin-left: 5px;
+  margin-right: 10px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.time_box {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  color: var(--dark-grey);
+  font-size: 0.8rem;
+}
+
+.clock {
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  filter: opacity(0.5);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-left: 32px;
+}
+
+.content_box {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  margin-left: 32px;
+}
+
+.list_image {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  border-radius: 10px;
+  border: solid 1px var(--grey);
+  margin: 16px;
+  width: 100%;
+}
+.comment_box{
+  background-color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+.comment_content{
+  font-weight: 600;
+    border-radius: 4px;
+    height: 80px;
+    width: 90%;
+    color:black;
+    display: flex;
+    background-color: #f7f8f9;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.editor{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px 0 -50px;
+}
+.c_info {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+input[type="file"] {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.input_file {
+  display: inline;
+}
+
+.input_file label {
+  border-radius: 5px;
+  border: solid var(--blue) 1px;
+  padding: 4px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="file"]:hover + label {
+  transform: scale(1.02);
+}
+.btn {
+  color: var(--blue);
+  background-color: white;
+  border: solid var(--blue) 1px;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 4px 16px;
+  margin: 10px;
+}
+
+.btn:hover {
+  color: white;
+  background-color: var(--blue);
+  transform: scale(1.02);
+}
+
+.text-muted {
+  color: grey;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 16px 32px;
+}
+
+.form {
+  border-radius: 10px;
+  border: solid 1px var(--grey);
+  margin: 16px;
+  padding: 8px;
+}
+
+.error {
+  color: red;
+}

@@ -7,23 +7,6 @@ input[type="file"] {
   position: absolute;
 }
 
-.text-muted {
-  color: grey;
-  font-size: 1rem;
-  font-weight: normal;
-  padding: 16px 32px;
-}
-
-.btn {
-  color: var(--blue);
-  background-color: white;
-  border: solid var(--blue) 1px;
-  font-size: 1rem;
-  border-radius: 5px;
-  padding: 4px 16px;
-  margin: 8px;
-}
-
 .btn:hover {
   color: white;
   background-color: var(--blue);
@@ -58,13 +41,6 @@ input[type="file"] {
 
 input[type="file"]:hover + label {
   transform: scale(1.02);
-}
-
-.form {
-  border-radius: 10px;
-  border: solid 1px var(--grey);
-  margin: 16px;
-  padding: 8px;
 }
 
 .list_img {
@@ -107,8 +83,4 @@ input[type="file"]:hover + label {
   font-weight: 600;
   padding: 16px 16px;
   border-bottom: 1px var(--grey);
-}
-
-.error {
-  color: red;
 }

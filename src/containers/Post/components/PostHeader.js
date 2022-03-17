@@ -16,7 +16,7 @@ export default function PostHeader({ userId, createdAt }) {
 
   return user ? (
     <div className={styles.header}>
-      <img className={styles["avatar"]} src={defaultUserAvatar} alt="" />
+      <img className={styles["avatar"]} src="https://joeschmoe.io/api/v1/random" alt="" />
       <div className={styles.info}>
         <span className={styles.user_name}>Nhat Bao</span>
         <div className={styles.time_box}>

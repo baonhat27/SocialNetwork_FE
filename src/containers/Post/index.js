@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../shared/service"
-import PostBody from "./components/PostBody";
 import PostHeader from "./components/PostHeader";
 import styles from "./styles.module.css";
-
+import PostContent from "./components/PostContent"
+import PostImageList from "./components/PostImageList"
+import Comment from "./components/Comment";
+import ReactionBar from "./components/Reactions";
 function Post({ post }) {
   const [user, setUser] = useState();
   const [error, setError] = useState("");
@@ -19,15 +21,12 @@ function Post({ post }) {
   }, []);
 
   return (
-    <div className={styles.post_item}>
-      <PostHeader
-        avatar={""}
-        userFirstName={"Nhat"}
-        userLastName={"Bao"}
-        username={"baonhat"}
-        createdAt={post.createdAt}
-      />
-      <PostBody content={post.content} images={post.images} />
+    <div className={styles.post}>
+      <PostHeader userId={post.createdBy} createdAt={post.createdAt} />
+      <PostContent content={post.content} />
+      {post.images.length !== 0 && <PostImageList images={post.images} />}
+      <ReactionBar/>
+      <Comment commentId={post.Comment}/>
     </div>
   );
 }
