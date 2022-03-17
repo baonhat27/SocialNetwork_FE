@@ -1,5 +1,15 @@
 @import "../../../App.css";
 
+.btn {
+  color: var(--blue);
+  border: none;
+  width: 100%;
+  padding: 4px;
+  font-size: 1rem;
+  background-color: white;
+  margin: 4px 0;
+}
+
 .header {
   background-color: white;
   color: white;
@@ -42,19 +52,21 @@
 }
 
 .content_box {
+  font-size: 1.2rem;
   margin-bottom: 16px;
   margin-left: 32px;
 }
 
 .list_image {
-  border-top: solid var(--grey) 1px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  overflow: scroll;
-  max-height: 800px;
 }
 
 .image {
+  border-radius: 10px;
+  border: solid 1px var(--grey);
+  margin: 16px;
+  margin-bottom: 0;
   width: 100%;
 }
