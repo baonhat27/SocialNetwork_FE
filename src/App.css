@@ -4,3 +4,18 @@
   --blue: #0277bd;
   --dark_blue: #0268a6;
 }
+.background_dark{
+  background: #00000080;
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top:0px;
+  left: 0px;
+  
+  justify-content: center;
+  align-items: center;
+}
+.background_dark.show{
+  display: flex;
+}
