@@ -1,33 +1,14 @@
-import { useState, useEffect } from "react";
-import { getUserProfile } from "../services";
-import PostBody from "./component/PostBody/components";
-import PostHeader from "./component/PostHeader";
+import PostHeader from "./components/PostHeader";
+import PostContent from "./components/PostContent";
 import styles from "./styles.module.css";
+import PostImageList from "./components/PostImageList";
 
 function Post({ post }) {
-  const [user, setUser] = useState();
-  const [error, setError] = useState("");
-  useEffect(() => {
-    (async () => {
-      const userRes = await getUserProfile(post.createdBy);
-      if (userRes.status === 200) {
-        setUser(userRes.data);
-      } else {
-        setError(userRes.data);
-      }
-    })();
-  }, []);
-
   return (
-    <div className={styles.post_item}>
-      <PostHeader
-        avatar={""}
-        userFirstName={"Nhat"}
-        userLastName={"Bao"}
-        username={"baonhat"}
-        createdAt={post.createdAt}
-      />
-      <PostBody content={post.content} images={post.images} />
+    <div className={styles.post}>
+      <PostHeader userId={post.createdBy} createdAt={post.createdAt} />
+      <PostContent content={post.content} />
+      <PostImageList images={post.images} />
     </div>
   );
 }

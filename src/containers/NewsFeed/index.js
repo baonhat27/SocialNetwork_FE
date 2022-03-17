@@ -1,14 +1,21 @@
-import React from "react";
-import NewsFeed from "./NewsFeed";
+import React, { useEffect, useState } from "react";
 import PostCreateContainer from "../PostCreateForm/index.js";
-import NewFeedPostListContainer from "../NewFeedPostList";
+import PostList from "../PostList";
+import { getPosts } from "../../shared/service";
 
-const NewsFeed= () => {
+import styles from "./NewsFeed.module.css";
+
+const NewsFeed = () => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    getPosts().then((res) => setPosts(res.data.results));
+  }, []);
+
   return (
-    <NewsFeed>
+    <div className={styles.newsfeed}>
       <PostCreateContainer />
-      <NewFeedPostListContainer />
-    </NewsFeed>
+      <PostList posts={posts} />
+    </div>
   );
 };
 

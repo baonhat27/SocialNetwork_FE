@@ -108,3 +108,7 @@ input[type="file"]:hover + label {
   padding: 16px 16px;
   border-bottom: 1px var(--grey);
 }
+
+.error {
+  color: red;
+}

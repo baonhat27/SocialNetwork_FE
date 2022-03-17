@@ -40,3 +40,21 @@
   height: 32px;
   margin-left: 32px;
 }
+
+.content_box {
+  margin-bottom: 16px;
+  margin-left: 32px;
+}
+
+.list_image {
+  border-top: solid var(--grey) 1px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+  max-height: 800px;
+}
+
+.image {
+  width: 100%;
+}
