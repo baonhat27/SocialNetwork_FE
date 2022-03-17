@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Notification from './Notification';
+import _Notification from './Notification';
 
-const NotificationContainer = (props) => {
+const Notification= (props) => {
     return (
         <div>
-            <Notification
+            <_Notification
             />
         </div>
     );
 };
 
-export default NotificationContainer;
+export default Notification;

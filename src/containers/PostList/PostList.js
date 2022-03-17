@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPosts } from "../services";
+import { getPosts } from "./services"
 import Post from "../../Post";
 
 function _PostList() {

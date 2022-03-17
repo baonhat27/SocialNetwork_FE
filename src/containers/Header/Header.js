@@ -4,8 +4,7 @@ import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import styles from "./header.module.css"
 import Search from '../../components/Search/Search';
-import Notification from './component/Notification';
-
+import _Notification from '../Header/component/Notification/Notification'
 
 const { Header } = Layout;
 const img_url = "https://seeklogo.com/images/S/svg-logo-A7D0801A11-seeklogo.com.png"
@@ -27,9 +26,8 @@ const _Header = (props) => {
                     style={{color:"white", fontSize:20, marginRight:20}}
                     onClick={props.handleShowNoti}
                 >
-                    
                 </i>
-                <Notification showNoti={props.showNoti}/>
+                <_Notification showNoti={props.showNoti}/>
                 <Avatar size="40" icon={<UserOutlined />} style={{marginLeft: 20,marginRight: 0}} />
             </div>
         </Header>

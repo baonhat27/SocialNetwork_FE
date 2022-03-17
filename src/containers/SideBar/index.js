@@ -1,12 +1,15 @@
 import React from 'react';
-import SideBar from './component/SideBar';
+import _SideBar from './SideBar';
+import { useSelector } from 'react-redux';
 
-const SideBarContainer = () => {
+const SideBar = () => {
+    const user = useSelector(state => state.user)
+    console.log(user);
     return (
-        <SideBar>
-
-        </SideBar>
+        <_SideBar
+            user = {user}
+        />
     );
 };
 
-export default SideBarContainer;
+export default SideBar;
