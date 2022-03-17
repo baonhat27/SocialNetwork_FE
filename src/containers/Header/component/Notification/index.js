@@ -4,7 +4,7 @@ import _Notification from './Notification';
 const Notification= (props) => {
     return (
         <div>
-            <_Notification
+            <_Notification showNoti = {props.showNoti}
             />
         </div>
     );

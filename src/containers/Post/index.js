@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../shared/service"
-import PostBody from "./component/PostBody";
+import PostBody from "./components/PostBody";
 import PostHeader from "./components/PostHeader";
 import styles from "./styles.module.css";
 
@@ -15,7 +15,7 @@ function Post({ post }) {
       } else {
         setError(userRes.data);
       }
-    })();
+    })()
   }, []);
 
   return (
