@@ -1,10 +1,6 @@
-import _PostList from "./components/_PostList";
-function PostList() {
-  return (
-    <>
-      <_PostList />
-    </>
-  );
+import Post from "../Post";
+function PostList({ posts }) {
+  return posts.map((post) => <Post key={post._id} post={post} />);
 }
 
 export default PostList;

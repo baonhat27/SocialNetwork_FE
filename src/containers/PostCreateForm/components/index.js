@@ -5,18 +5,24 @@ import FormHeader from "./FormHeader";
 import TextEditor from "./TextEditor";
 import ListImage from "./ListImage";
 
-import { uploadImages, createPost } from "../services";
+import { uploadImages, createPost } from "../../../shared/service";
 
 function PostCreateForm() {
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState("");
   const [isUpload, setIsUpload] = useState(false);
   const [images, setImages] = useState([]);
+  const [error, setError] = useState("");
 
   const onClickSubmit = async () => {
-    const imageRes = images.length ? await uploadImages(images) : [];
-    const postRes = createPost(text, imageRes.data);
-    console.log(postRes);
+    try {
+      const imageRes = images.length && (await uploadImages(images));
+      const postRes =
+        (imageRes || text) &&
+        (await createPost(text, imageRes && imageRes.data));
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   const handleDeleteImage = (index) => () => {
@@ -53,11 +59,12 @@ function PostCreateForm() {
               }}
               onChange={(e) => setImages(Array.from(e.target.files))}
             />
-            <label for="postImages">Select images</label>
+            <label htmlFor="postImages">Select images</label>
           </div>
           <button className={styles.btn} onClick={onClickSubmit}>
             Submit
           </button>
+          {error && <span className={styles.error}>{error}</span>}
         </>
       ) : (
         <span className={styles["text-muted"]}>Write some text</span>
