@@ -1,6 +1,5 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
-import { getImage } from "../../../shared/service";
 
 export default function PostImageList({ images }) {
   const firstImage = images[0];
@@ -15,7 +14,7 @@ export default function PostImageList({ images }) {
 
   return (
     <div className={styles.list_image}>
-      <img className={styles.image} src={getImage(firstImage)} alt="" />
+      <img className={styles.image} src={firstImage} alt="" />
       {showMore && (
         <button className={styles.btn} onClick={onClickShowMore}>
           {`Show ${restImages.length} more`}
@@ -23,12 +22,7 @@ export default function PostImageList({ images }) {
       )}
       {displayMore &&
         restImages.map((image, index) => (
-          <img
-            className={styles.image}
-            key={index}
-            src={getImage(image)}
-            alt=""
-          />
+          <img className={styles.image} key={index} src={image} alt="" />
         ))}
     </div>
   );

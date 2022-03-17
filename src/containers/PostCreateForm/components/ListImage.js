@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 
-function ListImage({ images, handleDeleteImage }) {
+function ListImage({ images }) {
   return (
     <div className={styles["list_img"]}>
       {images.map((image, index) => (
@@ -8,15 +8,9 @@ function ListImage({ images, handleDeleteImage }) {
           <img
             className={styles["upload_img"]}
             key={index}
-            src={URL.createObjectURL(image)}
+            src={image}
             alt={image.name}
           />
-          <span
-            className={styles.delete_btn}
-            onClick={handleDeleteImage(index)}
-          >
-            X
-          </span>
         </div>
       ))}
     </div>
