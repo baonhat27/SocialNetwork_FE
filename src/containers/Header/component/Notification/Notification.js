@@ -1,7 +1,7 @@
 import styles from "./Notification.module.css"
 import React from 'react';
 
-const Notification = (props) => {
+const _Notification = (props) => {
     return (
         <div className={  props.showNoti ? styles.noti : styles.hide }>
             <div className={styles.noti_header}>Notification header</div>
@@ -21,4 +21,4 @@ const Notification = (props) => {
     );
 };
 
-export default Notification;
+export default _Notification;

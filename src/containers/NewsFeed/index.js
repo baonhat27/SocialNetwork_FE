@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostCreateContainer from "../PostCreateForm/index.js";
-import PostList from "../PostList";
+import PostList from "../PostList"
 import { getPosts } from "../../shared/service";
 
 import styles from "./NewsFeed.module.css";

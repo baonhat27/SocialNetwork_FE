@@ -5,11 +5,12 @@ import { UserOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
 import Search from "../../components/Search/Search";
 import Notification from "./component/Notification";
+import { Link } from "react-router-dom";
 
 const img_url =
   "https://seeklogo.com/images/S/svg-logo-A7D0801A11-seeklogo.com.png";
 
-const Header = (props) => {
+const _Header = (props) => {
   return (
     <Layout.Header className={styles.header}>
       <div className={styles.header_left}>
@@ -25,15 +26,19 @@ const Header = (props) => {
           onClick={props.handleShowNoti}
         ></i>
         <Notification showNoti={props.showNoti} />
-        <Avatar
-          size="40"
-          icon={<UserOutlined />}
-          style={{ marginLeft: 20, marginRight: 0 }}
-        />
+        <Link to="/profile" >
+          <Avatar
+            src={props.user.avatar}
+            size="40"
+            icon={<UserOutlined />}
+            style={{ marginLeft: 20, marginRight: 0 }}
+            onClick={props.handleAvaClick}
+          />
+        </Link>
       </div>
     </Layout.Header>
   );
 };
 
-export default Header;
+export default _Header;
 
