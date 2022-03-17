@@ -15,6 +15,7 @@ function ProfilePage() {
     const [lastName,setLastName]= useState("");
     const [email,setEmail] = useState("");
     const [gender,setGender] =useState(user.gender);
+    const [selectedAvatarForm,setSelectedAvatarForm]=useState(false);
     useEffect(()=>{
         setFirstName(user.firstName);
         setLastName(user.lastName);
@@ -73,6 +74,7 @@ function ProfilePage() {
             email={email} handleChangeEmail={handleChangeEmail}
             gender={gender} handleChangeGender={handleChangeGender}
             putUserInfo={putUserInfo}
+            selectedAvatarForm={selectedAvatarForm} setSelectedAvatarForm={setSelectedAvatarForm}
             settingShow={settingShow} setSettingShow={setSettingShow} user={user}/>
         )
     }

@@ -1,22 +1,27 @@
 import React from 'react'
 import styles from "./ProfilePage.module.css";
+import Header from "../../containers/Header"
 import PostCreateForm from "../../containers/PostCreateForm/index";
+import UpdateAvatarFormContainer from '../../containers/UpdateAvatarForm';
 function ProfilePageComponent(props) {
+    console.log(props.user)
     return (
         <div className={styles.profilePage}>
+            <Header/>
             <div className={styles.avatarBackground}>
-                
-            </div>
-            <div className={styles.navbar}>
                 <div className={styles.avatarBox}>
-                    <img src={props.user.avatar} className={styles.avatar} alt='avatar'></img>
+                    <img src={props.user.avatar!=="no information"? props.user.avatar:"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} className={styles.avatar} alt='avatar'></img>
+                    <i onClick={function(){props.setSelectedAvatarForm(true)}} class={"fa-solid fa-camera "+styles.icon_camera}></i>
                     <p className={styles.name}>
                         {props.user.firstName+" "+props.user.lastName}
                     </p>
                 </div>
-                
             </div>
+            <UpdateAvatarFormContainer selectedAvatarForm={props.selectedAvatarForm} setSelectedAvatarForm={props.setSelectedAvatarForm}/>
             <div className={styles.body}>
+            <div>
+            
+            </div>
                 <div className={styles.bodyCol}>
                     <div className={styles.infomationCol}>
                         <h2>Giới thiệu</h2>

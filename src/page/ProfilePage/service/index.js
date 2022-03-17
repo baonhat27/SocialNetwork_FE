@@ -15,3 +15,16 @@ export async function hanldeUserInfomation(u){
         return false;
     }
 }
+export async function loadData(){
+    try{
+        const api=await axios.get(SERVER+'v1/users/userInfo',{
+            headers:{
+                Authorization:localStorage.getItem("token")
+            }
+        })
+        return api.data;
+    }
+    catch(error){
+        return false
+    }
+}

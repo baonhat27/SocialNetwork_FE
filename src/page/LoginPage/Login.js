@@ -47,7 +47,7 @@ const Login = (props) => {
                                 <Input value={props.password} onChange={props.handlePassword} type="password" placeholder="Mật khẩu"/>
                                 <Input value={props.retypePassword} onChange={props.handleRetypePassword} type="password" placeholder="Nhập lại mật khẩu"/>
                                 
-                                <Button style={{background:"linear-gradient(#9bc1f2,#1877f2)"}}>Đăng ký</Button>
+                                <Button style={{background:"linear-gradient(#9bc1f2,#1877f2)"}} onClick={props.signupAccount}>Đăng ký</Button>
                             </div>
                         </div>
                     </div>
