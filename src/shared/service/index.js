@@ -28,9 +28,14 @@ export const createPost = async (text, images) => {
   );
 };
 
-export const getPosts = async (query) => {
+export const getPosts = async (offset, limit, createdBy) => {
+  let query = "";
+  query += offset ? `offset=${offset}` : "";
+  query += limit ? `limit=${limit}` : "";
+  query += createdBy ? `createdBy=${createdBy}` : "";
+
   return await wrapResponseHandler(() =>
-    axios.get(GET_POST_URL, { headers: authHeader() })
+    axios.get(`${GET_POST_URL}?${query}`, { headers: authHeader() })
   );
 };
 

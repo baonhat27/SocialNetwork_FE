@@ -9,6 +9,7 @@ dist/
 
 # Swap files from vim
 *.swp
+*.swo
 
 # Compiled Java class files
 *.class
