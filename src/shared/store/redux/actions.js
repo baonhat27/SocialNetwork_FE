@@ -22,3 +22,9 @@ export const handleUserInfo=(u)=>{
         gender:u.gender
     }
 }
+export const handleAvatar=(u)=>{
+    return{
+        type:"handleAvatar",
+        avatar:u
+    }
+}

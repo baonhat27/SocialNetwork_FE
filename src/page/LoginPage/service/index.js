@@ -1,21 +1,27 @@
 import axios from "axios";
 import { SERVER } from "../../../shared/store/env";
 async function login(username, password) {
-  const respone = await axios.post(SERVER + "v1/auth/login", {
-    username: username,
-    password: password,
-  });
-  return respone.data;
-}
-async function signup(username, password) {
-  try {
-    await axios.post(SERVER + "v1/signup", {
+  try{
+    const response = await axios.post(SERVER + "v1/auth/login", {
       username: username,
       password: password,
     });
-    return true;
+    return response.data;
+  }
+  catch(error){
+    return null;
+  }
+}
+async function signup(username, password) {
+  try {
+    const response=await axios.post(SERVER + "v1/auth/signup", {
+      username: username,
+      password: password,
+    });
+    return response.data;
+    alert('hêlo')
   } catch (error) {
-    return error;
+    return null;
   }
 }
 export { login, signup };

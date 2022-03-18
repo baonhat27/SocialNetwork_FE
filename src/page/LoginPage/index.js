@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUserInfomation } from "../../shared/store/redux/actions";
 import Login from "./Login"
-import { login } from "./service";
+import { login, signup } from "./service";
 export default function LoginPage(props){
     const dispatch=useDispatch();
     const [showSignUp,setShowSignUp]=useState(false);
@@ -26,7 +26,22 @@ export default function LoginPage(props){
         else{
             localStorage.setItem("token",user.token);
             dispatch(addUserInfomation(user.data));
-            window.location="/home";
+            window.location="/profile";
+        }
+    }
+    async function signupAccount(){
+        if(password===retypePassword){
+            const user=await signup(username,password);
+            if(user){
+                alert('Tạo mới tài khoản thành công, vui lòng đăng nhập để sử dụng');
+                setShowSignUp(false);
+            }
+            else{
+                alert('Tài khoản hoặc mật khẩu không hợp lệ');
+            }
+        }
+        else{
+            alert('Nhập lại tài khoản chưa chính xác!');
         }
     }
     return <Login
@@ -39,5 +54,6 @@ export default function LoginPage(props){
     handlePassword={handlePassword}
     retypePassword={retypePassword}
     handleRetypePassword={handleRetypePassword}
+    signupAccount={signupAccount}
     />
 }
