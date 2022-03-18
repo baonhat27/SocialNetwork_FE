@@ -116,7 +116,6 @@
   font-size: 1.2rem;
   width: 100%;
 }
-<<<<<<< HEAD
 .comment_box{
   background-color: white;
   color: white;
@@ -128,13 +127,4 @@
     color:black;
     display: flex;
     align-items: center;
-=======
-
-.btn_link:hover {
-  background-color: var(--light-grey);
-}
-
-.danger {
-  color: red;
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
 }

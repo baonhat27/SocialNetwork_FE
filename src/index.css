@@ -9,20 +9,15 @@
 * {
   box-sizing: border-box;
 }
-<<<<<<< HEAD
+
 p{
   margin-bottom: 0 !important;
 }
-.ck-editor__editable {
-  min-width: 350px !important;
-  max-width: 1000px !important;
-  min-height: 50px !important;
-  max-height: 50px !important;
-=======
+
 .ck-editor__editable {
   min-width: 500px !important;
   max-width: 2000px !important;
   min-height: 100px !important;
   max-height: 100px !important;
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
+
 }

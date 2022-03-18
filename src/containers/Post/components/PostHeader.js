@@ -20,16 +20,6 @@ export default function PostHeader({
     setIsDisplayOptions(!isDisplayOptions);
   };
 
-<<<<<<< HEAD
-  return user ? (
-    <div className={styles.header}>
-      <img className={styles["avatar"]} src="https://joeschmoe.io/api/v1/random" alt="" />
-      <div className={styles.info}>
-        <span className={styles.user_name}>Nhat Bao</span>
-        <div className={styles.time_box}>
-          <img className={styles["clock"]} src={clockLogo} alt="" />
-          <span className={styles.time}>{timeFromNow(createdAt)}</span>
-=======
   const handleDelete = async () => {
     try {
       const res = await deletePost(postId);
@@ -62,7 +52,6 @@ export default function PostHeader({
             <span className={styles.time}>{timeFromNow(createdAt)}</span>
           </div>
           {error && <span style={{ color: "red" }}>{error}</span>}
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
         </div>
         <img
           src={dots}

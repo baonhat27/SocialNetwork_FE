@@ -8,11 +8,7 @@
 }
 
 .info {
-<<<<<<< HEAD
   width: 6%;
-=======
-  width: 30%;
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
   margin: 0 16px;
   display: flex;
   flex-direction: row;
@@ -69,17 +65,12 @@
   margin: 16px;
   width: 100%;
 }
-<<<<<<< HEAD
 .comment_box {
   width: 100%;
-=======
-.comment_box{
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
   background-color: white;
   padding: 16px 0;
   display: flex;
   align-items: center;
-<<<<<<< HEAD
   justify-content: space-between;
   margin-top: 0px; 
 }
@@ -120,27 +111,6 @@ p{
 }
 .c_info {
   margin: 0;
-=======
-}
-.comment_content{
-  font-weight: 600;
-    border-radius: 4px;
-    height: 80px;
-    width: 90%;
-    color:black;
-    display: flex;
-    background-color: #f7f8f9;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-.editor{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 20px 0 -50px;
-}
-.c_info {
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
   width: 20%;
   display: flex;
   flex-direction: row;
@@ -178,13 +148,8 @@ input[type="file"]:hover + label {
   border: solid var(--blue) 1px;
   font-size: 1rem;
   border-radius: 5px;
-<<<<<<< HEAD
   margin: 10px 0 10px 10px;
   width: 150px;
-=======
-  padding: 4px 16px;
-  margin: 10px;
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
 }
 
 .btn:hover {
@@ -210,7 +175,6 @@ input[type="file"]:hover + label {
 .error {
   color: red;
 }
-<<<<<<< HEAD
 .btn_group {
   width: 20%;
   padding: 0 0 10px 0;
@@ -220,5 +184,3 @@ input[type="file"]:hover + label {
   justify-content: center;
   align-items: center;
 }
-=======
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a

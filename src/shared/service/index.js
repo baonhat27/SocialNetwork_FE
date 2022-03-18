@@ -6,13 +6,6 @@ const HOST = "http://localhost:8000";
 
 const GET_IMAGE_URL = `${HOST}/v1/images`;
 const UPLOAD_IMAGES_URL = GET_IMAGE_URL;
-<<<<<<< HEAD
-const CREATE_POST_URL = `${HOST}/v1/posts`;
-const GET_COMMENT_URL = `${HOST}/v1/comments`;
-const CREATE_COMMENT_URL = GET_COMMENT_URL;
-=======
-
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
 const GET_POST_URL = `${HOST}/v1/posts`;
 const CREATE_POST_URL = GET_POST_URL;
 const DELETE_POST_URL = GET_POST_URL;
@@ -77,16 +70,9 @@ export const getImage = (image) => {
   return `${GET_IMAGE_URL}/${image}`;
 };
 
-<<<<<<< HEAD
-
-export const getComments = async (postId) => {
-  return await wrapResponseHandler(() => axios.get(GET_COMMENT_URL + `?postId=${postId}`, { headers: authHeader()}))
-}
-=======
 export const getComments = async (postId) => {
   return await wrapResponseHandler(() =>
     axios.get(GET_COMMENT_URL + `?postId=${postId}`, { headers: authHeader() })
   );
 };
 
->>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
