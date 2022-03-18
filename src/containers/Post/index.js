@@ -5,10 +5,15 @@ import PostImageList from "./components/PostImageList";
 import Comment from "./components/Comment";
 import ReactionBar from "./components/Reactions";
 
-function Post({ post }) {
+function Post({ post, onDeletePost }) {
   return (
     <div className={styles.post}>
-      <PostHeader user={post.createdBy} createdAt={post.createdAt} />
+      <PostHeader
+        postId={post._id}
+        user={post.createdBy}
+        createdAt={post.createdAt}
+        onDeletePost={onDeletePost}
+      />
       <PostContent content={post.content} />
       {post.images.length !== 0 && <PostImageList images={post.images} />}
       <ReactionBar />

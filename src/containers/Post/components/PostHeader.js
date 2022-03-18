@@ -1,24 +1,76 @@
+import { useState } from "react";
 import styles from "./styles.module.css";
 import { timeFromNow } from "../../../shared/utils";
 import clockLogo from "../../../shared/image/clock.png";
 import defaultUserAvatar from "../../../shared/image/user.png";
-export default function PostHeader({ user, createdAt }) {
+import dots from "../../../shared/image/dots.png";
+import { deletePost } from "../../../shared/service";
+
+export default function PostHeader({
+  postId,
+  user,
+  createdAt,
+  onDeletePost,
+  onEditPost,
+}) {
+  const [isDisplayOptions, setIsDisplayOptions] = useState(false);
+  const [error, setError] = useState("");
+
+  const displayOptions = () => {
+    setIsDisplayOptions(!isDisplayOptions);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await deletePost(postId);
+
+      res.success
+        ? onDeletePost(postId) && setError("")
+        : setError(res.message);
+    } catch (e) {
+      console.log(e);
+      setError(e);
+    }
+  };
+
   return (
-    <div className={styles.header}>
-      <img
-        className={styles["avatar"]}
-        src={user.avatar === "no infromation" ? defaultUserAvatar : user.avatar}
-        alt=""
-      />
-      <div className={styles.info}>
-        <span
-          className={styles.user_name}
-        >{`${user.firstName} ${user.lastName}`}</span>
-        <div className={styles.time_box}>
-          <img className={styles["clock"]} src={clockLogo} alt="" />
-          <span className={styles.time}>{timeFromNow(createdAt)}</span>
+    <>
+      <div className={styles.header}>
+        <img
+          className={styles["avatar"]}
+          src={
+            user.avatar === "no infromation" ? defaultUserAvatar : user.avatar
+          }
+          alt=""
+        />
+        <div className={styles.info}>
+          <span
+            className={styles.user_name}
+          >{`${user.firstName} ${user.lastName}`}</span>
+          <div className={styles.time_box}>
+            <img className={styles["clock"]} src={clockLogo} alt="" />
+            <span className={styles.time}>{timeFromNow(createdAt)}</span>
+          </div>
+          {error && <span style={{ color: "red" }}>{error}</span>}
         </div>
+        <img
+          src={dots}
+          className={styles.dots}
+          alt=""
+          onClick={displayOptions}
+        />
+        {isDisplayOptions && (
+          <div className={styles.options}>
+            <span className={styles.btn_link}>Edit post</span>
+            <span
+              className={`${styles.btn_link} ${styles.danger}`}
+              onClick={handleDelete}
+            >
+              Delete post
+            </span>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }

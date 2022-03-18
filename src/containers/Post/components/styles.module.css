@@ -11,6 +11,7 @@
 }
 
 .header {
+  position: relative;
   background-color: white;
   color: white;
   padding: 16px 0;
@@ -83,4 +84,43 @@
   color: black;
   display: flex;
   align-items: center;
+}
+
+.dots {
+  width: 32px;
+  filter: opacity(0.5);
+  margin-left: auto;
+  margin-right: 32px;
+}
+
+.options {
+  position: absolute;
+  top: 30%;
+  right: 8%;
+  z-index: 1000;
+  color: black;
+  margin-left: auto;
+  background-color: white;
+  width: 30%;
+  border: solid var(--dark-grey) 1px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn_link {
+  padding: 16px;
+  color: var(--blue);
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.btn_link:hover {
+  background-color: var(--light-grey);
+}
+
+.danger {
+  color: red;
 }
