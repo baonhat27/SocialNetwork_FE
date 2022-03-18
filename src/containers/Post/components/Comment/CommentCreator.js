@@ -7,18 +7,14 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { createComment } from "../../../../shared/service";
 
-function CommentCreator({onCreateComment, postId}) {
-  // console.log(postId);
+function CommentCreator({ onCreateComment, postId }) {
   const user = useSelector((state) => state.user);
   const [text, setText] = useState("");
-  const [isUpload, setIsUpload] = useState(false);
-  const [images, setImages] = useState([]);
   const onClickSubmit = async () => {
-    const response = await createComment(text, postId)
-    if(response.success){
-      // console.log(response.data);
-      setText("")
-      onCreateComment && onCreateComment(response.data)
+    const response = await createComment(text, postId);
+    if (response.success) {
+      setText("");
+      onCreateComment && onCreateComment(response.data);
     }
   };
   const config = {
@@ -42,20 +38,20 @@ function CommentCreator({onCreateComment, postId}) {
           size={50}
           icon={<UserOutlined />}
         />
-        
       </div>
       <div className={styles.editor}>
         <CKEditor
           editor={ClassicEditor}
           data={text}
           config={config}
-          onReady={(editor) => {
-          }}
+          onReady={(editor) => {}}
           onChange={(event, editor) => {
             const data = editor.getData();
             setText(data);
           }}
         />
+      </div>
+      <div className={styles.btn_group}>
         <div className={styles["input_file"]}>
           <input
             type="file"
@@ -63,15 +59,11 @@ function CommentCreator({onCreateComment, postId}) {
             name="images"
             accept="image/*"
             multiple
-            onFocus={() => {
-              setIsUpload(true);
-            }}
-            onBlur={() => {
-              setIsUpload(false);
-            }}
-            onChange={(e) => setImages(Array.from(e.target.files))}
+            // onChange={(e) => setImages(Array.from(e.target.files))}
           />
-          <label htmlFor="postImages">Select images</label>
+          <label htmlFor="postImages" className={styles.btn}>
+            Select images
+          </label>
         </div>
         <button className={styles.btn} onClick={onClickSubmit}>
           Bình luận

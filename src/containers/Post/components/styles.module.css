@@ -116,11 +116,15 @@
   font-size: 1.2rem;
   width: 100%;
 }
-
-.btn_link:hover {
-  background-color: var(--light-grey);
+.comment_box{
+  background-color: white;
+  color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
 }
-
-.danger {
-  color: red;
+.comment_content{
+    color:black;
+    display: flex;
+    align-items: center;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./SideBar.module.css";
 import { Avatar, Image } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 const _SideBar = (props) => {
   const img_url =  props.user.avatar
@@ -8,11 +9,12 @@ const _SideBar = (props) => {
     <div className={styles.sidebar}>
       <div className={styles.user_info}>
         <Avatar
-          src={<Image style={{width:50, height:50}} src={img_url} />}
-          size={50}
-          style={{ border: "1px solid #1c85c4" }}
+          src={img_url}
+          size={40}
+          style={{ border: "1px solid #1c85c4",width:40}}
+          
         />
-        <div className={styles.user_name}> {props.user.firstName + props.user.lastName }</div>
+        <div className={styles.user_name}> {props.user.firstName +" "+ props.user.lastName }</div>
       </div>
       <div className={styles.sidebar_list}>
         <div className={styles.sidebar_item} tabIndex="1">

@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { getUserProfile } from "../../shared/service"
 import PostHeader from "./components/PostHeader";
 import styles from "./styles.module.css";
 import PostContent from "./components/PostContent";

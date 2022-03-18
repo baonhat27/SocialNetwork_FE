@@ -9,9 +9,15 @@
 * {
   box-sizing: border-box;
 }
+
+p{
+  margin-bottom: 0 !important;
+}
+
 .ck-editor__editable {
   min-width: 500px !important;
   max-width: 2000px !important;
   min-height: 100px !important;
   max-height: 100px !important;
+
 }
