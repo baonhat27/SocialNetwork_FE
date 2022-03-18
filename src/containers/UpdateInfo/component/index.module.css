@@ -1,0 +1,109 @@
+
+.profileSetting{
+    position: fixed;
+    width: 550px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    border: 1px groove white;
+}
+.profileSetting_header{
+    text-align: center;
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px;
+    position: relative;
+}
+.profileSetting_closeButton{
+    position: absolute;
+    top:10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.profilePage_describes{
+    position: relative;
+    bottom: 12px;
+}
+.profileSetting_body{
+    margin: 20px 30px;
+}
+.profileSetting_name{
+    display: flex;
+    margin-top: 10px;
+}
+.inputBox{
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding-left: 10px;
+    display: flex;
+    position: relative;
+}
+.input{
+    outline: none;
+    border: none;
+    width: 95%;
+}
+.profileSetting_firstName{
+    width: 65%;
+}
+.profileSetting_lastName{
+    width: 35%;
+    margin-left: 10px;
+}
+.profileSetting_email{
+    width: 100%;
+    margin-top: 15px;
+}
+.profileSetting_dateOfBirth{
+    position: relative;
+    display: flex;
+    margin-top: 45px;
+}
+.profileSetting_dateOfBirth_component{
+    height: 50px;
+    width: 15%;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin-right: 10px;
+    text-align: center;
+    outline: none;
+}
+.profileSetting_dateOfBirth_name{
+    position: absolute;
+    top: -30px;
+    left: 0;
+}
+.profileSetting_dateOfBirth_gendername{
+    position: absolute;
+    right: 160px;
+    top:-30px;
+}
+.profileSetting_dateOfBirth_gender{
+    width: 50%;
+    height:50px;
+    border-radius: 8px;
+    margin-left: 30px;
+    padding-left: 10px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+}
+.profileSetting_saveButton{
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    height: 50px;
+    width: 150px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: #1877f3;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+}
+.profileSetting_saveButton:hover{
+    background: #166fe5;
+}

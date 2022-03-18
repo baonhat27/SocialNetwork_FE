@@ -1,17 +1,15 @@
 import axios from "axios";
 import { SERVER } from "../../../shared/store/env";
-export async function hanldeUserInfomation(u){
+export async function loadData(){
     try{
-        await axios.put(SERVER+'v1/users',u,{
+        const api=await axios.get(SERVER+'v1/users/userInfo',{
             headers:{
                 Authorization:localStorage.getItem("token")
             }
         })
-        alert('Thay đổi thông tin thành công');
-        return true;
+        return api.data;
     }
     catch(error){
-        alert('Thay đổi thông tin thất bại');
-        return false;
+        return false
     }
 }

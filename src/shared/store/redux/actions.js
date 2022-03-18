@@ -33,5 +33,10 @@ export const createComment = (u) => {
             updatedAt:u.updatedAt,
             comments:u.comments
         }
+}
+export const handleAvatar=(u)=>{
+    return{
+        type:"handleAvatar",
+        avatar:u
     }
 }
