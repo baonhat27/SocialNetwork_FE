@@ -27,6 +27,14 @@ export const reducer = (state, action) => {
                     gender:action.gender
                 }
             }
+        case 'handleAvatar':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    avatar:action.avatar
+                }
+            }
         default:
             return state
     }

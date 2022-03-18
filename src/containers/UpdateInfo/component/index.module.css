@@ -1,0 +1,224 @@
+
+.profilePage{
+    padding-bottom: 80px;
+    background: #f5f8fa;
+}
+.avatarBackground{
+    height: 200px;
+    width: 100vw;
+    background: url(https://kiot37.com/wp-content/uploads/2020/12/02e3cb8734c99596e2d2ea8ec70bbc9c-1536x960.jpg);
+    position: relative;
+}
+.navbar{
+    background: white;
+    height: 50px;
+    border: 1px solid #ecf0f3;
+    position: relative;
+
+}
+/* .navbarButton{
+    position: absolute;
+    right: 40px;
+    top:10px;
+    border: 1px solid #f0f3f6;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.navbarButton:hover{
+    background: linear-gradient(#ecf0f3,#8cbbeb);
+} */
+.avatarBox{
+    position: absolute;
+    top:50px;
+    left: 75px;
+    height: 250px;
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.avatar{
+    height: 200px;
+    width: 100%;
+    border: 4px solid white;
+    border-radius: 10px;
+}
+.body{
+    margin-top: 30px;
+    width: 100vw;
+    display: flex;
+}
+.bodyCol{
+    width: 1150px;
+    display: flex;
+    margin: 0 auto;
+}
+.infomationCol{
+    width: 35%;
+    margin-top: 80px;
+    margin-left: 15px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    height: 350px;
+    font-size: 17px;
+} 
+.postList{
+    width: 60%;
+    margin-left: 20px;
+    margin-top: 80px;
+}
+.status{
+    padding: 10px 0;
+    background: white;
+    border-radius: 10px;
+}
+.name{
+    font-size: 20px;
+    font-weight: 500;
+}
+.icon{
+    color: #8c939d;
+    font-size: 20px;
+    position: relative;
+    top:2px;
+    right: 10px;
+}
+.infomationCol_line{
+    margin-left: 15px;
+}
+.infomationCol_button{
+    width: 98%;
+    margin-left: 5px;
+    height: 45px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    background: #e4e6eb;
+    margin: 15px 0;
+}
+.infomationCol_button:hover{
+    background: #cbcdd1;
+}
+.profileSetting{
+    position: fixed;
+    width: 550px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    border: 1px groove white;
+}
+.profileSetting_header{
+    text-align: center;
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px;
+    position: relative;
+}
+.profileSetting_closeButton{
+    position: absolute;
+    top:10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.profilePage_describes{
+    position: relative;
+    bottom: 12px;
+}
+.profileSetting_body{
+    margin: 20px 30px;
+}
+.profileSetting_name{
+    display: flex;
+    margin-top: 10px;
+}
+.inputBox{
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding-left: 10px;
+    display: flex;
+    position: relative;
+}
+.input{
+    outline: none;
+    border: none;
+    width: 95%;
+}
+.profileSetting_firstName{
+    width: 65%;
+}
+.profileSetting_lastName{
+    width: 35%;
+    margin-left: 10px;
+}
+.profileSetting_email{
+    width: 100%;
+    margin-top: 15px;
+}
+.profileSetting_dateOfBirth{
+    position: relative;
+    display: flex;
+    margin-top: 45px;
+}
+.profileSetting_dateOfBirth_component{
+    height: 50px;
+    width: 15%;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin-right: 10px;
+    text-align: center;
+    outline: none;
+}
+.profileSetting_dateOfBirth_name{
+    position: absolute;
+    top: -30px;
+    left: 0;
+}
+.profileSetting_dateOfBirth_gendername{
+    position: absolute;
+    right: 160px;
+    top:-30px;
+}
+.profileSetting_dateOfBirth_gender{
+    width: 50%;
+    height:50px;
+    border-radius: 8px;
+    margin-left: 30px;
+    padding-left: 10px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+}
+.profileSetting_saveButton{
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    height: 50px;
+    width: 150px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: #1877f3;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+}
+.profileSetting_saveButton:hover{
+    background: #166fe5;
+}
+.icon_camera{
+    position: absolute;
+    bottom: 65px;
+    right: 15px;
+    font-size: 20px;
+    background: #e4e6eb;
+    height: 30px;
+    width: 30px;
+    padding-top: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+}

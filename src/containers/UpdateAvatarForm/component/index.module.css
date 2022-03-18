@@ -19,3 +19,40 @@
     font-size: 25px;
     cursor: pointer;
 }
+.form_body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 350px;
+}
+.avatar_box{
+    height: 300px;
+    width: 300px;
+    border-radius: 150px;
+    overflow: hidden;
+}
+.image{
+    height: 300px;
+    width: 300px;
+}
+.button{
+    height: 45px;
+    width: 150px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+   
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    position: absolute;
+    bottom: -30px;
+}
+.button.chooseImage{
+    background: #1877f3;
+    left: 50px;
+}
+.button.save{
+    right: 50px;
+}
