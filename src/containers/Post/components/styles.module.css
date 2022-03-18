@@ -11,6 +11,7 @@
 }
 
 .header {
+  position: relative;
   background-color: white;
   color: white;
   padding: 16px 0;
@@ -50,6 +51,7 @@
 .avatar {
   width: 32px;
   height: 32px;
+  border-radius: 100px;
   margin-left: 32px;
 }
 
@@ -69,8 +71,52 @@
   border-radius: 10px;
   border: solid 1px var(--grey);
   margin: 16px;
+  width: 90%;
+}
+.comment_box {
+  background-color: white;
+  color: white;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+.comment_content {
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.dots {
+  width: 32px;
+  filter: opacity(0.5);
+  margin-left: auto;
+  margin-right: 32px;
+}
+
+.options {
+  position: absolute;
+  top: 30%;
+  right: 8%;
+  z-index: 1000;
+  color: black;
+  margin-left: auto;
+  background-color: white;
+  width: 30%;
+  border: solid var(--dark-grey) 1px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn_link {
+  padding: 16px;
+  color: var(--blue);
+  font-size: 1.2rem;
   width: 100%;
 }
+<<<<<<< HEAD
 .comment_box{
   background-color: white;
   color: white;
@@ -82,4 +128,13 @@
     color:black;
     display: flex;
     align-items: center;
+=======
+
+.btn_link:hover {
+  background-color: var(--light-grey);
+}
+
+.danger {
+  color: red;
+>>>>>>> dce44190bf1f6e3c3a21b8e9ff65cb7a7d42da7a
 }
