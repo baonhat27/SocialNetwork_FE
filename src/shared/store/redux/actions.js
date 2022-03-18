@@ -22,3 +22,16 @@ export const handleUserInfo=(u)=>{
         gender:u.gender
     }
 }
+export const createComment = (u) => {
+    return {
+        type:"createComment",
+        post:{
+            content:u.content,
+            images:u.image,
+            createdBy:u.createdBy,
+            createdAt:u.createdAt,
+            updatedAt:u.updatedAt,
+            comments:u.comments
+        }
+    }
+}

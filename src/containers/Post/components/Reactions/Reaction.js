@@ -11,7 +11,6 @@ function Reaction(props) {
   };
   return (
     <div className={styles.reaction_bar}>
-      {console.log(reaction)}
       <div className={styles.reaction_count}>
         <div>15</div>
         <i
@@ -25,18 +24,18 @@ function Reaction(props) {
             ? styles.display + " " + styles.reaction_list
             : styles.hide + " " + styles.reaction_list
         }
-      > 
+      >
         {reactions.map((_reaction) => {
-          return (
             <div
               className={styles.reaction_item}
               onClick={() => {
+                handleShow();
                 setReaction(_reaction);
               }}
+              key={_reaction._id}
             >
               {_reaction}
             </div>
-          );
         })}
       </div>
       <div className={styles.action}>
@@ -44,11 +43,32 @@ function Reaction(props) {
           className={styles.like + " " + styles.action_item}
           onClick={handleShow}
         >
-          React
-          <i
-            className="fa-solid fa-thumbs-up"
-            style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
-          ></i>
+          {reaction ? reaction : "React"}
+          {(() => {
+            if (reaction == "like") {
+              return (
+                <i
+                  className="fa-solid fa-thumbs-up"
+                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
+                ></i>
+              );
+            } else if (reaction == "love") {
+              // console.log(true)
+              return (
+                <i
+                  className="fa-solid fa-heart"
+                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
+                ></i>
+              );
+            } else {
+              return (
+                <i
+                  className="fa-solid fa-thumbs-up"
+                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
+                ></i>
+              );
+            }
+          })()}
         </div>
         <div className={styles.comment + " " + styles.action_item}>
           Bình luận

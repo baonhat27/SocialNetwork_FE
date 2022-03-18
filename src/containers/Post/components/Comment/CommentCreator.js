@@ -5,13 +5,22 @@ import { UserOutlined } from "@ant-design/icons";
 import styles from "./styles.module.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { createComment } from "../../../../shared/service";
 
-function CommentCreator(props) {
+function CommentCreator({onCreateComment, postId}) {
+  // console.log(postId);
   const user = useSelector((state) => state.user);
   const [text, setText] = useState("");
   const [isUpload, setIsUpload] = useState(false);
   const [images, setImages] = useState([]);
-  const onClickSubmit = async () => {};
+  const onClickSubmit = async () => {
+    const response = await createComment(text, postId)
+    if(response.success){
+      // console.log(response.data);
+      setText("")
+      onCreateComment && onCreateComment(response.data)
+    }
+  };
   const config = {
     toolbar: [
       "heading",
@@ -45,10 +54,6 @@ function CommentCreator(props) {
           onChange={(event, editor) => {
             const data = editor.getData();
             setText(data);
-          }}
-          onFocus={(event, editor) => {
-          }}
-          onClick={(event, editor) => {
           }}
         />
         <div className={styles["input_file"]}>
