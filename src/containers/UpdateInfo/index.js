@@ -12,14 +12,13 @@ function UpdateInfoContainer(props) {
     const [lastName,setLastName]= useState("");
     const [email,setEmail] = useState("");
     const [gender,setGender] =useState(props.user.gender);
-
     useEffect(()=>{
         setFirstName(props.user.firstName);
         setLastName(props.user.lastName);
         setEmail(props.user.email);
         setGender(props.user.gender);
     },[props.user])
-    const token=localStorage.getItem('token');
+    
     const handleChangeMon=(item)=>{
         setSelectedMon(item.target.value);
     }
@@ -63,6 +62,7 @@ function UpdateInfoContainer(props) {
     return (
         <div>
             <UpdateInfoComponent user={props.user}
+                setSettingShow={props.setSettingShow} settingShow={props.settingShow}
                 putUserInfo={putUserInfo}
                 selectedMon={selectedMon} handleChangeMon={handleChangeMon} 
                 selectedYear={selectedYear} handleChangeYear={handleChangeYear} 

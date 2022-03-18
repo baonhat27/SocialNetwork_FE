@@ -45,7 +45,7 @@ function ProfilePageComponent(props) {
                         }}>
                             Chỉnh sửa thông tin cá nhân 
                         </button>
-                        <UpdateInfoContainer user={props.user}/>
+                        <UpdateInfoContainer settingShow={props.settingShow} setSettingShow={props.setSettingShow} user={props.user}/>
                     </div>
                     <div className={styles.postList}>
                         <div className={styles.status}>
