@@ -14,18 +14,18 @@ const _Header = (props) => {
   return (
     <Layout.Header className={styles.header}>
       <div className={styles.header_left}>
-        <img className={styles.img_logo} alt="logo" src={img_url} />
+        <Link to="/home">
+          <img className={styles.img_logo} alt="logo" src={img_url} />
+        </Link>
       </div>
       <div className={styles.header_mid}>
         <Search />
       </div>
       <div className={styles.header_right}>
-        <i
-          className="fa-solid fa-bell"
-          style={{ color: "white", fontSize: 20, marginRight: 20 }}
-          onClick={props.handleShowNoti}
-        ></i>
-        <Notification showNoti={props.showNoti} />
+        <Notification 
+          showNoti={props.showNoti} 
+          handleShowNoti={props.handleShowNoti}
+        />
         <Link to="/profile" >
           <Avatar
             src={props.user.avatar}

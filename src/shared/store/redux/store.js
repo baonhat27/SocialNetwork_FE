@@ -13,6 +13,14 @@ const it={
         dateOfBirth: "",
         gender:0,
         status:0
+    },
+    post:{
+        content:"",
+        images:"",
+        createdBy:"",
+        createdAt:"",
+        updatedAt:"",
+        comments:""
     }
 }
 export const store = createStore(reducer,it);
