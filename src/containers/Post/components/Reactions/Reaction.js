@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import React, { useState } from "react";
 
 function Reaction(props) {
-  const reactions = ["like ", "love ", "angry ", "sad ", "haha "];
+  const reactions = ["👍", "💖","😁","😯","😢", "😡"]
 
   const [style, setStyle] = useState(false);
   const [reaction, setReaction] = useState("");
@@ -12,11 +12,8 @@ function Reaction(props) {
   return (
     <div className={styles.reaction_bar}>
       <div className={styles.reaction_count}>
-        <div>15</div>
-        <i
-          className="fa-solid fa-thumbs-up"
-          style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
-        ></i>
+        <div>15.000</div>
+        💖
       </div>
       <div
         className={
@@ -26,49 +23,28 @@ function Reaction(props) {
         }
       >
         {reactions.map((_reaction) => {
+          return (
             <div
               className={styles.reaction_item}
               onClick={() => {
                 handleShow();
                 setReaction(_reaction);
               }}
+              style={{fontSize:30}}
               key={_reaction._id}
             >
               {_reaction}
             </div>
+          );
         })}
       </div>
       <div className={styles.action}>
         <div
           className={styles.like + " " + styles.action_item}
           onClick={handleShow}
+          
         >
-          {reaction ? reaction : "React"}
-          {(() => {
-            if (reaction == "like") {
-              return (
-                <i
-                  className="fa-solid fa-thumbs-up"
-                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
-                ></i>
-              );
-            } else if (reaction == "love") {
-              // console.log(true)
-              return (
-                <i
-                  className="fa-solid fa-heart"
-                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
-                ></i>
-              );
-            } else {
-              return (
-                <i
-                  className="fa-solid fa-thumbs-up"
-                  style={{ marginLeft: 10, fontSize: 20, color: "#1c85c4" }}
-                ></i>
-              );
-            }
-          })()}
+          {reaction ? reaction : "React💕"}
         </div>
         <div className={styles.comment + " " + styles.action_item}>
           Bình luận

@@ -5,7 +5,9 @@ import styles from "./NewsFeed.module.css";
 const NewsFeed = () => {
   return (
     <div className={styles.newsfeed}>
-      <PostGroup />
+      <div className={styles.post}>
+        <PostGroup />
+      </div>
     </div>
   );
 };

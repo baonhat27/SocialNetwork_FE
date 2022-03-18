@@ -1,4 +1,11 @@
 .newsfeed {
-  background-color: white;
-  width: 60%;
+  background-color: var(--primary-color);
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post{
+  width: 65%;
+  flex-direction: column;
 }

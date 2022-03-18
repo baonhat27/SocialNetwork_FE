@@ -5,9 +5,9 @@ const Chat = () => {
   return (
     <div
       className={styles.chatBox}
-      style={{ backgroundColor: "whitesmoke", width: "20%" }}
+      style={{ backgroundColor: "#f0f2f5", width: "20%" }}
     >
-      <p>Chat Box !!!</p>
+      <p></p>
     </div>
   );
 };
