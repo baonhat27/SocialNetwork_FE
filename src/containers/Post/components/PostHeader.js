@@ -15,7 +15,7 @@ export default function PostHeader({
 }) {
   const [isDisplayOptions, setIsDisplayOptions] = useState(false);
   const [error, setError] = useState("");
-
+  // console.log("User",user)
   const displayOptions = () => {
     setIsDisplayOptions(!isDisplayOptions);
   };

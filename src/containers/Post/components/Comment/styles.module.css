@@ -94,13 +94,37 @@ p{
   font-weight: 600;
   border-radius: 4px;
   height: 80px;
-  width: 90%;
+  width: 80%;
   color: black;
   display: flex;
   background-color: #f7f8f9;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
+}
+.comment_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  order: 2;
+  font-size: 15px;
+}
+.comment_delete{
+  margin-right: 8px;
+}
+.comment_delete:hover{
+    color: var(--main-color);
+    font-size: 18px;
+    cursor: pointer;
+}
+.comment_edit{
+  margin-right: 8px;
+}
+.comment_edit:hover{
+    color: var(--main-color);
+    font-size: 18px;
+    cursor: pointer;
 }
 .editor {
   display: flex;
@@ -184,3 +208,24 @@ input[type="file"]:hover + label {
   justify-content: center;
   align-items: center;
 }
+.showmore{
+  margin: 10px 0 0 20px;
+  color: var(--main-color);
+  width: 30%;
+}
+.showmore:hover{
+  cursor: pointer;
+  font-weight: bold;
+}
+.delete{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hide{
+  display: none;
+}
+.display{
+  display: flex;
+}
+

@@ -9,7 +9,7 @@ function UpdateAvatarFormComponent(props) {
                     <h1>Cập nhật ảnh đại diện</h1>
                     <i onClick={function(){
                         props.setSelectedAvatarForm(false);
-                    }} class={"fa-regular fa-circle-xmark "+styles.icon}></i>
+                    }} className={"fa-regular fa-circle-xmark "+styles.icon}></i>
                 </div>
                 <div className={styles.form_body}>
                     <div className={styles.avatar_box}>

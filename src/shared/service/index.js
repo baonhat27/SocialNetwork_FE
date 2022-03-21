@@ -10,10 +10,13 @@ const GET_POST_URL = `${HOST}/v1/posts`;
 const CREATE_POST_URL = GET_POST_URL;
 const DELETE_POST_URL = GET_POST_URL;
 
+const GET_ALL_COMMENT_URL = `${HOST}/v1/comments/all`;
 const GET_COMMENT_URL = `${HOST}/v1/comments`;
+const DELETE_COMMENT_URL = GET_COMMENT_URL;
 const CREATE_COMMENT_URL = GET_COMMENT_URL;
-const GET_USER_PROFILE_URL = `${HOST}/v1/users/`;
+const EDIT_COMMENT_URL = GET_COMMENT_URL;
 
+const GET_USER_PROFILE_URL = `${HOST}/v1/users/`;
 
 export const uploadImages = async (files) => {
   const formData = new FormData();
@@ -29,15 +32,6 @@ export const createPost = async (text, images) => {
     axios.post(
       CREATE_POST_URL,
       { content: text, images: images },
-      { headers: authHeader() }
-    )
-  );
-};
-export const createComment = async (text, postId) => {
-  return await wrapResponseHandler(() =>
-    axios.post(
-      CREATE_COMMENT_URL,
-      { content: text, postId: postId },
       { headers: authHeader() }
     )
   );
@@ -70,9 +64,41 @@ export const getImage = (image) => {
   return `${GET_IMAGE_URL}/${image}`;
 };
 
+//Comments
 export const getComments = async (postId) => {
   return await wrapResponseHandler(() =>
     axios.get(GET_COMMENT_URL + `?postId=${postId}`, { headers: authHeader() })
   );
 };
-
+export const getAllComments = async (postId) => {
+  return await wrapResponseHandler(() =>
+    axios.get(GET_ALL_COMMENT_URL + `?postId=${postId}`, {
+      headers: authHeader(),
+    })
+  );
+};
+export const createComment = async (text, postId) => {
+  return await wrapResponseHandler(() =>
+    axios.post(
+      CREATE_COMMENT_URL,
+      { content: text, postId: postId },
+      { headers: authHeader() }
+    )
+  );
+};
+export const deleteComment = async (commentId) => {
+  return await wrapResponseHandler(() =>
+    axios.delete(`${DELETE_COMMENT_URL}/${commentId}`, {
+      headers: authHeader(),
+    })
+  );
+};
+export const editComment = async (text, commentId) => {
+  return await wrapResponseHandler(() =>
+    axios.put(
+      `${EDIT_COMMENT_URL}/${commentId}`,
+      { content: text },
+      { headers: authHeader() }
+    )
+  );
+};
