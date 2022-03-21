@@ -11,7 +11,7 @@ function ProfilePageComponent(props) {
             <div className={styles.avatarBackground}>
                 <div className={styles.avatarBox}>
                     <img src={props.user.avatar!=="no information"? props.user.avatar:"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} className={styles.avatar} alt='avatar'></img>
-                    <i onClick={function(){props.setSelectedAvatarForm(true)}} class={"fa-solid fa-camera "+styles.icon_camera}></i>
+                    <i onClick={function(){props.setSelectedAvatarForm(true)}} className={"fa-solid fa-camera "+styles.icon_camera}></i>
                     <p className={styles.name}>
                         {props.user.firstName+" "+props.user.lastName}
                     </p>
