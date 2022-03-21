@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import PostContent from "./components/PostContent";
 import PostImageList from "./components/PostImageList";
 import Comment from "./components/Comment";
-import ReactionBar from "./components/Reactions";
+import Reaction from "./components/Reactions";
 
 function Post({ post, onDeletePost }) {
   return (
@@ -18,7 +18,7 @@ function Post({ post, onDeletePost }) {
       />
       <PostContent content={post.content} />
       {post.images.length !== 0 && <PostImageList images={post.images} />}
-      <ReactionBar />
+      <Reaction postId={post._id}/>
       <Comment postId={post._id} />
     </div>
   );
