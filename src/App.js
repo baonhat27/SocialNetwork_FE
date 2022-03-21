@@ -18,6 +18,7 @@ function App() {
     })
     .then((userInfo)=>userInfo.data)
     .then((userInfo)=>{
+      console.log(userInfo.data)
       dispatch( addUserInfomation(userInfo.data));
     })
     .catch(()=>{
@@ -31,7 +32,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/profile">
-          <ProfilePage />
+          <ProfilePage token={localStorage.getItem('token')}/>
         </Route>
         <Route path="/home">
           <HomePage/>
