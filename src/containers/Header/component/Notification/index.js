@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import _Notification from "./Notification";
+import styles from "./Notification.module.css";
 
 const Notification = (props) => {
   return (
       <>
         <i
-            className="fa-solid fa-bell"
-            style={{ color: "white", fontSize: 20, marginRight: 20 }}
+            className={"fa-solid fa-bell "+styles.icon}
             onClick= {props.handleShowNoti}
         >
         </i>
-            <div className="noti-count">5</div>
             <_Notification showNoti = {props.showNoti} />
       </>
 

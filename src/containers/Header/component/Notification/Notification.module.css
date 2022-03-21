@@ -34,3 +34,19 @@
 .hide{
     display: none;
 }
+.icon{
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    background: #e4e6eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.icon:hover{
+    background: #d8dadb;
+}

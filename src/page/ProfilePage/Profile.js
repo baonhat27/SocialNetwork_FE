@@ -5,22 +5,24 @@ import UpdateAvatarFormContainer from '../../containers/UpdateAvatarForm';
 import PostGroup from '../../containers/PostGroup';
 import UpdateInfoContainer from '../../containers/UpdateInfo';
 function ProfilePageComponent(props) {
+    console.log(props.user._id);
+    console.log(props.user)
     return (
         <div className={styles.profilePage}>
             <Header/>
             <div className={styles.avatarBackground}>
                 <div className={styles.avatarBox}>
                     <img src={props.user.avatar!=="no information"? props.user.avatar:"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} className={styles.avatar} alt='avatar'></img>
-                    <i onClick={function(){props.setSelectedAvatarForm(true)}} className={"fa-solid fa-camera "+styles.icon_camera}></i>
+                    {!props.friend?<i onClick={function(){props.setSelectedAvatarForm(true)}} class={"fa-solid fa-camera "+styles.icon_camera}></i>:<></>}
                     <p className={styles.name}>
                         {props.user.firstName+" "+props.user.lastName}
                     </p>
                 </div>
             </div>
-            <UpdateAvatarFormContainer selectedAvatarForm={props.selectedAvatarForm}
+            {!props.friend?<UpdateAvatarFormContainer selectedAvatarForm={props.selectedAvatarForm}
              setSelectedAvatarForm={props.setSelectedAvatarForm}
              avatar={props.user.avatar}
-             />
+             />:<></>}
             <div className={styles.body}>
             <div>
             
@@ -40,12 +42,12 @@ function ProfilePageComponent(props) {
                         <p className={styles.infomationCol_line}>
                             <i class={"fa-solid fa-clock"+" "+styles.icon}></i>Ngày tham gia: {new Date(props.user.createdAt).getDate()+"/"+(new Date(props.user.createdAt).getMonth()+1)+"/"+new Date(props.user.createdAt).getFullYear()} 
                         </p>
-                        <button className={styles.infomationCol_button} onClick={function(){
+                        {!props.friend?<button className={styles.infomationCol_button} onClick={function(){
                             props.setSettingShow(true);
                         }}>
                             Chỉnh sửa thông tin cá nhân 
-                        </button>
-                        <UpdateInfoContainer settingShow={props.settingShow} setSettingShow={props.setSettingShow} user={props.user}/>
+                        </button>:<></>}
+                        {!props.friend?<UpdateInfoContainer settingShow={props.settingShow} setSettingShow={props.setSettingShow} user={props.user}/>:<></>}
                     </div>
                     <div className={styles.postList}>
                         <div className={styles.status}>

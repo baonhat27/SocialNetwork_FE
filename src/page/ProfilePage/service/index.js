@@ -13,3 +13,12 @@ export async function loadData(){
         return false
     }
 }
+export async function getUserById(id){
+    try{
+        const friend=await axios.get(SERVER+'v1/users/'+id);
+        return friend.data
+    }
+    catch(error){
+        return false
+    }
+}

@@ -19,8 +19,8 @@ async function signup(username, password) {
       password: password,
     });
     return response.data;
-    alert('hêlo')
   } catch (error) {
+    alert('Nhập thông tin tài khoản chưa đúng định dạng');
     return null;
   }
 }
