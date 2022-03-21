@@ -32,16 +32,16 @@ export default function LoginPage(props){
     async function signupAccount(){
         if(password===retypePassword){
             const user=await signup(username,password);
-            if(user){
+            if(user.success){
                 alert('Tạo mới tài khoản thành công, vui lòng đăng nhập để sử dụng');
                 setShowSignUp(false);
             }
             else{
-                alert('Tài khoản hoặc mật khẩu không hợp lệ');
+                alert(user.message);
             }
         }
         else{
-            alert('Nhập lại tài khoản chưa chính xác!');
+            alert('Nhập lại mật khẩu chưa chính xác!');
         }
     }
     return <Login

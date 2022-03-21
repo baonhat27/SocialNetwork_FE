@@ -1,9 +1,29 @@
 import Home from "./Home";
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Redirect } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { addUserInfomation } from "../../shared/store/redux/actions";
+import axios from "axios";
+import { SERVER } from "../../shared/store/env";
 const HomePage = () => {
-  const token=localStorage.getItem('token');
+  const dispatch=useDispatch();
+  const [token,setToken]=useState(localStorage.getItem('token'))
+  useEffect(()=>{
+    axios.get(SERVER+'v1/users/userInfo',{
+      headers:{
+        Authorization:localStorage.getItem("token")
+      }
+    })
+    .then((userInfo)=>userInfo.data)
+    .then((userInfo)=>{
+      console.log(userInfo.data)
+      dispatch( addUserInfomation(userInfo.data));
+    })
+    .catch(()=>{
+      localStorage.removeItem('token');
+      setToken("");
+    })
+  },[])
   if(token){
     return (
       <div>

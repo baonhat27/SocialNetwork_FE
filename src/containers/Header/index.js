@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 export default function Header(props) {
   const user = useSelector(state => state.user)
   const [showNoti, setShowNoti] = useState(false);
+  const [headerSettingShow,setHeaderSettingShow]=useState(false);
+  const [searchShow, setSearchShow]=useState(false);
   // console.log("Props: " ,user)
   const handleShowNoti = () => {
     setShowNoti(!showNoti);
@@ -16,6 +18,8 @@ export default function Header(props) {
       showNoti={showNoti}
       setShowNoti={setShowNoti}
       handleShowNoti={handleShowNoti}
+      headerSettingShow={headerSettingShow} setHeaderSettingShow={setHeaderSettingShow}
+      searchShow={searchShow} setSearchShow={setSearchShow}
     />
   );
 }
