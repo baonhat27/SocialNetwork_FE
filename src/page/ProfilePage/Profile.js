@@ -9,7 +9,7 @@ function ProfilePageComponent(props) {
     console.log(props.user)
     return (
         <div className={styles.profilePage}>
-            <Header/>
+            <Header setRedirect={props.setRedirect}/>
             <div className={styles.avatarBackground}>
                 <div className={styles.avatarBox}>
                     <img src={props.user.avatar!=="no information"? props.user.avatar:"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} className={styles.avatar} alt='avatar'></img>

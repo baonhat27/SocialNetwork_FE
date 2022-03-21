@@ -3,6 +3,7 @@ import "./App.css";
 import HomePage from "./page/HomePage";
 import LoginPage from "./page/LoginPage";
 import ProfilePage from "./page/ProfilePage";
+import SearchPageContainer from "./page/SearchPage";
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,10 @@ function App() {
         <Route path="/profile">
           <ProfilePage token={localStorage.getItem('token')}/>
         </Route>
-        <Route path="/home">
+        <Route path="/search">
+          <SearchPageContainer/>
+        </Route>
+        <Route path="*">
           <HomePage/>
         </Route>
       </Switch>

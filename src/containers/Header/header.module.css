@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     height: 65px;
+    box-shadow: 1px 1px 5px #d8dadb;
 }
 .header_left{
     display: flex;

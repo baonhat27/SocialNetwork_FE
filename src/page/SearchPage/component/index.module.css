@@ -1,0 +1,23 @@
+.searchPage{
+    background: #f0f2f5;
+    width: 100vw;
+    height: 100vh;
+}
+.body{
+    display: flex;
+    margin-top: 2px;
+}
+.body_searchList{
+    width: 35%;
+    height: 90vh;
+    background: white;
+    box-shadow:1px 0px 5px #d8dadb;
+    padding: 20px;
+}
+.searchList_heading{
+    font-weight: bolder;
+}
+.body_result{
+    width: 65%;
+    height: 90vh;
+}

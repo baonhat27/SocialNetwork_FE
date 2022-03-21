@@ -41,3 +41,9 @@ export const handleAvatar = (u) => {
     avatar: u,
   };
 };
+export const searchInfo=(u)=>{
+  return {
+    type:"search",
+    searchkey:u
+  }
+}
