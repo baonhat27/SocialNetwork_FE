@@ -11,7 +11,7 @@ function UpdateInfoComponent(props) {
                                     <div className={styles.profileSetting_closeButton} onClick={function(){
                                         props.setSettingShow(false);
                                     }}>
-                                        <i class="fa-regular fa-circle-xmark"></i>
+                                        <i className="fa-regular fa-circle-xmark"></i>
                                     </div>
                                 </div>
                                 <div className={styles.profileSetting_body}>

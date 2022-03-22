@@ -25,14 +25,14 @@ const _Header = (props) => {
       </div>
       <div className={styles.header_right}>
       <div style={{position:"relative"}}>
-        <i class={"fa-solid fa-comment-dots "+styles.icon}></i>
+        <i className={"fa-solid fa-comment-dots "+styles.icon}></i>
         </div>
         <Notification 
           showNoti={props.showNoti} 
           handleShowNoti={props.handleShowNoti}
         />
         <div style={{position:"relative"}}>
-          <i class={"fa-solid fa-caret-down "+styles.icon} onClick={function(){
+          <i className={"fa-solid fa-caret-down "+styles.icon} onClick={function(){
             props.setHeaderSettingShow(props.headerSettingShow?false:true);
           }}></i>
           {props.headerSettingShow?<HeaderSettingContainer user={props.user}/>:<></>}

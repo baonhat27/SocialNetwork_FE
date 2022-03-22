@@ -57,7 +57,6 @@
 
 .content_box {
   font-size: 1.2rem;
-  margin-bottom: 16px;
   margin-left: 32px;
 }
 
@@ -71,7 +70,7 @@
   border-radius: 10px;
   border: solid 1px var(--grey);
   margin: 16px;
-  width: 90%;
+  width: 80%;
 }
 .comment_box {
   background-color: white;

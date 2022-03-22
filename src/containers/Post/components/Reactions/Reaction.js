@@ -2,15 +2,15 @@ import styles from "./styles.module.css";
 import React, { useState } from "react";
 
 function Reaction({
-  show,
-  showReactionBar,
-  handleReaction,
-  reaction,
+  onCreateReaction,
+  onDeleteReaction,
   showReactionPeople,
   reactionshow,
+  checkReactionClick,
+  setReactionCount,
+  reactionCount,
 }) {
-  // console.log(reactionshow)
-  const reactions = ["👍", "💖", "😁", "😯", "😢", "😡"];
+  // console.log(checkReactionClick);
   return (
     <div>
       <div
@@ -28,38 +28,24 @@ function Reaction({
             : styles.hide + " " + styles.reaction_people_list
         }
       >
-          <div className={styles.reaction_people}></div>
+        <div className={styles.reaction_people}></div>
       </div>
       <div className={styles.reaction_bar}>
         <div className={styles.reaction_count} onClick={showReactionPeople}>
-          15.000💖
-        </div>
-        <div
-          className={
-            show
-              ? styles.display + " " + styles.reaction_list
-              : styles.hide + " " + styles.reaction_list
-          }
-        >
-          {reactions.map((_reaction, index) => {
-            return (
-              <div
-                className={styles.reaction_item}
-                style={{ fontSize: 30 }}
-                key={index}
-                onClick={() => handleReaction(_reaction)}
-              >
-                {_reaction}
-              </div>
-            );
-          })}
+          💖{reactionCount ? reactionCount : ""}
         </div>
         <div className={styles.action}>
           <div
             className={styles.like + " " + styles.action_item}
-            onClick={showReactionBar}
+            onClick={checkReactionClick ? onDeleteReaction : onCreateReaction}
           >
-            {reaction}
+            <i
+              className={ 
+                checkReactionClick
+                  ? "fa-solid fa-heart" + " " + styles.liked
+                  : "fa-regular fa-heart"
+              }
+            ></i>
           </div>
           <div className={styles.comment + " " + styles.action_item}>
             Bình luận
