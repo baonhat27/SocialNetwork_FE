@@ -18,6 +18,6 @@ export default function PostPage() {
       <Post post={post} />
     </div>
   ) : (
-    <p className={styles.not_found}>Post not found</p>
+    <p className={styles.not_found}>Loading</p>
   );
 }

@@ -27,6 +27,17 @@ function App() {
         <Route path="/profile">
           <ProfilePage token={localStorage.getItem("token")} />
         </Route>
+
+        <HomePage>
+          <Switch>
+            <Route path="/home">
+              <NewsFeed />
+            </Route>
+            <Route path="/posts/:postId">
+              <PostPage />
+            </Route>
+          </Switch>
+        </HomePage>
       </Switch>
     </div>
   );
