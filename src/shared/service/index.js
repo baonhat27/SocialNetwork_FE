@@ -49,6 +49,12 @@ export const getPosts = async (offset, limit, createdBy) => {
   );
 };
 
+export const getPost = async (postId) => {
+  return await wrapResponseHandler(() =>
+    axios.get(`${GET_POST_URL}/${postId}`, { headers: authHeader() })
+  );
+};
+
 export const updatePost = async (postId, text, images) => {
   return await wrapResponseHandler(() =>
     axios.put(

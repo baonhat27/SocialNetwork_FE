@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { addUserInfomation } from "../../shared/store/redux/actions";
 import axios from "axios";
 import { SERVER } from "../../shared/store/env";
-const HomePage = () => {
+
+const HomePage = ({ children }) => {
   const dispatch = useDispatch();
   const [token, setToken] = useState(localStorage.getItem("token"));
   useEffect(() => {
@@ -27,7 +28,7 @@ const HomePage = () => {
   if (token) {
     return (
       <div>
-        <Home />
+        <Home children={children} />
       </div>
     );
   } else {

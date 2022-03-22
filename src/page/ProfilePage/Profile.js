@@ -5,8 +5,6 @@ import UpdateAvatarFormContainer from "../../containers/UpdateAvatarForm";
 import PostGroup from "../../containers/PostGroup";
 import UpdateInfoContainer from "../../containers/UpdateInfo";
 function ProfilePageComponent(props) {
-  console.log(props.user._id);
-  console.log(props.user);
   return (
     <div className={styles.profilePage}>
       <Header />
@@ -26,7 +24,7 @@ function ProfilePageComponent(props) {
               onClick={function () {
                 props.setSelectedAvatarForm(true);
               }}
-              class={"fa-solid fa-camera " + styles.icon_camera}
+              className={"fa-solid fa-camera " + styles.icon_camera}
             ></i>
           ) : (
             <></>
@@ -51,12 +49,12 @@ function ProfilePageComponent(props) {
           <div className={styles.infomationCol}>
             <h2>Giới thiệu</h2>
             <p className={styles.infomationCol_line}>
-              <i class={"fa-solid fa-envelope" + " " + styles.icon}></i>Email:{" "}
-              {props.user.email}
+              <i className={"fa-solid fa-envelope" + " " + styles.icon}></i>
+              Email: {props.user.email}
             </p>
             <p className={styles.infomationCol_line}>
-              <i class={"fa-solid fa-cake-candles" + " " + styles.icon}></i>Ngày
-              sinh:{" "}
+              <i className={"fa-solid fa-cake-candles" + " " + styles.icon}></i>
+              Ngày sinh:{" "}
               {new Date(props.user.dateOfBirth).getDate() +
                 "/" +
                 (new Date(props.user.dateOfBirth).getMonth() + 1) +
@@ -64,12 +62,14 @@ function ProfilePageComponent(props) {
                 new Date(props.user.dateOfBirth).getFullYear()}
             </p>
             <p className={styles.infomationCol_line}>
-              <i class={"fa-solid fa-mars-and-venus" + " " + styles.icon}></i>
+              <i
+                className={"fa-solid fa-mars-and-venus" + " " + styles.icon}
+              ></i>
               Giới tính: {props.user.gender ? "Nữ" : "Nam"}
             </p>
             <p className={styles.infomationCol_line}>
-              <i class={"fa-solid fa-clock" + " " + styles.icon}></i>Ngày tham
-              gia:{" "}
+              <i className={"fa-solid fa-clock" + " " + styles.icon}></i>Ngày
+              tham gia:{" "}
               {new Date(props.user.createdAt).getDate() +
                 "/" +
                 (new Date(props.user.createdAt).getMonth() + 1) +
