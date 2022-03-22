@@ -13,7 +13,6 @@ function ProfilePage(props) {
     const [friend,setFriend]=useState();
     const [settingShow,setSettingShow]=useState(false);
     const [selectedAvatarForm,setSelectedAvatarForm]=useState(false);
-    const [redirect,setRedirect]=useState(false);
     const dispatch=useDispatch();
     const [token,setToken]=useState(localStorage.getItem('token'))
   useEffect(()=>{
@@ -49,13 +48,9 @@ function ProfilePage(props) {
             <ProfilePageComponent friend={true} user={friend}/>
         )
     }
-    else if(redirect){
-      return <Redirect to="/search"></Redirect>
-    }
     else if(token){
         return(
             <ProfilePageComponent 
-            setRedirect={setRedirect}
             selectedAvatarForm={selectedAvatarForm} setSelectedAvatarForm={setSelectedAvatarForm}
             settingShow={settingShow} setSettingShow={setSettingShow} friend={false} user={user}/>
         )

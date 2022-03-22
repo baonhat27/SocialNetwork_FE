@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import _Header from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { searchInfo } from "../../shared/store/redux/actions";
+import { useHistory } from "react-router-dom";
 
 export default function Header(props) {
   const dispatch=useDispatch();
+  const history=useHistory();
   const user = useSelector(state => state.user)
   const [showNoti, setShowNoti] = useState(false);
   const [headerSettingShow,setHeaderSettingShow]=useState(false);
@@ -20,9 +22,8 @@ export default function Header(props) {
   }
   const search=()=>{
     if(searchKey!=""){
-      dispatch(searchInfo(searchKey));
+      history.push("/search?keyword="+searchKey);
       setSearchKey("");
-      props.setRedirect(true);
     }
     setSearchShow(searchShow?false:true);
   }
