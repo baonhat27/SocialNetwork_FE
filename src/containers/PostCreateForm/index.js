@@ -1,12 +1,19 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
+import TextEditor from "../../components/TextEditor";
 
-import { FormHeader, ListImage, TextEditor } from "./components";
+import { FormHeader, ListImage } from "./components";
 import withUploadImage from "../UploadImage";
 
 import { createPost } from "../../shared/service";
 
-function PostCreateForm({ onCreatePost, images, uploading, upload }) {
+function PostCreateForm({
+  onCreatePost,
+  images,
+  clearImage,
+  uploading,
+  upload,
+}) {
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
@@ -18,6 +25,7 @@ function PostCreateForm({ onCreatePost, images, uploading, upload }) {
         setText("");
         setIsEdit(false);
         onCreatePost && onCreatePost(postRes.data);
+        clearImage();
       }
     } catch (e) {
       setError(e.message);

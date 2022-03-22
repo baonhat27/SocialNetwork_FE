@@ -8,6 +8,7 @@ const GET_IMAGE_URL = `${HOST}/v1/images`;
 const UPLOAD_IMAGES_URL = GET_IMAGE_URL;
 const GET_POST_URL = `${HOST}/v1/posts`;
 const CREATE_POST_URL = GET_POST_URL;
+const UPDATE_POST_URL = GET_POST_URL;
 const DELETE_POST_URL = GET_POST_URL;
 
 const GET_ALL_COMMENT_URL = `${HOST}/v1/comments/all`;
@@ -48,6 +49,18 @@ export const getPosts = async (offset, limit, createdBy) => {
   );
 };
 
+export const updatePost = async (postId, text, images) => {
+  return await wrapResponseHandler(() =>
+    axios.put(
+      `${UPDATE_POST_URL}/${postId}`,
+      {
+        content: text,
+        images: images,
+      },
+      { headers: authHeader() }
+    )
+  );
+};
 export const deletePost = async (postId) => {
   return await wrapResponseHandler(() =>
     axios.delete(`${DELETE_POST_URL}/${postId}`, { headers: authHeader() })

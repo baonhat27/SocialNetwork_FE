@@ -16,19 +16,11 @@ function Reaction({
       <div
         className={
           reactionshow
-            ? styles.display + " " + styles.reaction_modal
-            : styles.hide + " " + styles.reaction_modal
-        }
-        onClick={showReactionPeople}
-      ></div>
-      <div
-        className={
-          reactionshow
             ? styles.display + " " + styles.reaction_people_list
             : styles.hide + " " + styles.reaction_people_list
         }
       >
-          <div className={styles.reaction_people}></div>
+        <div className={styles.reaction_people}></div>
       </div>
       <div className={styles.reaction_bar}>
         <div className={styles.reaction_count} onClick={showReactionPeople}>
