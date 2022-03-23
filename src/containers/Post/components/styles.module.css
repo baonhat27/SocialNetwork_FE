@@ -2,9 +2,9 @@
 
 .btn {
   color: var(--blue);
-  border: none;
-  width: 100%;
-  padding: 4px;
+  border-radius: 5px;
+  border: solid 1px var(--blue);
+  padding: 4px 16px;
   font-size: 1rem;
   background-color: white;
   margin: 4px 0;
@@ -48,11 +48,19 @@
   filter: opacity(0.5);
 }
 
-.avatar {
-  width: 32px;
-  height: 32px;
+.avatar_box {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   border-radius: 100px;
-  margin-left: 32px;
+  margin-left: 16px;
+}
+
+.avatar {
+  height: 100%;
 }
 
 .content_box {
@@ -68,11 +76,38 @@
 }
 
 .image {
-  border-radius: 10px;
-  border: solid 1px var(--grey);
-  margin: 16px;
-  width: 90%;
+  width: 120%;
 }
+
+.img_wrap {
+  height: 128px;
+  width: 23%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px var(--grey);
+  border-radius: 10px;
+  margin-right: 16px;
+  margin-top: 4px;
+}
+
+.img_wrap2 {
+  width: 80%;
+  border: solid 1px var(--grey);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 4px;
+}
+
+.list_img {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .comment_box {
   background-color: white;
   color: white;
@@ -111,20 +146,36 @@
 }
 
 .btn_link {
+  border: none;
+  background-color: white;
   padding: 16px;
   color: var(--blue);
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 100%;
 }
-.comment_box{
+
+.btn_link:hover {
+  background-color: var(--light-grey);
+}
+
+.danger {
+  border-color: red;
+  color: red;
+}
+
+.comment_box {
   background-color: white;
   color: white;
   padding: 16px 0;
   display: flex;
   align-items: center;
 }
-.comment_content{
-    color:black;
-    display: flex;
-    align-items: center;
+.comment_content {
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.edit_box {
+  margin: 32px;
 }

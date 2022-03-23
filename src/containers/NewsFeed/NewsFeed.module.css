@@ -3,9 +3,8 @@
   width: 80%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-.post{
+.post {
   width: 65%;
   flex-direction: column;
 }

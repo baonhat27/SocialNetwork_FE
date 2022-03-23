@@ -29,7 +29,7 @@ export default function Header(props) {
   }
   return (
     <_Header
-      user = {user}
+      user={user}
       showNoti={showNoti}
       setShowNoti={setShowNoti}
       handleShowNoti={handleShowNoti}

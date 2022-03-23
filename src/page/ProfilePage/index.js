@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import ProfilePageComponent from './Profile';
-import { useSelector} from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { getUserById } from './service';
+import React, { useEffect, useState } from "react";
+import ProfilePageComponent from "./Profile";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { getUserById } from "./service";
 import { useDispatch } from "react-redux";
 import getUserInfo from '../../shared/service/getUserInfo';
 import { checkToken } from '../../shared/service/tokenCheck';

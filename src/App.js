@@ -4,6 +4,9 @@ import HomePage from "./page/HomePage";
 import LoginPage from "./page/LoginPage";
 import ProfilePage from "./page/ProfilePage";
 import SearchPageContainer from "./page/SearchPage";
+import PostPage from "./page/PostPage";
+import NewsFeed from "./containers/NewsFeed";
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +23,17 @@ function App() {
         <Route path="*">
           <HomePage/>
         </Route>
+
+        <HomePage>
+          <Switch>
+            <Route path="/home">
+              <NewsFeed />
+            </Route>
+            <Route path="/posts/:postId">
+              <PostPage />
+            </Route>
+          </Switch>
+        </HomePage>
       </Switch>
     </div>
   );

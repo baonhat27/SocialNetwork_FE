@@ -10,7 +10,8 @@ export default function PostGroup({ createdBy, limit }) {
   const total = useRef(0);
   const count = useRef(0);
   const more = useRef(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const fetch = async () => {
     const res = await getPosts(count.current, limit, createdBy);
     setPosts([...posts, ...res.data.results]);

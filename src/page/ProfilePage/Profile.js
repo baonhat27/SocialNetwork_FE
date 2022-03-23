@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import styles from "./ProfilePage.module.css";
-import Header from "../../containers/Header"
-import UpdateAvatarFormContainer from '../../containers/UpdateAvatarForm';
-import PostGroup from '../../containers/PostGroup';
-import UpdateInfoContainer from '../../containers/UpdateInfo';
+import Header from "../../containers/Header";
+import UpdateAvatarFormContainer from "../../containers/UpdateAvatarForm";
+import PostGroup from "../../containers/PostGroup";
+import UpdateInfoContainer from "../../containers/UpdateInfo";
 function ProfilePageComponent(props) {
     return (
         <div className={styles.profilePage}>
@@ -55,9 +55,9 @@ function ProfilePageComponent(props) {
                     </div>
                 </div>
             </div>
-            
-        </div>
-    )
+
+    </div>
+  );
 }
 
 export default ProfilePageComponent;

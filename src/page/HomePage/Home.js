@@ -1,18 +1,18 @@
 import styles from "./Home.module.css";
 import React from "react";
 import SideBar from "../../containers/SideBar";
-import NewsFeed from "../../containers/NewsFeed";
 import Chat from "../../containers/Chat/Chat";
 import Header from "../../containers/Header";
-const Home = (props) => {
+
+const Home = ({ children }) => {
   return (
     <div>
       <div className={styles.header}>
-        <Header/>
+        <Header />
       </div>
       <div className={styles.home}>
         <SideBar />
-        <NewsFeed />
+        {children}
         <Chat />
       </div>
     </div>
@@ -20,4 +20,3 @@ const Home = (props) => {
 };
 
 export default Home;
-

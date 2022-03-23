@@ -1,0 +1,14 @@
+@import "../../App.css";
+@import "../../index.css";
+
+.not_found {
+  text-align: center;
+  color: var(--red);
+  font-size: 2rem;
+  background-color: var(--primary-color);
+}
+
+.post {
+  background-color: var(--primary-color);
+  width: 60%;
+}
