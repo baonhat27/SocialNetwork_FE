@@ -5,31 +5,17 @@ import { Redirect } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { getUserById } from './service';
 import { useDispatch } from "react-redux";
-import { addUserInfomation } from "../../shared/store/redux/actions";
-import axios from "axios";
-import { SERVER } from "../../shared/store/env";
+import getUserInfo from '../../shared/service/getUserInfo';
+import { checkToken } from '../../shared/service/tokenCheck';
 function ProfilePage(props) {
     const user= useSelector(state=>state.user);
     const [friend,setFriend]=useState();
     const [settingShow,setSettingShow]=useState(false);
     const [selectedAvatarForm,setSelectedAvatarForm]=useState(false);
     const dispatch=useDispatch();
-    const [token,setToken]=useState(localStorage.getItem('token'))
   useEffect(()=>{
-    axios.get(SERVER+'v1/users/userInfo',{
-      headers:{
-        Authorization:localStorage.getItem("token")
-      }
-    })
-    .then((userInfo)=>userInfo.data)
-    .then((userInfo)=>{
-      dispatch( addUserInfomation(userInfo.data));
-    })
-    .catch(()=>{
-      localStorage.removeItem('token');
-      setToken("");
-    })
-  },[])
+    checkToken(getUserInfo(dispatch),dispatch);
+  },[localStorage.getItem("token")])
     function useQuery() {
         const { search } = useLocation();
       
@@ -47,7 +33,7 @@ function ProfilePage(props) {
             <ProfilePageComponent friend={true} user={friend}/>
         )
     }
-    else if(token){
+    else if(localStorage.getItem("token")){
         return(
             <ProfilePageComponent 
             selectedAvatarForm={selectedAvatarForm} setSelectedAvatarForm={setSelectedAvatarForm}
