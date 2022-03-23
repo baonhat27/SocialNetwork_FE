@@ -5,8 +5,6 @@ import UpdateAvatarFormContainer from '../../containers/UpdateAvatarForm';
 import PostGroup from '../../containers/PostGroup';
 import UpdateInfoContainer from '../../containers/UpdateInfo';
 function ProfilePageComponent(props) {
-    console.log(props.user._id);
-    console.log(props.user)
     return (
         <div className={styles.profilePage}>
             <Header setRedirect={props.setRedirect}/>

@@ -23,7 +23,6 @@ function ProfilePage(props) {
     })
     .then((userInfo)=>userInfo.data)
     .then((userInfo)=>{
-      console.log(userInfo.data)
       dispatch( addUserInfomation(userInfo.data));
     })
     .catch(()=>{

@@ -22,7 +22,7 @@ export default function Header(props) {
   }
   const search=()=>{
     if(searchKey!=""){
-      history.push("/search?keyword="+searchKey);
+      history.push("/search?all="+searchKey);
       setSearchKey("");
     }
     setSearchShow(searchShow?false:true);

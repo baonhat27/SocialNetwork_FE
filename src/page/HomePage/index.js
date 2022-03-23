@@ -5,35 +5,20 @@ import { useDispatch } from "react-redux";
 import { addUserInfomation } from "../../shared/store/redux/actions";
 import axios from "axios";
 import { SERVER } from "../../shared/store/env";
+import authHeader from "../../shared/service/authHeader";
+import getUserInfo from "../../shared/service/getUserInfo";
+import { checkToken } from "../../shared/service/tokenCheck";
 const HomePage = () => {
   const dispatch=useDispatch();
-  const [token,setToken]=useState(localStorage.getItem('token'))
   useEffect(()=>{
-    axios.get(SERVER+'v1/users/userInfo',{
-      headers:{
-        Authorization:localStorage.getItem("token")
-      }
-    })
-    .then((userInfo)=>userInfo.data)
-    .then((userInfo)=>{
-      console.log(userInfo.data)
-      dispatch( addUserInfomation(userInfo.data));
-    })
-    .catch(()=>{
-      localStorage.removeItem('token');
-      setToken("");
-    })
+    checkToken(dispatch);
   },[])
-  if(token){
     return (
       <div>
         <Home/>
       </div>
     );
-  }
-  else{
-    return <Redirect to="/login"></Redirect>
-  }
+  
 };
 
 export default HomePage;

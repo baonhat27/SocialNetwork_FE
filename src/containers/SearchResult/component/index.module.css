@@ -1,0 +1,7 @@
+.searchResult{
+    margin: 20px;
+    height: 85vh;
+    overflow: auto;
+    border-radius: 10px;
+    background: white;
+}

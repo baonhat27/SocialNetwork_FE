@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../../containers/Header';
+import SearchResultContainer from '../../../containers/SearchResult';
 import styles from "./index.module.css";
 function SearchPageComponent(props) {
     return (
@@ -18,28 +19,30 @@ function SearchPageComponent(props) {
                     </h2>
                     <ul className={styles.listResultName}>
                         <li className={props.choose=="all"?styles.ResultName+" "+styles.choose:styles.ResultName} id="all"
-                            onClick={props.chooseListResult}>
+                            onClick={() => props.chooseListResult("all")}>
                             <i className={props.choose=="all"?"fa-solid fa-address-card "+styles.icon+" "+styles.choose:"fa-solid fa-address-card "+styles.icon}></i>
-                            Tất cả
+                            <h2 className={styles.ResultName_name}>Tất cả</h2>
                         </li>
                         <li className={props.choose=="user"?styles.ResultName+" "+styles.choose:styles.ResultName} id="user"
-                            onClick={props.chooseListResult}>
+                            onClick={() => props.chooseListResult("user")}>
                             <i className={props.choose=="user"?"fa-solid fa-user "+styles.icon+" "+styles.choose:"fa-solid fa-user "+styles.icon}></i>
-                            Mọi người
+                            <h2 className={styles.ResultName_name}>Mọi người</h2>
                         </li>
                         <li className={props.choose=="post"?styles.ResultName+" "+styles.choose:styles.ResultName} id="post"
-                            onClick={props.chooseListResult}>
+                            onClick={() => props.chooseListResult("post")}>
                             <i className={props.choose=="post"?"fa-solid fa-rectangle-list "+styles.icon+" "+styles.choose:"fa-solid fa-rectangle-list "+styles.icon}></i>
-                            Bài viết
+                            <h2 className={styles.ResultName_name}>Bài viết</h2>
                         </li>
-                        <li className={props.choose=="comment"?styles.ResultName+" "+styles.choose:styles.ResultName} name="comment"
-                            onClick={props.chooseListResult}>
+                        <li className={props.choose=="comment"?styles.ResultName+" "+styles.choose:styles.ResultName} id="comment"
+                            onClick={() => props.chooseListResult("comment")}>
                             <i className={props.choose=="comment"?"fa-solid fa-comment-dots "+styles.icon+" "+styles.choose:"fa-solid fa-comment-dots "+styles.icon}></i>
-                            Comment
+                            <h2 className={styles.ResultName_name}>comment</h2>
                         </li>
                     </ul>
                 </div>
-                <div className={styles.body_result}></div>
+                <div className={styles.body_result}>
+                    <SearchResultContainer/>
+                </div>
             </div>
         </div>
     )
