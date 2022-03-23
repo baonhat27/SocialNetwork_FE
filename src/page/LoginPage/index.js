@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addUserInfomation } from "../../shared/store/redux/actions";
 import Login from "./Login"
 import { login, signup } from "./service";
 export default function LoginPage(props){
     const dispatch=useDispatch();
+    const history=useHistory();
     const [showSignUp,setShowSignUp]=useState(false);
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
@@ -25,8 +27,9 @@ export default function LoginPage(props){
         }
         else{
             localStorage.setItem("token",user.token);
+            localStorage.setItem("refreshToken",user.refreshToken);
             dispatch(addUserInfomation(user.data));
-            window.location="/profile";
+            history.push('/profile');
         }
     }
     async function signupAccount(){

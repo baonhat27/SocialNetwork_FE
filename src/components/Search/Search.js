@@ -5,12 +5,12 @@ const Search = (props) => {
     return (
     <div className={props.searchShow?styles.search+" "+styles.show:styles.search}>
         <input
+        onChange={props.handleSearchKey}
+        value={props.searchKey}
             placeholder='Tìm kiếm...'
             className={props.searchShow?styles.inputSearch+" "+styles.show:styles.inputSearch}
         />
-        <i onClick={function(){
-            props.setSearchShow(props.searchShow?false:true);
-        }} className={props.searchShow?"fa-solid fa-magnifying-glass "+styles.iconSearch+" "+styles.show:"fa-solid fa-magnifying-glass "+styles.iconSearch} ></i>
+        <i onClick={props.search} className={props.searchShow?"fa-solid fa-magnifying-glass "+styles.iconSearch+" "+styles.show:"fa-solid fa-magnifying-glass "+styles.iconSearch} ></i>
 
     </div>
     );

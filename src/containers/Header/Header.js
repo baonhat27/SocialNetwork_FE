@@ -22,10 +22,10 @@ const _Header = (props) => {
             src="https://www.telio.vn/static/1ab7f07ebfb83c92f7f48ce09a93a1cc/4fd43/telio-logo.png"
           />
         </Link>
-        <Search
-          searchShow={props.searchShow}
-          setSearchShow={props.setSearchShow}
-        />
+        <Search searchKey={props.searchKey} handleSearchKey={props.handleSearchKey} search={props.search} searchShow={props.searchShow} setSearchShow={props.setSearchShow}/>
+      </div>
+      <div className={styles.header_mid}>
+        
       </div>
       <div className={styles.header_mid}></div>
       <div className={styles.header_right}>

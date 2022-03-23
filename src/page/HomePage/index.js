@@ -1,39 +1,19 @@
 import Home from "./Home";
-import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import React,{useEffect,useState} from "react";
 import { useDispatch } from "react-redux";
-import { addUserInfomation } from "../../shared/store/redux/actions";
-import axios from "axios";
-import { SERVER } from "../../shared/store/env";
-
-const HomePage = ({ children }) => {
-  const dispatch = useDispatch();
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  useEffect(() => {
-    axios
-      .get(SERVER + "v1/users/userInfo", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      })
-      .then((userInfo) => userInfo.data)
-      .then((userInfo) => {
-        dispatch(addUserInfomation(userInfo.data));
-      })
-      .catch(() => {
-        localStorage.removeItem("token");
-        setToken("");
-      });
-  }, []);
-  if (token) {
+import getUserInfo from "../../shared/service/getUserInfo";
+import { checkToken } from "../../shared/service/tokenCheck";
+const HomePage = ({children}) => {
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    checkToken(getUserInfo(dispatch),dispatch);
+  },[localStorage.getItem("token")])
     return (
       <div>
         <Home children={children} />
       </div>
     );
-  } else {
-    return <Redirect to="/login"></Redirect>;
-  }
+  
 };
 
 export default HomePage;
