@@ -16,9 +16,9 @@
 
 .user_name {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 14px;
   color: var(--blue);
-  margin-left: 5px;
+  margin-left: 10px;
   margin-right: 10px;
   align-items: center;
   white-space: nowrap;
@@ -76,10 +76,16 @@
 }
 .comment_box1 {
   background-color: white;
-  padding: 16px 0;
+  padding: 0px 0px;
   display: flex;
   align-items: center;
+<<<<<<< HEAD
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+=======
   margin-top: 0px;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
 .commentText {
   display: flex;
@@ -98,34 +104,61 @@ p {
   color: black;
   display: flex;
   background-color: #f7f8f9;
-  display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-right: 10px;
 }
+<<<<<<< HEAD
+.comment_content1{
+  display: flex;
+}
+.sub_button{
+  margin-right: 20px;
+  position: relative;
+}
+.comment_button{
+=======
 
 .comment_button {
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: auto;
   order: 2;
   font-size: 15px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
 }
 .comment_delete {
   margin-right: 8px;
 }
+<<<<<<< HEAD
+.comment_delete:hover{
+    color: var(--main-color);
+    cursor: pointer;
+=======
 .comment_delete:hover {
   color: var(--main-color);
   font-size: 18px;
   cursor: pointer;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
 .comment_edit {
   margin-right: 8px;
 }
+<<<<<<< HEAD
+.comment_edit:hover{
+    color: var(--main-color);
+    cursor: pointer;
+=======
 .comment_edit:hover {
   color: var(--main-color);
   font-size: 18px;
   cursor: pointer;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
 .editor {
   display: flex;
@@ -209,14 +242,22 @@ input[type="file"]:hover + label {
   justify-content: center;
   align-items: center;
 }
+<<<<<<< HEAD
+.showmore{
+  margin: 0px 0 0 20px;
+=======
 .showmore {
   margin: 10px 0 0 20px;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
   color: var(--main-color);
-  width: 30%;
+  font-weight: 500;
+  width: 50%;
+  display: flex;
+  align-items: center;
 }
 .showmore:hover {
   cursor: pointer;
-  font-weight: bold;
+  text-decoration: underline;
 }
 .delete {
   display: flex;
@@ -229,3 +270,15 @@ input[type="file"]:hover + label {
 .display {
   display: flex;
 }
+<<<<<<< HEAD
+.threedot{
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+.threedot:hover{
+  cursor: pointer;
+}
+
+=======
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf

@@ -23,7 +23,7 @@ function ProfilePage(props) {
       }
     const query=useQuery()
     useEffect(async ()=>{
-        if(query.get("id")!=user._id){
+        if(query.get("id")!==user._id){
             const friend=await getUserById(query.get("id"))
             setFriend(friend.data);
         }

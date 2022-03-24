@@ -1,51 +1,74 @@
-.sidebar{
-    /* background-color: whitesmoke; */
-    background-color: var(--primary-color) !important;
-    display: flex;
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh
+.sidebar {
+  background-color: var(--primary-color) !important;
+  display: flex;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0 0 50px;
+  
 
 }
-.sidebar_item{
-    margin: 10px 0px 10px 30px;
-    padding: 10px;
-    line-height: 20px;
-    height: 50px;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    color: #616161;
-    font-size: 18px;
+.sidebar1 {
+  /* background-color: whitesmoke; */
+  background-color: var(--white-color) !important;
+  display: flex;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  margin-bottom: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
-.sidebar_item:hover{
-    cursor: pointer;
-    background-color: var(--hover-select-background );
+.sidebar2 {
+  background-color: var(--white-color) !important;
+  display: flex;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin-top: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 450px;
 }
-.sidebar_item:focus{
-    background-color: var(--hover-select-background );
-    opacity: 80%;
-    color: var(--main-color);
-    outline: none;
+.sidebar_item {
+  margin: 10px 0px 10px 30px;
+  padding: 10px;
+  line-height: 20px;
+  height: 50px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  color: #616161;
+  font-size: 18px;
 }
-.user_info{
-    margin: 20px 0px 20px 30px;
-    padding: 10px;
-    line-height: 20px;
-    height: 40px;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-
+.sidebar_item:hover {
+  cursor: pointer;
+  background-color: var(--hover-select-background);
 }
-.user_name{
-    margin-left: 18px;
-    color: var(--main-color);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    white-space: nowrap
+.sidebar_item:focus {
+  background-color: var(--hover-select-background);
+  opacity: 80%;
+  color: var(--main-color);
+  outline: none;
 }
-
+.user_info {
+  margin: 20px 0px 20px 30px;
+  padding: 10px;
+  line-height: 20px;
+  height: 40px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.user_name {
+  margin-left: 18px;
+  color: var(--main-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}

@@ -27,7 +27,11 @@ export default function LoginPage(props){
         }
         else{
             localStorage.setItem("token",user.token);
+<<<<<<< HEAD
+            localStorage.setItem("userId",user.data._id)
+=======
             localStorage.setItem("refreshToken",user.refreshToken);
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
             dispatch(addUserInfomation(user.data));
             history.push('/profile');
         }

@@ -1,7 +1,7 @@
 export const addUserInfomation = (u) => {
   return {
-    email: u.email,
     type: "addUserInfomation",
+    email: u.email,
     _id: u._id,
     firstName: u.firstName,
     lastName: u.lastName,
@@ -15,6 +15,7 @@ export const addUserInfomation = (u) => {
 export const handleUserInfo = (u) => {
   return {
     type: "handleUserInfo",
+    _id:u._id,
     email: u.email,
     firstName: u.firstName,
     lastName: u.lastName,
@@ -26,6 +27,7 @@ export const createComment = (u) => {
   return {
     type: "createComment",
     post: {
+      _id:u._id,
       content: u.content,
       images: u.image,
       createdBy: u.createdBy,

@@ -26,13 +26,25 @@ const _Header = (props) => {
       </div>
       <div className={styles.header_mid}></div>
       <div className={styles.header_right}>
+<<<<<<< HEAD
+      <div style={{position:"relative"}}>
+        <i className={"fa-solid fa-comment-dots "+styles.icon}></i>
+=======
         <div style={{ position: "relative" }}>
           <i className={"fa-solid fa-comment-dots " + styles.icon}></i>
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
         </div>
         <Notification
           showNoti={props.showNoti}
           handleShowNoti={props.handleShowNoti}
         />
+<<<<<<< HEAD
+        <div style={{position:"relative"}}>
+          <i className={"fa-solid fa-caret-down "+styles.icon} onClick={function(){
+            props.setHeaderSettingShow(props.headerSettingShow?false:true);
+          }}></i>
+          {props.headerSettingShow?<HeaderSettingContainer user={props.user}/>:<></>}
+=======
         <div style={{ position: "relative" }}>
           <i
             className={"fa-solid fa-caret-down " + styles.icon}
@@ -47,6 +59,7 @@ const _Header = (props) => {
           ) : (
             <></>
           )}
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
         </div>
       </div>
     </header>

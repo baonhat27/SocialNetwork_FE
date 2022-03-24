@@ -65,7 +65,6 @@
 
 .content_box {
   font-size: 1.2rem;
-  margin-bottom: 16px;
   margin-left: 32px;
 }
 
@@ -76,7 +75,14 @@
 }
 
 .image {
+<<<<<<< HEAD
+  border-radius: 10px;
+  border: solid 1px var(--grey);
+  margin: 16px;
+  width: 80%;
+=======
   width: 120%;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
 
 .img_wrap {

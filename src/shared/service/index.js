@@ -17,6 +17,10 @@ const DELETE_COMMENT_URL = GET_COMMENT_URL;
 const CREATE_COMMENT_URL = GET_COMMENT_URL;
 const EDIT_COMMENT_URL = GET_COMMENT_URL;
 
+const CREATE_REACTION_URL = `${HOST}/v1/reactions`;
+const DELETE_REACTION_URL = CREATE_REACTION_URL;
+const GET_REACTION_URL = CREATE_REACTION_URL;
+
 const GET_USER_PROFILE_URL = `${HOST}/v1/users/`;
 
 export const uploadImages = async (files) => {
@@ -119,5 +123,39 @@ export const editComment = async (text, commentId) => {
       { content: text },
       { headers: authHeader() }
     )
+  );
+};
+//Reaction
+export const createReaction = async (postId) => {
+  return await wrapResponseHandler(() =>
+    axios.post(
+      CREATE_REACTION_URL,
+      { postId: postId },
+      { headers: authHeader() }
+    )
+  );
+};
+export const deleteReaction = async (postId) => {
+  return await wrapResponseHandler(() =>
+    axios.request({
+      url: DELETE_REACTION_URL,
+      method: "delete",
+      headers: authHeader(),
+      data: {
+        postId,
+      },
+    })
+  );
+};
+export const getReaction = async (postId) => {
+  return await wrapResponseHandler(() =>
+    axios.request({
+      url: GET_REACTION_URL,
+      method: "get",
+      headers: authHeader(),
+      data: {
+        postId,
+      },
+    })
   );
 };
