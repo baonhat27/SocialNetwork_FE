@@ -150,11 +150,11 @@ export const deleteReaction = async (postId) => {
 export const getReaction = async (postId) => {
   return await wrapResponseHandler(() =>
     axios.request({
-      url: GET_REACTION_URL,
+      url: GET_REACTION_URL +`?postId=${postId}`,
       method: "get",
       headers: authHeader(),
       data: {
-        postId,
+        postId:postId ,
       },
     })
   );

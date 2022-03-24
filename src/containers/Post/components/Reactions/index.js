@@ -11,28 +11,28 @@ function ReactionBar({ postId }) {
   const [show, setShow] = useState(false);
   const [reactionList, setReactionList] = useState([]);
   const [reactionCount, setReactionCount] = useState();
-  const [reacted, setReacted] = useState(false);
+  const [reacted, setReacted] = useState();
   const userId = localStorage.getItem("userId");
   const getAllReaction = async () => {
     const res = await getReaction(postId);
     setReactionList(res.data.results);
-    setReactionCount(res.data.results.length)
+    setReactionCount(res.data.results.length);
   };
   //Check if user id in Reaction List People
   const checkExist = () => {
-    const exist = reactionList.find((value) => value.createdBy._id == userId);
+    const exist = reactionList.find((value) => {
+      return value.createdBy._id == userId && value.isDeleted == false;
+    });
     if (exist) setReacted(true);
     else setReacted(false);
   };
   useEffect(() => {
     getAllReaction();
-  }, [reacted]);
+  }, [show]);
   useEffect(checkExist, [reactionList]);
-  //show People who reacts
   const showReactionPeople = () => {
     setShow(!show);
   };
-  // console.log("Listt:", reactionPeopleList);
 
   const handleReaction = () => {
     if (reacted == false) {
