@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import styles from "./ProfilePage.module.css";
-import Header from "../../containers/Header"
-import UpdateAvatarFormContainer from '../../containers/UpdateAvatarForm';
-import PostGroup from '../../containers/PostGroup';
-import UpdateInfoContainer from '../../containers/UpdateInfo';
+import Header from "../../containers/Header";
+import UpdateAvatarFormContainer from "../../containers/UpdateAvatarForm";
+import PostGroup from "../../containers/PostGroup";
+import UpdateInfoContainer from "../../containers/UpdateInfo";
 function ProfilePageComponent(props) {
     return (
         <div className={styles.profilePage}>
-            <Header/>
+            <Header setRedirect={props.setRedirect}/>
             <div className={styles.avatarBackground}>
                 <div className={styles.avatarBox}>
                     <img src={props.user.avatar!=="no information"? props.user.avatar:"https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg"} className={styles.avatar} alt='avatar'></img>
@@ -55,9 +55,9 @@ function ProfilePageComponent(props) {
                     </div>
                 </div>
             </div>
-            
-        </div>
-    )
+
+    </div>
+  );
 }
 
 export default ProfilePageComponent;

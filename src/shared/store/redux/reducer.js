@@ -36,6 +36,11 @@ export const reducer = (state, action) => {
                     avatar:action.avatar
                 }
             }
+        case 'search':
+            return{
+                ...state,
+                searchkey:action.searchkey
+            }
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./styles.module.css";
 import { timeFromNow } from "../../../shared/utils";
 import clockLogo from "../../../shared/image/clock.png";
@@ -11,16 +11,23 @@ export default function PostHeader({
   user,
   createdAt,
   onDeletePost,
-  onEditPost,
+  onUpdatePost,
 }) {
   const [isDisplayOptions, setIsDisplayOptions] = useState(false);
   const [error, setError] = useState("");
-  // console.log("User",user)
+  const optionBox = useRef();
+
   const displayOptions = () => {
     setIsDisplayOptions(!isDisplayOptions);
   };
 
+  const handleUpdate = async () => {
+    setIsDisplayOptions(false);
+    onUpdatePost();
+  };
+
   const handleDelete = async () => {
+    setIsDisplayOptions(false);
     try {
       const res = await deletePost(postId);
 
@@ -36,13 +43,15 @@ export default function PostHeader({
   return (
     <>
       <div className={styles.header}>
-        <img
-          className={styles["avatar"]}
-          src={
-            user.avatar === "no infromation" ? defaultUserAvatar : user.avatar
-          }
-          alt=""
-        />
+        <div className={styles["avatar_box"]}>
+          <img
+            className={styles["avatar"]}
+            src={
+              user.avatar === "no infromation" ? defaultUserAvatar : user.avatar
+            }
+            alt=""
+          />
+        </div>
         <div className={styles.info}>
           <span
             className={styles.user_name}
@@ -60,8 +69,10 @@ export default function PostHeader({
           onClick={displayOptions}
         />
         {isDisplayOptions && (
-          <div className={styles.options}>
-            <span className={styles.btn_link}>Edit post</span>
+          <div ref={optionBox} tabIndex="1" className={styles.options}>
+            <span className={styles.btn_link} onClick={handleUpdate}>
+              Edit post
+            </span>
             <span
               className={`${styles.btn_link} ${styles.danger}`}
               onClick={handleDelete}

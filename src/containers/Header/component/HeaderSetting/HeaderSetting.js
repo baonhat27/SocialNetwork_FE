@@ -37,7 +37,7 @@ function HeaderSettingComponent(props) {
                 <i className={"fa-solid fa-circle-question "+styles.icon}></i>
                 <div className={styles.name}>
                     <h3 className={styles.settingName}>Trợ giúp {"&"} hỗ trợ</h3>
-                    <i class={"fa-solid fa-angle-right "+styles.icon_right}></i>
+                    <i className={"fa-solid fa-angle-right "+styles.icon_right}></i>
                 </div>
             </div>
             <div className={styles.setting_button} onClick={props.logout}>

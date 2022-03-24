@@ -14,15 +14,19 @@ export default function PostImageList({ images }) {
 
   return (
     <div className={styles.list_image}>
-      <img className={styles.image} src={firstImage} alt="" />
+      <div className={styles.img_wrap2}>
+        <img className={styles.image} src={firstImage} alt="" />
+      </div>
       {showMore && (
-        <button className={styles.btn} onClick={onClickShowMore}>
+        <button className={styles.btn_link} onClick={onClickShowMore}>
           {`Show ${restImages.length} more`}
         </button>
       )}
       {displayMore &&
         restImages.map((image, index) => (
-          <img className={styles.image} key={index} src={image} alt="" />
+          <div className={styles.img_wrap2}>
+            <img className={styles.image} key={index} src={image} alt="" />
+          </div>
         ))}
     </div>
   );

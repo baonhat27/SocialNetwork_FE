@@ -34,6 +34,7 @@ const withUploadImage = (Component) => {
           images={images}
           uploading={isUploading}
           upload={handleUpload}
+          clearImage={() => setImages([])}
           {...props}
         />
       </>

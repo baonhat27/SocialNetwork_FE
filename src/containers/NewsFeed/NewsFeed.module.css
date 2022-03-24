@@ -3,9 +3,13 @@
   width: 80%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
+<<<<<<< HEAD
 .post{
   width: 75%;
+=======
+.post {
+  width: 65%;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
   flex-direction: column;
 }

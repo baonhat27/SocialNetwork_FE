@@ -1,7 +1,4 @@
 import React from "react";
-import { Layout } from "antd";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
 import Search from "../../components/Search/Search";
 import Notification from "./component/Notification";
@@ -16,26 +13,53 @@ const _Header = (props) => {
     <header className={styles.header}>
       <div className={styles.header_left}>
         <Link to="/home">
-          <img className={styles.img_logo} alt="logo" src="https://www.telio.vn/static/1ab7f07ebfb83c92f7f48ce09a93a1cc/4fd43/telio-logo.png" />
+          <img
+            className={styles.img_logo}
+            alt="logo"
+            src="https://www.telio.vn/static/1ab7f07ebfb83c92f7f48ce09a93a1cc/4fd43/telio-logo.png"
+          />
         </Link>
-        <Search searchShow={props.searchShow} setSearchShow={props.setSearchShow}/>
+        <Search searchKey={props.searchKey} handleSearchKey={props.handleSearchKey} search={props.search} searchShow={props.searchShow} setSearchShow={props.setSearchShow}/>
       </div>
       <div className={styles.header_mid}>
         
       </div>
+      <div className={styles.header_mid}></div>
       <div className={styles.header_right}>
+<<<<<<< HEAD
       <div style={{position:"relative"}}>
         <i className={"fa-solid fa-comment-dots "+styles.icon}></i>
+=======
+        <div style={{ position: "relative" }}>
+          <i className={"fa-solid fa-comment-dots " + styles.icon}></i>
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
         </div>
-        <Notification 
-          showNoti={props.showNoti} 
+        <Notification
+          showNoti={props.showNoti}
           handleShowNoti={props.handleShowNoti}
         />
+<<<<<<< HEAD
         <div style={{position:"relative"}}>
           <i className={"fa-solid fa-caret-down "+styles.icon} onClick={function(){
             props.setHeaderSettingShow(props.headerSettingShow?false:true);
           }}></i>
           {props.headerSettingShow?<HeaderSettingContainer user={props.user}/>:<></>}
+=======
+        <div style={{ position: "relative" }}>
+          <i
+            className={"fa-solid fa-caret-down " + styles.icon}
+            onClick={function () {
+              props.setHeaderSettingShow(
+                props.headerSettingShow ? false : true
+              );
+            }}
+          ></i>
+          {props.headerSettingShow ? (
+            <HeaderSettingContainer user={props.user} />
+          ) : (
+            <></>
+          )}
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
         </div>
       </div>
     </header>
@@ -43,4 +67,3 @@ const _Header = (props) => {
 };
 
 export default _Header;
-

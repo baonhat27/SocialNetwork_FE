@@ -72,25 +72,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0px; 
+  margin-top: 0px;
 }
-.comment_box1{
+.comment_box1 {
   background-color: white;
   padding: 0px 0px;
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   margin-top: 10px;
   margin-bottom: 10px;
 
+=======
+  margin-top: 0px;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
-.commentText{
+.commentText {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-p{
+p {
   margin-bottom: 10px;
 }
+
 .comment_content {
   font-weight: 600;
   border-radius: 4px;
@@ -103,6 +108,7 @@ p{
   justify-content: space-between;
   margin-right: 10px;
 }
+<<<<<<< HEAD
 .comment_content1{
   display: flex;
 }
@@ -111,6 +117,10 @@ p{
   position: relative;
 }
 .comment_button{
+=======
+
+.comment_button {
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,19 +132,33 @@ p{
   left: 20px;
   top: 10px;
 }
-.comment_delete{
+.comment_delete {
   margin-right: 8px;
 }
+<<<<<<< HEAD
 .comment_delete:hover{
     color: var(--main-color);
     cursor: pointer;
+=======
+.comment_delete:hover {
+  color: var(--main-color);
+  font-size: 18px;
+  cursor: pointer;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
-.comment_edit{
+.comment_edit {
   margin-right: 8px;
 }
+<<<<<<< HEAD
 .comment_edit:hover{
     color: var(--main-color);
     cursor: pointer;
+=======
+.comment_edit:hover {
+  color: var(--main-color);
+  font-size: 18px;
+  cursor: pointer;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
 }
 .editor {
   display: flex;
@@ -218,29 +242,35 @@ input[type="file"]:hover + label {
   justify-content: center;
   align-items: center;
 }
+<<<<<<< HEAD
 .showmore{
   margin: 0px 0 0 20px;
+=======
+.showmore {
+  margin: 10px 0 0 20px;
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
   color: var(--main-color);
   font-weight: 500;
   width: 50%;
   display: flex;
   align-items: center;
 }
-.showmore:hover{
+.showmore:hover {
   cursor: pointer;
   text-decoration: underline;
 }
-.delete{
+.delete {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.hide{
+.hide {
   display: none;
 }
-.display{
+.display {
   display: flex;
 }
+<<<<<<< HEAD
 .threedot{
   font-size: 18px;
   font-weight: 700;
@@ -250,3 +280,5 @@ input[type="file"]:hover + label {
   cursor: pointer;
 }
 
+=======
+>>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf

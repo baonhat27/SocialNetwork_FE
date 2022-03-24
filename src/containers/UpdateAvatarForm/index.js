@@ -11,6 +11,7 @@ function UpdateAvatarFormContainer(props) {
         if(checkSuccess){
             dispatch(handleAvatar(imageLink[imageLink.length-1]));
             alert('Thay đổi avatar thành công');
+            props.setSelectedAvatarForm(false);
         }
         else{
             alert('Có lỗi xảy ra, vui lòng thử lại sau');
