@@ -15,7 +15,6 @@ function Reaction({
       {/* Modal  */}
       <div
         className={
-<<<<<<< HEAD
           show
             ? styles.display + " " + styles.reaction_modal
             : styles.hide + " " + styles.reaction_modal
@@ -34,27 +33,6 @@ function Reaction({
         <div className={styles.reaction_people_list}>
           {reactionList.map((reactionPeople, index) => {
             const user = reactionPeople.createdBy;
-=======
-          reactionshow
-            ? styles.display + " " + styles.reaction_people_list
-            : styles.hide + " " + styles.reaction_people_list
-        }
-      >
-        <div className={styles.reaction_people}></div>
-      </div>
-      <div className={styles.reaction_bar}>
-        <div className={styles.reaction_count} onClick={showReactionPeople}>
-          15.000💖
-        </div>
-        <div
-          className={
-            show
-              ? styles.display + " " + styles.reaction_list
-              : styles.hide + " " + styles.reaction_list
-          }
-        >
-          {reactions.map((_reaction, index) => {
->>>>>>> 0d8e2ff28a973aef0da7812ce8e8c87efaa683cf
             return (
               <div className={styles.reaction_people} key={index}>
                 <Avatar

@@ -20,10 +20,6 @@ function App() {
         <Route path="/search">
           <SearchPageContainer/>
         </Route>
-        <Route path="*">
-          <HomePage/>
-        </Route>
-
         <HomePage>
           <Switch>
             <Route path="/home">
