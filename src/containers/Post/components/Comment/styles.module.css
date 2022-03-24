@@ -79,7 +79,9 @@
   padding: 0px 0px;
   display: flex;
   align-items: center;
-  margin-top: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 .commentText {
   display: flex;
@@ -101,6 +103,16 @@ p {
   align-items: center;
   justify-content: space-between;
   margin-right: 10px;
+}
+.comment_content1{
+  display: flex;
+}
+.sub_button{
+  margin-right: 20px;
+  position: relative;
+}
+.comment_button{
+  display: flex;
 }
 .comment_content1{
   display: flex;
@@ -248,4 +260,3 @@ input[type="file"]:hover + label {
 .threedot:hover{
   cursor: pointer;
 }
-
