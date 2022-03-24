@@ -3,28 +3,44 @@
   width: 100%;
   height: 80px;
   flex-direction: column;
-  margin: 10px 0 40px 0;
+  margin: 10px 0 0px 0;
   position: relative;
 }
-.reaction_count {
-  font-size: 15px;
-  margin: 0px 20px 20px 20px;
-  font-weight: 500;
+.count_bar {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  height: 20px;
   position: relative;
   border-bottom: solid var(--blue) 1px;
   width: 90%;
+  margin: 0px 20px 10px 20px;
+}
+.comment_count {
+  font-size: 15px;
+  font-weight: 400;
+  display: flex;
+  color: #3a5056;
+}
+.reaction_count {
+  font-size: 15px;
+  font-weight: 400;
+  color: #3a5056;
+  display: flex;
+}
+.comment_count:hover{
+  cursor: pointer;
+  color: var(--main-color);
 }
 .reaction_count:hover {
   cursor: pointer;
   color: var(--main-color);
-  font-weight: 500;
 }
 .like {
   position: relative;
 }
-.liked{
+.liked {
   position: relative;
   color: #e43030;
 }
@@ -41,15 +57,19 @@
   display: none;
 }
 
-.reaction_people_list {
+.reaction_people_list_container {
   position: fixed;
   background: white;
-  width: 50%;
+  width: 40%;
   height: 300px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .reaction_modal {
   position: fixed;
@@ -76,26 +96,32 @@
   transition: 0.3s linear;
 }
 .action {
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 20px;
   position: relative;
+  margin: 0 20px 0 20px;
 }
 .action_item {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  margin: 0 0px;
   width: 100%;
   height: 40px;
-  border: solid var(--blue) 1px;
-  border-radius: 4px;
+  /* border-right: solid var(--blue) 1px; */
+  border-radius: 0px;
+}
+.action_item:last-child {
+  border: none;
 }
 .action_item:hover {
   background-color: #f7f8f9;
   cursor: pointer;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 .display {
   display: flex;
@@ -103,4 +129,31 @@
 .hide {
   display: none;
 }
-
+.reaction_people_list{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow: auto;
+}
+.reaction_people{
+  margin: 0px 0 10px 30px;
+  display: flex;
+  align-items: center;
+}
+.user_name{
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--blue);
+  margin-right: 10px;
+  align-items: center;
+  white-space: nowrap;
+}
+.list_text{
+  margin: 10px 0 0px 0;
+  width: 90%;
+  border-bottom: 4px solid var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}

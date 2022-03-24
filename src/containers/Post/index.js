@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getUserProfile } from "../../shared/service"
+import { getUserProfile } from "../../shared/service";
 import PostHeader from "./components/PostHeader";
 import styles from "./styles.module.css";
 import PostContent from "./components/PostContent";
@@ -8,6 +8,7 @@ import Comment from "./components/Comment";
 import Reaction from "./components/Reactions";
 
 function Post({ post, onDeletePost }) {
+  const reactionPeopleList = post.reactions
   return (
     <div className={styles.post}>
       <PostHeader
@@ -18,9 +19,7 @@ function Post({ post, onDeletePost }) {
       />
       <PostContent content={post.content} />
       {post.images.length !== 0 && <PostImageList images={post.images} />}
-      <Reaction postId={post._id} 
-      reactionPeopleList={post.reactions}
-      />
+      <Reaction postId={post._id} reactionPeopleList={reactionPeopleList} />
       <Comment postId={post._id} />
     </div>
   );

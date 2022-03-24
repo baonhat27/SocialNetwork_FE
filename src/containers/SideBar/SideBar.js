@@ -47,7 +47,7 @@ const _SideBar = (props) => {
           </div>
         </div>
       </div>
-      <div className={styles.sidebar2}></div>
+      {/* <div className={styles.sidebar2}></div> */}
     </div>
   );
 };

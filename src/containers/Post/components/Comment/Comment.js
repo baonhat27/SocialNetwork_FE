@@ -7,12 +7,17 @@ import { editComment } from "../../../../shared/service";
 
 function Comment({ comment, onDeleteComment }) {
   const [checkEditButton, setCheckEditButton] = useState(false);
+  const [optionOn, setOptionOn] = useState(false);
   const [text, setText] = useState("");
+  const user = comment.createdBy;
+  const localUserId = localStorage.getItem("userId")
+  
+  const handleOption = () => {
+    setOptionOn(!optionOn);
+  };
   const onSubmitEdit = async () => {
     const response = await editComment(text, comment._id);
     if (response.success) {
-      // console.log(response);
-      // console.log("Text: ",text ,"Id: ", comment._id);
       if (text != "") {
         comment.content = response.data.content;
       } else {
@@ -25,7 +30,6 @@ function Comment({ comment, onDeleteComment }) {
 
   const handleEditor = () => {
     setCheckEditButton(!checkEditButton);
-    //   console.log(comment._id);
   };
   const config = {
     toolbar: [
@@ -40,7 +44,6 @@ function Comment({ comment, onDeleteComment }) {
     ],
   };
 
-  const user = comment.createdBy;
   return (
     <div className={styles.comment_box1} key={comment._id}>
       <div className={styles.info}>
@@ -83,28 +86,41 @@ function Comment({ comment, onDeleteComment }) {
             : styles.comment_content + " " + styles.display
         }
       >
-        <div className={styles.user_name}>
-          {user.firstName + " " + user.lastName}
-        </div>
-        <div
-          className={styles.commentText}
-          dangerouslySetInnerHTML={{ __html: comment.content }}
-        ></div>
-        <div className={styles.comment_button}>
-          <div className={styles.comment_delete}>
-            <i
-              className="fa-solid fa-x"
-              onClick={() => onDeleteComment(comment._id)}
-            ></i>
+        <div className={styles.comment_content1}>
+          <div className={styles.user_name}>
+            {user.firstName + " " + user.lastName}
           </div>
-          <div className={styles.comment_edit}>
-            <i
-              className="fa-solid fa-pen-to-square"
-              onClick={() => handleEditor()}
-            ></i>
-          </div>
+          <div
+            className={styles.commentText}
+            dangerouslySetInnerHTML={{ __html: comment.content }}
+          ></div>
         </div>
       </div>
+        <div className={localUserId==user._id ? styles.sub_button : styles.sub_button+ " " +styles.hide}>
+          <div className={styles.threedot} onClick={handleOption}>
+            ...
+          </div>
+          <div
+            className={
+              optionOn
+                ? styles.comment_button + " " + styles.display
+                : styles.comment_button + " " + styles.hide
+            }
+          >
+            <div className={styles.comment_edit}>
+              <i
+                className="fa-solid fa-pen-to-square"
+                onClick={() => handleEditor()}
+              ></i>
+              <div className={styles.comment_delete}>
+                <i
+                  className="fa-solid fa-x"
+                  onClick={() => onDeleteComment(comment._id)}
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   );
 }

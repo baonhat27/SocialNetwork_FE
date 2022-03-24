@@ -1,47 +1,58 @@
+import { responsiveArray } from "antd/lib/_util/responsiveObserve";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { createReaction, deleteReaction } from "../../../../shared/service";
+import {
+  createReaction,
+  deleteReaction,
+  getReaction,
+} from "../../../../shared/service";
 import Reaction from "./Reaction";
 
-function ReactionBar({ reactionPeopleList, postId }) {
-  const user = useSelector((state) => state.user);
-  const [reactionshow, setReactionShow] = useState(false);
-  const [checkReactionClick, setCheckReactionClick] = useState();
-  const [reactionCount, setReactionCount] = useState(reactionPeopleList.length);
-  for (const reaction of reactionPeopleList) {
-    if (reaction.createdBy._id == user.id) {
-      console.log(true);
-      break;
-    }
-  }
-
+function ReactionBar({ postId }) {
+  const [show, setShow] = useState(false);
+  const [reactionList, setReactionList] = useState([]);
+  const [reactionCount, setReactionCount] = useState();
+  const [reacted, setReacted] = useState(false);
+  const userId = localStorage.getItem("userId");
+  const getAllReaction = async () => {
+    const res = await getReaction(postId);
+    setReactionList(res.data.results);
+    setReactionCount(res.data.results.length)
+  };
+  //Check if user id in Reaction List People
+  const checkExist = () => {
+    const exist = reactionList.find((value) => value.createdBy._id == userId);
+    if (exist) setReacted(true);
+    else setReacted(false);
+  };
+  useEffect(() => {
+    getAllReaction();
+  }, [reacted]);
+  useEffect(checkExist, [reactionList]);
+  //show People who reacts
   const showReactionPeople = () => {
-    setReactionShow(!reactionshow);
+    setShow(!show);
   };
-  const getReactionPeople = () => {};
-  const onCreateReaction = () => {
-    if (!checkReactionClick) {
+  // console.log("Listt:", reactionPeopleList);
+
+  const handleReaction = () => {
+    if (reacted == false) {
       createReaction(postId);
-    }
-    setCheckReactionClick(!checkReactionClick);
-  };
-  const onDeleteReaction = () => {
-    if (checkReactionClick) {
+      setReactionCount((prev) => prev + 1);
+    } else {
       deleteReaction(postId);
+      setReactionCount((prev) => prev - 1);
     }
-    setCheckReactionClick(!checkReactionClick);
+    setReacted(!reacted);
   };
   return (
     <div>
       <Reaction
-        showReactionPeople={showReactionPeople}
-        reactionshow={reactionshow}
-        reactionPeopleList={reactionPeopleList}
-        checkReactionClick={checkReactionClick}
         reactionCount={reactionCount}
-        setReactionCount={setReactionCount}
-        onCreateReaction={onCreateReaction}
-        onDeleteReaction={onDeleteReaction}
+        show={show}
+        showReactionPeople={showReactionPeople}
+        handleReaction={handleReaction}
+        reacted={reacted}
+        reactionList={reactionList}
       />
     </div>
   );

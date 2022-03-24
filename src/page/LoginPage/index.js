@@ -25,6 +25,7 @@ export default function LoginPage(props){
         }
         else{
             localStorage.setItem("token",user.token);
+            localStorage.setItem("userId",user.data._id)
             dispatch(addUserInfomation(user.data));
             window.location="/profile";
         }

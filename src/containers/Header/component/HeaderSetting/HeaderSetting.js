@@ -17,7 +17,7 @@ function HeaderSettingComponent(props) {
 
             </div>
             <div className={styles.setting_button}>
-                <i class={"fa-solid fa-message "+styles.icon}></i>
+                <i className={"fa-solid fa-message "+styles.icon}></i>
                 <div className={styles.name}>
                     <h2 style={{fontSize:"19px"}} className={styles.user_name}>Đóng góp ý kiến</h2>
                     <span className={styles.text}>Hãy chung tay cải thiện Telio</span>
@@ -27,24 +27,24 @@ function HeaderSettingComponent(props) {
 
             </div>
             <div className={styles.setting_button}>
-                <i class={"fa-solid fa-gear "+styles.icon}></i>
+                <i className={"fa-solid fa-gear "+styles.icon}></i>
                 <div className={styles.name}>
                     <h3 className={styles.settingName}>Cài đặt {"&"} quyền riêng tư</h3>
-                    <i class={"fa-solid fa-angle-right "+styles.icon_right}></i>
+                    <i className={"fa-solid fa-angle-right "+styles.icon_right}></i>
                 </div>
             </div>
             <div className={styles.setting_button}>
-                <i class={"fa-solid fa-circle-question "+styles.icon}></i>
+                <i className={"fa-solid fa-circle-question "+styles.icon}></i>
                 <div className={styles.name}>
                     <h3 className={styles.settingName}>Trợ giúp {"&"} hỗ trợ</h3>
                     <i class={"fa-solid fa-angle-right "+styles.icon_right}></i>
                 </div>
             </div>
             <div className={styles.setting_button} onClick={props.logout}>
-                <i class={"fa-solid fa-right-from-bracket "+styles.icon}></i>
+                <i className={"fa-solid fa-right-from-bracket "+styles.icon}></i>
                 <div className={styles.name}>
                     <h3 className={styles.settingName}>Đăng xuất</h3>
-                    <i class={"fa-solid fa-angle-right "+styles.icon_right}></i>
+                    <i className={"fa-solid fa-angle-right "+styles.icon_right}></i>
                 </div>
             </div>
         </div>

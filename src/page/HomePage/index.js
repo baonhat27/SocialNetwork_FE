@@ -17,11 +17,13 @@ const HomePage = () => {
     .then((userInfo)=>userInfo.data)
     .then((userInfo)=>{
       dispatch( addUserInfomation(userInfo.data));
+      // localStorage.setItem("userId",userInfo.data._id)
     })
     .catch(()=>{
       localStorage.removeItem('token');
       setToken("");
     })
+
   },[])
   if(token){
     return (
