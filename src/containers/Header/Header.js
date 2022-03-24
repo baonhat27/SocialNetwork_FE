@@ -1,7 +1,4 @@
 import React from "react";
-import { Layout } from "antd";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import styles from "./header.module.css";
 import Search from "../../components/Search/Search";
 import Notification from "./component/Notification";

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import _Header from "./Header";
 import { useDispatch, useSelector } from "react-redux";
-import { searchInfo } from "../../shared/store/redux/actions";
 import { useHistory } from "react-router-dom";
 
 export default function Header(props) {
