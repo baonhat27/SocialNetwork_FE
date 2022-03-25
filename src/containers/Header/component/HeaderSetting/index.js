@@ -1,10 +1,10 @@
 import React from 'react'
 import HeaderSettingComponent from './HeaderSetting'
-import { logoutService } from './service';
 
 function HeaderSettingContainer(props) {
     const logout=()=>{
-        logoutService();
+        localStorage.clear()
+        window.location="/login"
     }
     return (
         <div>

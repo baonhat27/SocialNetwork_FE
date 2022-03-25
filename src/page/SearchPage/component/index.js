@@ -41,7 +41,7 @@ function SearchPageComponent(props) {
                     </ul>
                 </div>
                 <div className={styles.body_result}>
-                    <SearchResultContainer/>
+                    <SearchResultContainer listUser={props.listUser} listPost={props.listPost} listComment={props.listComment} choose={props.choose}/>
                 </div>
             </div>
         </div>
