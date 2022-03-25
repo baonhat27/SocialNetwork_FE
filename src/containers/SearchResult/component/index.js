@@ -14,11 +14,12 @@ function SearchResultComponent(props) {
         <h1 className={styles.heading}>Mọi người</h1>
         <div className={styles.listResult}>
           {props.listUser.length > 0 ? (
-            props.listUser.map((user, index) => {
+            props.listUser.slice(0,props.limitUser).map((user, index) => {
               return (
                 <div
+                key={index}
                   className={
-                    index != props.listUser.length - 1
+                    index != props.limitUser - 1 && index<props.listUser.length-1
                       ? styles.element + " " + styles.line
                       : styles.element
                   }
@@ -49,8 +50,10 @@ function SearchResultComponent(props) {
           ) : (
             <>Không tìm thấy người dùng nào</>
           )}
-          {props.listUser.length == 6 ? (
-            <div className={styles.displayMore}>Xem thêm</div>
+          {props.listUser.length > props.limitUser ? (
+            <div className={styles.displayMore} onClick={()=>{
+              props.setLimitUser(props.limitUser+5)
+            }}>Xem thêm</div>
           ) : (
             <></>
           )}
@@ -62,12 +65,12 @@ function SearchResultComponent(props) {
             ? styles.resultBox
             : styles.hidden
         }
-      >
+       style={{maxHeight:"none"}}>
         <h2>Bài viết</h2>
         <div className={styles.postList}>
-          {props.listPost.map((post,index) => {
+          {props.listPost.slice(0,props.limitPost).map((post,index) => {
             return (
-              <div className={styles.post}>
+              <div className={styles.post} key={index}>
                 <div className={styles.postHeader}>
                   <div
                     style={{
@@ -94,8 +97,8 @@ function SearchResultComponent(props) {
                   </div>
                 </div>
                 <div className={styles.postBody}>
-                  <div className={styles.postBody_content}>{post.content}</div>
-                  <div className={styles.postBody_listImage} onClick={function(){
+                  <div className={styles.postBody_content}><div dangerouslySetInnerHTML={{__html: post.content}}/></div>
+                  {post.images.length>0 && <div className={styles.postBody_listImage} onClick={function(){
                       props.setImageShow(index);
                   }}>
                     {post.images.length == 1 ? (
@@ -157,7 +160,7 @@ function SearchResultComponent(props) {
                     ) : (
                       <></>
                     )}
-                  </div>
+                  </div>}
                   <div className={styles.post_footer}>
                     <span
                       className={styles.post_showMore}
@@ -170,21 +173,22 @@ function SearchResultComponent(props) {
                   </div>
                 </div>
                 {
-                    props.imageShow==index?<ImageShowContainer/>:<>hello</>
+                    props.imageShow==index?<ImageShowContainer setImageShow={props.setImageShow} listImage={post.images}/>:<></>
                 }
               </div>
             );
           })}
+          {props.listPost.length > props.limitPost ? (
+            <div className={styles.displayMore} onClick={function(){
+              props.setLimitPost(props.limitPost+5)
+            }}>Xem thêm</div>
+          ) : (
+            <></>
+          )}
+          {
+            props.listPost.length==0?"Không tìm thấy bài viết nào":""
+          }
         </div>
-      </div>
-      <div
-        className={
-          props.choose == "all" || props.choose == "comment"
-            ? styles.resultBox
-            : styles.hidden
-        }
-      >
-        <h2>Bình luận</h2>
       </div>
     </div>
   );
