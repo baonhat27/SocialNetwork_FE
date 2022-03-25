@@ -46,7 +46,12 @@ function Post({ post, onDeletePost }) {
           {images.length !== 0 && <PostImageList images={images} />}
         </>
       )}
-      <Reaction postId={post._id} />
+
+      <Reaction
+        postId={post._id}
+        reactions={post.reactions}
+        isReact={post.isReact}
+      />
       <Comment postId={post._id} />
     </div>
   );

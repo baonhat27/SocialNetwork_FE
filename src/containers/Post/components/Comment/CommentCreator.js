@@ -52,7 +52,7 @@ function CommentCreator({ onCreateComment, postId }) {
         />
       </div>
       <div className={styles.btn_group}>
-        <div className={styles["input_file"]}>
+        {/* <div className={styles["input_file"]}>
           <input
             type="file"
             id="postImages"
@@ -64,7 +64,7 @@ function CommentCreator({ onCreateComment, postId }) {
           <label htmlFor="postImages" className={styles.btn}>
             Select images
           </label>
-        </div>
+        </div> */}
         <button className={styles.btn} onClick={onClickSubmit}>
           Bình luận
         </button>

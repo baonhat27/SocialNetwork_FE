@@ -7,7 +7,7 @@ function Reaction({
   show,
   showReactionPeople,
   handleReaction,
-  reacted,
+  isReact,
   reactionList,
 }) {
   return (
@@ -61,7 +61,7 @@ function Reaction({
           >
             <i
               className={
-                reacted
+                isReact
                   ? "fa-solid fa-heart" + " " + styles.liked
                   : "fa-regular fa-heart"
               }

@@ -81,13 +81,15 @@
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 100%;
+}
+.commentText p{
+  flex-wrap: wrap;
+  flex : 1;
+  width: 100%;
+  overflow: hidden;
+}
 
-}
-.commentText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 p {
   margin-bottom: 10px;
 }

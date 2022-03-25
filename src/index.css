@@ -15,10 +15,10 @@ p {
 }
 
 .ck-editor__editable {
-  min-width: 400px !important;
+  min-width: 300px !important;
   max-width: 2000px !important;
-  min-height: 50px !important;
-  max-height: 80px !important;
+  min-height: 80px !important;
+  max-height: 300px !important;
 }
 
 .ck-content {

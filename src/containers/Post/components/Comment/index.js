@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import CommentCreator from "./CommentCreator";
 import CommentDisplay from "./CommentDisplay";
 import {
@@ -8,8 +7,8 @@ import {
   deleteComment,
 } from "../../../../shared/service";
 
+
 function Comment({ postId }) {
-  let data = null;
   const [comments, setComments] = useState([]);
   const [check, setCheck] = useState(false);
   const handleShowMore = () => {
@@ -23,19 +22,19 @@ function Comment({ postId }) {
   const handleCreateComment = (comment) => {
     setComments([comment, ...comments]);
   };
+
   useEffect(() => {
-    if (check == false) {
+    if (check === false) {
       getComments(postId).then((res) => {
         setComments(res.data.results);
       });
     }
-    if (check == true) {
+    if (check === true) {
       getAllComments(postId).then((res) => {
         setComments(res.data.results);
       });
     }
   }, [check]);
-
 
   return (
     <div>
@@ -45,13 +44,8 @@ function Comment({ postId }) {
         check={check}
         handleShowMore={handleShowMore}
         onDeleteComment={onDeleteComment}
-   
       />
-      <CommentCreator
-        postId={postId}
-        onCreateComment={handleCreateComment}
-
-      />
+      <CommentCreator postId={postId} onCreateComment={handleCreateComment} />
     </div>
   );
 }
