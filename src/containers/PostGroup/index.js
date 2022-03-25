@@ -27,12 +27,11 @@ export default function PostGroup({ createdBy, limit }) {
 
   useEffect(() => {
     fetch();
-
     window.addEventListener("scroll", handleLoadMorePost);
     return () => {
       window.removeEventListener("scroll", handleLoadMorePost);
     };
-  }, []);
+  }, [createdBy]);
 
   const onCreatePost = (newPost) => {
     setPosts([newPost, ...posts]);
