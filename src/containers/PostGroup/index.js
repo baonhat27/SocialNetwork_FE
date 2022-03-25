@@ -10,15 +10,15 @@ export default function PostGroup({ createdBy, limit }) {
   const total = useRef(0);
   const count = useRef(0);
   const more = useRef(false);
-  const dispatch = useDispatch();
 
   const fetch = async () => {
     const res = await getPosts(count.current, limit, createdBy);
-    setPosts([...posts, ...res.data.results]);
+    setPosts((old) => [...old, ...res.data.results]);
     total.current = res.data.total;
     count.current = count.current + res.data.results.length;
     more.current = count.current < total.current;
   };
+
   const handleLoadMorePost = () => {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
       more.current && fetch();
