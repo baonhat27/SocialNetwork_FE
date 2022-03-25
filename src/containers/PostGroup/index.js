@@ -27,7 +27,6 @@ export default function PostGroup({ createdBy, limit }) {
 
   useEffect(() => {
     fetch();
-    console.log(createdBy)
     window.addEventListener("scroll", handleLoadMorePost);
     return () => {
       window.removeEventListener("scroll", handleLoadMorePost);

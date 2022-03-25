@@ -18,6 +18,7 @@ function SearchPageContainer(props) {
             const result=await search(query.get("all")||query.get("user")||query.get("post"))
             setListUser(result.data.users.users);
             setListPost(result.data.posts.posts);
+            console.log(result)
     },[window.location.search])
     const chooseListResult=(path)=>{
         setChoose(path)

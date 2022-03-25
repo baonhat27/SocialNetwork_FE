@@ -82,17 +82,21 @@ function SearchResultComponent(props) {
                     <div className={styles.post_avatarBox}>
                       <img
                         className={styles.post_avatar}
-                        src="https://scontent.fhan15-2.fna.fbcdn.net/v/t1.18169-9/18199291_267826820293033_5647185925349651998_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=ik1bpCjkC70AX88K-r3&_nc_ht=scontent.fhan15-2.fna&oh=00_AT8w6H9W2dX0bL9FGoUz-qlkI6ykuRE_lhTJNSdBuzzO8g&oe=626314BB"
+                        src={post.createdBy.avatar}
                       />
                     </div>
                     <div className={styles.post_userStatus}></div>
                   </div>
                   <div className={styles.post_headerInfo}>
-                    <h3 className={styles.post_header_username}>
-                      Nguyen trung hieu
+                    <h3 style={{cursor:"pointer"}} className={styles.post_header_username} onClick={
+                      function(){
+                        props.redirectUserProfile(post.createdBy._id)
+                      }
+                    }>
+                      {post.createdBy.firstName+" "+post.createdBy.lastName}
                     </h3>
                     <p className={styles.post_header_time}>
-                      29 tháng 4, 2017 ·{" "}
+                      {post.createdAt+" "}
                     </p>
                   </div>
                 </div>
