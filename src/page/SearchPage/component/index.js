@@ -33,15 +33,10 @@ function SearchPageComponent(props) {
                             <i className={props.choose=="post"?"fa-solid fa-rectangle-list "+styles.icon+" "+styles.choose:"fa-solid fa-rectangle-list "+styles.icon}></i>
                             <h2 className={styles.ResultName_name}>Bài viết</h2>
                         </li>
-                        <li className={props.choose=="comment"?styles.ResultName+" "+styles.choose:styles.ResultName} id="comment"
-                            onClick={() => props.chooseListResult("comment")}>
-                            <i className={props.choose=="comment"?"fa-solid fa-comment-dots "+styles.icon+" "+styles.choose:"fa-solid fa-comment-dots "+styles.icon}></i>
-                            <h2 className={styles.ResultName_name}>comment</h2>
-                        </li>
                     </ul>
                 </div>
                 <div className={styles.body_result}>
-                    <SearchResultContainer/>
+                    <SearchResultContainer listUser={props.listUser} listPost={props.listPost} listComment={props.listComment} choose={props.choose}/>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ export const addUserInfomation = (u) => {
 export const handleUserInfo = (u) => {
   return {
     type: "handleUserInfo",
-    _id:u._id,
+    _id: u._id,
     email: u.email,
     firstName: u.firstName,
     lastName: u.lastName,
@@ -27,7 +27,7 @@ export const createComment = (u) => {
   return {
     type: "createComment",
     post: {
-      _id:u._id,
+      _id: u._id,
       content: u.content,
       images: u.image,
       createdBy: u.createdBy,
@@ -43,9 +43,30 @@ export const handleAvatar = (u) => {
     avatar: u,
   };
 };
-export const searchInfo=(u)=>{
+
+export const pushNoti = (noti) => {
   return {
-    type:"search",
-    searchkey:u
-  }
-}
+    type: "pushNoti",
+    payload: noti,
+  };
+};
+
+export const addNoti = (noti) => {
+  return {
+    type: "addNoti",
+    payload: noti,
+  };
+};
+
+export const readNoti = (notiId) => {
+  return {
+    type: "readNoti",
+    payload: notiId,
+  };
+};
+export const searchInfo = (u) => {
+  return {
+    type: "search",
+    searchkey: u,
+  };
+};

@@ -5,8 +5,8 @@ import { Redirect } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { getUserById } from "./service";
 import { useDispatch } from "react-redux";
-import getUserInfo from '../../shared/service/getUserInfo';
-import { checkToken } from '../../shared/service/tokenCheck';
+import getUserInfo from "../../shared/service/getUserInfo";
+import { checkToken } from "../../shared/service/tokenCheck";
 function ProfilePage(props) {
     const user= useSelector(state=>state.user);
     const [friend,setFriend]=useState();
@@ -23,7 +23,7 @@ function ProfilePage(props) {
       }
     const query=useQuery()
     useEffect(async ()=>{
-        if(query.get("id")!==user._id){
+        if(query.get("id")!==null && query.get("id")!==user._id ){
             const friend=await getUserById(query.get("id"))
             setFriend(friend.data);
         }
@@ -42,7 +42,7 @@ function ProfilePage(props) {
     }
     else{
         return <Redirect to="/login"></Redirect>
-    }
+  }
 }
 
 export default ProfilePage;

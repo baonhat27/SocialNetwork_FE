@@ -9,9 +9,8 @@ export default function PostPage() {
   const [post, setPost] = useState();
 
   useEffect(() => {
-    console.log("a");
     getPost(postId).then((res) => setPost(res.data));
-  }, []);
+  }, [postId]);
 
   return post ? (
     <div className={styles.post}>
