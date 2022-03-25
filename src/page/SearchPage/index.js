@@ -10,13 +10,19 @@ function SearchPageContainer(props) {
         return new URLSearchParams(search);
     }
     const history=useHistory();
+   
     const [choose,setChoose]=useState("all");
     const [listUser,setListUser]=useState([]);
+    const [listPost,setListPost]=useState([]);
+    const [listComment,setListComment]=useState([]);
     const query=useQuery();
     useEffect(async ()=>{
             const result=await search(query.get("all")||query.get("user")||query.get("post")||query.get("comment"))
+            setListUser(result.data.users.users);
+            setListPost(result.data.posts.posts);
+            setListComment(result.data.comments.comments);
             console.log(result)
-    },[query])
+    },[window.location.search])
     const chooseListResult=(path)=>{
         setChoose(path)
         history.push("/search?"+(path||"all")+"="+(query.get("all")||query.get("user")||query.get("post")||query.get("comment")))
@@ -24,6 +30,10 @@ function SearchPageContainer(props) {
     return (
         <div>
             <SearchPageComponent
+                listUser={listUser}
+                listPost={listPost}
+                listComment={listComment}
+
                 searchkey={query.get("all")||query.get("user")||query.get("post")||query.get("comment")}
                 chooseListResult={chooseListResult}
                 choose={choose}
