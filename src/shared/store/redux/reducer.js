@@ -42,6 +42,12 @@ export const reducer = (state, action) => {
         searchkey: action.searchkey,
       };
 
+    case "getNoti":
+      return {
+        ...state,
+        notifications: action.payload,
+      };
+
     case "addNoti":
       return {
         ...state,

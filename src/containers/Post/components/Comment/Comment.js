@@ -32,15 +32,11 @@ function Comment({ comment, onDeleteComment }) {
   const handleEditor = () => {
     setCheckEditButton(!checkEditButton);
   };
-  
+
   return (
     <div className={styles.comment_box1} key={comment._id}>
       <div className={styles.info}>
-        <Avatar
-          src={user.avatar}
-          style={{ border: "1px solid #1c85c4" }}
-          size={40}
-        />
+        <Avatar src={user.avatar} size={40} />
       </div>
       <div
         className={
@@ -50,7 +46,7 @@ function Comment({ comment, onDeleteComment }) {
         }
       >
         <TextEditor
-          text = {text}
+          text={text}
           onChangeText={(text) => {
             setText(text);
           }}
@@ -78,8 +74,7 @@ function Comment({ comment, onDeleteComment }) {
           <div
             className={styles.commentText}
             dangerouslySetInnerHTML={{ __html: comment.content }}
-            >
-          </div>
+          ></div>
         </div>
       </div>
       <div

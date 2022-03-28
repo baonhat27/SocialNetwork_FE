@@ -9,7 +9,7 @@ import Reaction from "./Reaction";
 
 function ReactionBar({ postId, reactions, isReact }) {
   const [show, setShow] = useState(false);
-  const [reacted,setReacted] = useState(isReact)
+  const [reacted, setReacted] = useState(isReact);
   const [reactionList, setReactionList] = useState([]);
   const [reactionCount, setReactionCount] = useState(reactions.total);
   // const [reacted, setReacted] = useState(isReacted);
@@ -31,7 +31,7 @@ function ReactionBar({ postId, reactions, isReact }) {
       deleteReaction(postId);
       setReactionCount((prev) => prev - 1);
     }
-    setReacted(!reacted)
+    setReacted(!reacted);
   };
   return (
     <div>

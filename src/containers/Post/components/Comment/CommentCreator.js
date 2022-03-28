@@ -34,7 +34,7 @@ function CommentCreator({ onCreateComment, postId }) {
       <div className={styles.c_info}>
         <Avatar
           src={user.avatar}
-          style={{ border: "1px solid #1c85c4", marginLeft: 25 }}
+          style={{ marginLeft: 25 }}
           size={50}
           icon={<UserOutlined />}
         />

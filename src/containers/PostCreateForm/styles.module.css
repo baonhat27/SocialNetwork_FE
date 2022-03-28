@@ -52,7 +52,6 @@ input[type="file"]:hover + label {
 
 .form {
   border-radius: 10px;
-  border: solid 1px var(--grey);
   margin: 16px;
   padding: 8px;
   background-color: white;
