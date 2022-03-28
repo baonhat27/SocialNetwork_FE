@@ -6,6 +6,8 @@ import ProfilePage from "./page/ProfilePage";
 import SearchPageContainer from "./page/SearchPage";
 import PostPage from "./page/PostPage";
 import NewsFeed from "./containers/NewsFeed";
+import { io } from "socket.io-client";
+import { useEffect } from "react";
 
 function App() {
   return (

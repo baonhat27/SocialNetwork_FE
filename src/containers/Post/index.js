@@ -13,6 +13,10 @@ function Post({ post, onDeletePost }) {
   const [content, setContent] = useState(post.content);
   const [images, setImages] = useState(post.images);
 
+  const commentList = post.comments !== undefined ? post.comments.data : [] 
+  const total = post.comments !== undefined ? post.comments.total : 0 
+  const reactions = post.reactions !== undefined ? post.reactions : []
+ 
   const onUpdatePost = () => {
     setIsEdit(true);
   };
@@ -48,13 +52,13 @@ function Post({ post, onDeletePost }) {
 
       <Reaction
         postId={post._id}
-        reactions={post.reactions}
+        reactions={reactions}
         isReact={post.isReact}
       />
       <Comment
         postId={post._id}
-        commentList={post.comments.data}
-        total={post.comments.total}
+        commentList={commentList}
+        total={total}
       />
     </div>
   );
