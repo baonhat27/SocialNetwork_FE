@@ -50,6 +50,7 @@ function CommentCreator({ onCreateComment, postId }) {
             setText(data);
           }}
         />
+  
       </div>
       <div className={styles.btn_group}>
         {/* <div className={styles["input_file"]}>

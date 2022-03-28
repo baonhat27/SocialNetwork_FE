@@ -8,7 +8,7 @@
 }
 
 .info {
-  width: 6%;
+  width: 10%;
   margin: 0 16px;
   display: flex;
   flex-direction: row;
@@ -98,19 +98,20 @@ p {
   font-weight: 600;
   border-radius: 4px;
   height: 80px;
-  width: 80%;
+  width: 75%;
   color: black;
   display: flex;
   background-color: #f7f8f9;
   align-items: center;
-  justify-content: space-between;
-  margin-right: 10px;
+  justify-content: space-between; 
+  margin-right: 0px;
 }
 .comment_content1{
   display: flex;
 }
 .sub_button{
-  margin-right: 20px;
+  width: 10px;
+  margin: 0  0px 0px 10px;
   position: relative;
 }
 .comment_button{
@@ -118,10 +119,6 @@ p {
 }
 .comment_content1{
   display: flex;
-}
-.sub_button{
-  margin-right: 20px;
-  position: relative;
 }
 .comment_button{
   display: flex;
@@ -139,7 +136,7 @@ p {
   margin-right: 8px;
 }
 .comment_delete:hover{
-    color: var(--main-color);
+    color: red;
     cursor: pointer;
 }
 .comment_edit {
@@ -257,7 +254,6 @@ input[type="file"]:hover + label {
 .threedot{
   font-size: 18px;
   font-weight: 700;
-  margin-right: 20px;
 }
 .threedot:hover{
   cursor: pointer;

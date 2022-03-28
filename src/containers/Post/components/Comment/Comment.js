@@ -79,7 +79,6 @@ function Comment({ comment, onDeleteComment }) {
             className={styles.commentText}
             dangerouslySetInnerHTML={{ __html: comment.content }}
             >
-            
           </div>
         </div>
       </div>

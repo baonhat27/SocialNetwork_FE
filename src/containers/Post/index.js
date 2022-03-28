@@ -21,7 +21,6 @@ function Post({ post, onDeletePost }) {
     setContent(text);
     setImages(images);
   };
-
   return (
     <div className={styles.post}>
       <PostHeader
@@ -52,7 +51,11 @@ function Post({ post, onDeletePost }) {
         reactions={post.reactions}
         isReact={post.isReact}
       />
-      <Comment postId={post._id} />
+      <Comment
+        postId={post._id}
+        commentList={post.comments.data}
+        total={post.comments.total}
+      />
     </div>
   );
 }
