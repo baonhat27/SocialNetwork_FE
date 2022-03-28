@@ -1,10 +1,11 @@
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Avatar } from "antd";
 import { editComment } from "../../../../shared/service";
 import TextEditor from "../../../../components/TextEditor";
+import { timeFromNow } from "../../../../shared/utils";
+import clockLogo from "../../../../shared/image/clock.png";
+
 
 function Comment({ comment, onDeleteComment }) {
   const [checkEditButton, setCheckEditButton] = useState(false);
@@ -19,7 +20,7 @@ function Comment({ comment, onDeleteComment }) {
   const onSubmitEdit = async () => {
     const response = await editComment(text, comment._id);
     if (response.success) {
-      if (text != "") {
+      if (text !== "") {
         comment.content = response.data.content;
       } else {
         comment.content = comment.content;
@@ -70,6 +71,10 @@ function Comment({ comment, onDeleteComment }) {
         <div className={styles.comment_content1}>
           <div className={styles.user_name}>
             {user.firstName + " " + user.lastName}
+            <div className={styles.time_box}>
+            <img className={styles["clock"]} src={clockLogo} alt="" />
+            <span className={styles.time}>{timeFromNow(comment.createdAt)}</span>
+          </div>
           </div>
           <div
             className={styles.commentText}
@@ -79,7 +84,7 @@ function Comment({ comment, onDeleteComment }) {
       </div>
       <div
         className={
-          localUserId == user._id
+          localUserId === user._id
             ? styles.sub_button
             : styles.sub_button + " " + styles.hide
         }

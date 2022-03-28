@@ -3,7 +3,7 @@ import { SERVER } from "../store/env"
 import getUserInfo from "./getUserInfo";
 export function checkToken(promise,dispatch){
     return promise.catch(error=>{
-        if(error.response.status==401){
+        if(error.response.status===401){
             axios.get(SERVER+"v1/auth/refreshtoken",{
                 headers:{
                     Authorization:localStorage.getItem("refreshToken")
