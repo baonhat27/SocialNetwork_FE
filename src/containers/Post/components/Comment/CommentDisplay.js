@@ -8,10 +8,10 @@ function CommentDisplay({ comments, handleShowMore, onDeleteComment }) {
       <div className={styles.showmore} onClick={handleShowMore}>
         Hiển thị thêm bình luận
       </div>
-      {comments.map((comment) => {
+      {comments.map((comment,index) => {
         return (
           <Comment
-            key={comment._id}
+            key={index}
             comment={comment}
             onDeleteComment={onDeleteComment}
           />

@@ -7,8 +7,8 @@ import {
   deleteComment,
 } from "../../../../shared/service";
 
-
-function Comment({ postId }) {
+function Comment({ postId, commentList, total }) {
+  // console.log(commentList.slice(commentList.length-3,commentList.length+1));
   const [comments, setComments] = useState([]);
   const [check, setCheck] = useState(false);
   const handleShowMore = () => {
@@ -24,10 +24,8 @@ function Comment({ postId }) {
   };
 
   useEffect(() => {
-    if (check === false) {
-      getComments(postId).then((res) => {
-        setComments(res.data.results);
-      });
+    if (check === false) {    
+        setComments(commentList.slice(0,3));
     }
     if (check === true) {
       getAllComments(postId).then((res) => {
