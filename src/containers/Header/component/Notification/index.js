@@ -6,7 +6,11 @@ import {
   listenNotification,
 } from "../../../../shared/service";
 import { useDispatch, useSelector } from "react-redux";
-import { addNoti, pushNoti } from "../../../../shared/store/redux/actions";
+import {
+  addNoti,
+  pushNoti,
+  getNoti,
+} from "../../../../shared/store/redux/actions";
 
 async function sleep(time) {
   return new Promise((res, rej) => {
@@ -43,7 +47,14 @@ export default function Notification(props) {
   };
 
   useEffect(() => {
-    fetch();
+    getNotification(count.current).then((res) => {
+      if (res.success) {
+        dispatch(getNoti(res.data.results));
+        setTotal(res.data.total);
+        more.current = count.current + res.data.results.length < res.data.total;
+        count.current += res.data.results.length;
+      }
+    });
 
     listenNotification((e) => {
       const data = JSON.parse(e.data);

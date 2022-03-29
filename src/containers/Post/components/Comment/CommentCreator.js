@@ -34,7 +34,7 @@ function CommentCreator({ onCreateComment, postId }) {
       <div className={styles.c_info}>
         <Avatar
           src={user.avatar}
-          style={{ border: "1px solid #1c85c4", marginLeft: 25 }}
+          style={{ marginLeft: 25 }}
           size={50}
           icon={<UserOutlined />}
         />
@@ -50,9 +50,10 @@ function CommentCreator({ onCreateComment, postId }) {
             setText(data);
           }}
         />
+  
       </div>
       <div className={styles.btn_group}>
-        <div className={styles["input_file"]}>
+        {/* <div className={styles["input_file"]}>
           <input
             type="file"
             id="postImages"
@@ -64,7 +65,7 @@ function CommentCreator({ onCreateComment, postId }) {
           <label htmlFor="postImages" className={styles.btn}>
             Select images
           </label>
-        </div>
+        </div> */}
         <button className={styles.btn} onClick={onClickSubmit}>
           Bình luận
         </button>

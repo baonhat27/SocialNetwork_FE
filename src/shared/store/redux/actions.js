@@ -44,6 +44,13 @@ export const handleAvatar = (u) => {
   };
 };
 
+export const getNoti = (noti) => {
+  return {
+    type: "getNoti",
+    payload: noti,
+  };
+};
+
 export const pushNoti = (noti) => {
   return {
     type: "pushNoti",

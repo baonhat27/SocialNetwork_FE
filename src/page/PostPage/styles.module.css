@@ -11,4 +11,6 @@
 .post {
   background-color: var(--primary-color);
   width: 60%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
