@@ -6,8 +6,18 @@ import ProfilePage from "./page/ProfilePage";
 import SearchPageContainer from "./page/SearchPage";
 import PostPage from "./page/PostPage";
 import NewsFeed from "./containers/NewsFeed";
+import MessagePageContainer from "./page/MessagePage";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function App() {
+  const io=useSelector(state=>state.io);
+  useEffect(()=>{
+    io.emit("hear","alo");
+    io.on("alo",function(){
+      alert("hello");
+    });
+  },[])
   return (
     <div className="App">
       <Switch>
@@ -19,6 +29,9 @@ function App() {
         </Route>
         <Route path="/search">
           <SearchPageContainer/>
+        </Route>
+        <Route path="/message">
+          <MessagePageContainer/>
         </Route>
         <HomePage>
           <Switch>
