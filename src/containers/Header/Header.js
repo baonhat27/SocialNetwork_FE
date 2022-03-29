@@ -27,7 +27,7 @@ const _Header = (props) => {
       <div className={styles.header_mid}></div>
       <div className={styles.header_right}>
         <div style={{ position: "relative" }}>
-          <i className={"fa-solid fa-comment-dots " + styles.icon}></i>
+          <Link to="/message"><i className={"fa-solid fa-comment-dots " + styles.icon}></i></Link>
         </div>
         <Notification
           showNoti={props.showNoti}

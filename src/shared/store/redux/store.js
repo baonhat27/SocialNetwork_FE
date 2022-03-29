@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+import { io } from "socket.io-client";
 import { reducer } from "./reducer";
 
 const it = {
@@ -23,6 +24,7 @@ const it = {
     comments: "",
   },
   notifications: [],
+  io:io("http://localhost:8000")
 };
 export const store = createStore(reducer, it);
 
