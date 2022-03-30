@@ -26,7 +26,6 @@ function Comment({ postId, commentList, total }) {
       setComments(prev => prev.filter((com) => com._id !== comment._id));
     });
     socket.on("comment:edit", (newComment) => {
-      console.log(newComment);
       setComments(comments => comments.map(comment => comment._id === newComment._id ? newComment : comment ))
     });
   }, []);
