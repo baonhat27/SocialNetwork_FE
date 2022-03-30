@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
@@ -9,12 +9,16 @@ import { createComment } from "../../../../shared/service";
 
 function CommentCreator({ onCreateComment, postId }) {
   const user = useSelector((state) => state.user);
+  const socket = useSelector((state) => state.io )
   const [text, setText] = useState("");
   const onClickSubmit = async () => {
     const response = await createComment(text, postId);
     if (response.success) {
       setText("");
       onCreateComment && onCreateComment(response.data);
+    }
+    else{
+      console.log("Cannot Create Comment");
     }
   };
   const config = {

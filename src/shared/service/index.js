@@ -112,7 +112,7 @@ export const createComment = async (text, postId) => {
   return await wrapResponseHandler(() =>
     axios.post(
       CREATE_COMMENT_URL,
-      { content: text, postId: postId },
+      { content: text, postId: postId},
       { headers: authHeader() }
     )
   );
