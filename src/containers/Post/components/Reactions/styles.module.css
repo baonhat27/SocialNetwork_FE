@@ -13,7 +13,7 @@
   align-items: center;
   height: 20px;
   position: relative;
-  border-bottom: solid var(--blue) 1px;
+  border-bottom: solid var(--dark-grey) 1px;
   width: 90%;
   margin: 0px 20px 10px 20px;
 }
@@ -29,7 +29,7 @@
   color: #3a5056;
   display: flex;
 }
-.comment_count:hover{
+.comment_count:hover {
   cursor: pointer;
   color: var(--main-color);
 }
@@ -129,18 +129,18 @@
 .hide {
   display: none;
 }
-.reaction_people_list{
+.reaction_people_list {
   width: 100%;
   height: 100%;
   padding: 20px;
   overflow: auto;
 }
-.reaction_people{
+.reaction_people {
   margin: 0px 0 10px 30px;
   display: flex;
   align-items: center;
 }
-.user_name{
+.user_name {
   font-weight: bold;
   font-size: 14px;
   color: var(--blue);
@@ -148,7 +148,7 @@
   align-items: center;
   white-space: nowrap;
 }
-.list_text{
+.list_text {
   margin: 10px 0 0px 0;
   width: 90%;
   border-bottom: 4px solid var(--main-color);

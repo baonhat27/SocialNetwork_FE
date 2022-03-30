@@ -37,11 +37,7 @@ function Comment({ comment, onDeleteComment }) {
   return (
     <div className={styles.comment_box1} key={comment._id}>
       <div className={styles.info}>
-        <Avatar
-          src={user.avatar}
-          style={{ border: "1px solid #1c85c4" }}
-          size={40}
-        />
+        <Avatar src={user.avatar} size={40} />
       </div>
       <div
         className={

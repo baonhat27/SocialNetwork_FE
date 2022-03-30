@@ -9,11 +9,7 @@ const _SideBar = (props) => {
     <div className={styles.sidebar}>
       <div className={styles.sidebar1}>
         <div className={styles.user_info}>
-          <Avatar
-            src={img_url}
-            size={40}
-            style={{ border: "1px solid #1c85c4", width: 40 }}
-          />
+          <Avatar src={img_url} size={40} style={{ width: 40 }} />
           <div className={styles.user_name}>
             {" "}
             {props.user.firstName + " " + props.user.lastName}

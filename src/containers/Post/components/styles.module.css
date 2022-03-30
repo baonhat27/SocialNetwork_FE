@@ -92,7 +92,6 @@
 
 .img_wrap2 {
   width: 80%;
-  border: solid 1px var(--grey);
   border-radius: 10px;
   display: flex;
   justify-content: center;

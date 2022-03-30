@@ -2,7 +2,6 @@
 
 .post {
   background-color: white;
-  border: solid var(--grey) 1px;
   border-radius: 10px;
   margin: 16px;
   overflow: hidden;
