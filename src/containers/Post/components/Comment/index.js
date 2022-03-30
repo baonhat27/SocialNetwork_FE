@@ -5,14 +5,9 @@ import { getAllComments, deleteComment } from "../../../../shared/service";
 import { useSelector } from "react-redux";
 
 function Comment({ postId, commentList, total }) {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(commentList);
   const [check, setCheck] = useState(false);
-  const socket = useSelector(state => state.io)
-  useEffect(() => {
-    socket.on("comment:create", (comment) => {
-      console.log(comment);
-    })
-  },[])
+  const socket = useSelector((state) => state.io);
   useEffect(() => {
     if (check === false) {
       setComments(commentList);
@@ -23,16 +18,27 @@ function Comment({ postId, commentList, total }) {
       });
     }
   }, [check]);
+  useEffect(() => {
+    socket.on("comment:create", (comment) => {
+      setComments(prev => [...prev, comment])
+    });
+    socket.on("comment:delete", (comment) => {
+      setComments(prev => prev.filter((com) => com._id !== comment._id));
+    });
+    socket.on("comment:edit", (newComment) => {
+      console.log(newComment);
+      setComments(comments => comments.map(comment => comment._id === newComment._id ? newComment : comment ))
+    });
+  }, []);
   const handleShowMore = () => {
-    setCheck(!check);
+    setCheck(true);
   };
   const onDeleteComment = async (commentId) => {
     deleteComment(commentId);
-    setComments(comments.filter((comment) => comment._id !== commentId));
   };
 
   const onCreateComment = (comment) => {
-    setComments([...comments, comment]);
+    // setComments([...comments, comment]);
   };
 
   return (

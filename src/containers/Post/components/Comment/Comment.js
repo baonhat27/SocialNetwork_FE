@@ -6,7 +6,6 @@ import TextEditor from "../../../../components/TextEditor";
 import { timeFromNow } from "../../../../shared/utils";
 import clockLogo from "../../../../shared/image/clock.png";
 
-
 function Comment({ comment, onDeleteComment }) {
   const [checkEditButton, setCheckEditButton] = useState(false);
   const [optionOn, setOptionOn] = useState(false);
@@ -37,7 +36,13 @@ function Comment({ comment, onDeleteComment }) {
   return (
     <div className={styles.comment_box1} key={comment._id}>
       <div className={styles.info}>
-        <Avatar src={user.avatar} size={40} />
+        <Avatar
+          src={
+            user.avatar ||
+            "https://cdn.mos.cms.futurecdn.net/HQBRR69rTKjho5qPhXxCrb.jpg"
+          }
+          size={40}
+        />
       </div>
       <div
         className={
@@ -72,9 +77,11 @@ function Comment({ comment, onDeleteComment }) {
           <div className={styles.user_name}>
             {user.firstName + " " + user.lastName}
             <div className={styles.time_box}>
-            <img className={styles["clock"]} src={clockLogo} alt="" />
-            <span className={styles.time}>{timeFromNow(comment.createdAt)}</span>
-          </div>
+              <img className={styles["clock"]} src={clockLogo} alt="" />
+              <span className={styles.time}>
+                {timeFromNow(comment.createdAt)}
+              </span>
+            </div>
           </div>
           <div
             className={styles.commentText}
@@ -102,13 +109,19 @@ function Comment({ comment, onDeleteComment }) {
           <div className={styles.comment_edit}>
             <i
               className="fa-solid fa-pen-to-square"
-              onClick={() => handleEditor()}
+              onClick={() => {
+                handleEditor();
+                setOptionOn(false);
+              }}
             ></i>
           </div>
           <div className={styles.comment_delete}>
             <i
               className="fa-solid fa-x"
-              onClick={() => onDeleteComment(comment._id)}
+              onClick={() => {
+                onDeleteComment(comment._id);
+                setOptionOn(false);
+              }}
             ></i>
           </div>
         </div>

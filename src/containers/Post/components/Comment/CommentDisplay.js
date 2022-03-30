@@ -3,6 +3,7 @@ import Comment from "./Comment";
 
 function CommentDisplay({ comments, handleShowMore, onDeleteComment }) {
   // console.log(checkEditButton);
+  // console.log(comments);
   return (
     <div>
       <div className={styles.showmore} onClick={handleShowMore}>
