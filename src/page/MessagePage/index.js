@@ -11,7 +11,7 @@ function MessagePageContainer(props) {
   const [mess, setMess] = useState([]);
   const [sessionList, setSessionList] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [chooseSession, setChooseSession] = useState("");
+  const [chooseSession, setChooseSession] = useState();
   const [id, setId] = useState();
   const io = useSelector((state) => state.io);
   const user = useSelector((state) => state.user);
@@ -20,14 +20,11 @@ function MessagePageContainer(props) {
     checkToken(getUserInfo(dispatch),dispatch);
   },[localStorage.getItem("token")])
   useEffect(async () => {
-    //get message from another user
-    // io.on("getMessage",function(data){
-    //     alert(data)
-    // })
+    
     //get list session to render
     const listSession = await getListSession();
     setSessionList(listSession.data.data);
-    console.log(listSession.data.data);
+    setChooseSession(listSession.data.data[0]);
   }, []);
   //search user to join chat session
   const changeSearchKey = lodash.debounce(async (item) => {
@@ -44,22 +41,19 @@ function MessagePageContainer(props) {
       const session = await joinTheSession(friendId, user._id);
       setSessionList([...sessionList,session.data.data])
     } else {
-      setChooseSession(name);
+      setChooseSession(sessionCheck[0]);
     }
   };
-  const sendMessage = () => {
-    //send the message in the chat session
-    // io.emit("message","hello");
-  };
+  
   return (
     <div>
-      <MessagePageComponent
+      {chooseSession && <MessagePageComponent
         chooseSession={chooseSession} setChooseSession={setChooseSession}
         createOrJoinSession={createOrJoinSession}
         changeSearchKey={changeSearchKey}
         sessionList={sessionList}
         userList={userList} setUserList={setUserList}
-      />
+      />}
     </div>
   );
 }

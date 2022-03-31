@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./index.module.css";
 import Header from "../../../containers/Header";
+import ChatBoxContainer from '../../../containers/ChatBox';
 function MessagePageComponent(props) {
     return (
         <div className={styles.messagePage}>
@@ -36,8 +37,8 @@ function MessagePageComponent(props) {
                     <div className={styles.listChatSession_body}>
                         {
                             props.sessionList.map(session=>{
-                                return <div className={props.chooseSession==(session.userId.firstName+" "+session.userId.lastName)?styles.chatSession+" "+styles.choose:styles.chatSession} onClick={function(){
-                                    props.setChooseSession(session.userId.firstName+" "+session.userId.lastName);
+                                return <div className={props.chooseSession._id==(session._id)?styles.chatSession+" "+styles.choose:styles.chatSession} onClick={function(){
+                                    props.setChooseSession(session);
                                 }}>
                                             <div className={styles.avatarBox}>
                                                 <img src={session.userId.avatar} className={styles.avatar}/>
@@ -61,7 +62,7 @@ function MessagePageComponent(props) {
                     </div>
                 </div>
                 <div className={styles.body_chatSession}>
-
+                        <ChatBoxContainer session={props.chooseSession}/>
                 </div>
                 <div className={styles.body_infoChatSession}>
 
