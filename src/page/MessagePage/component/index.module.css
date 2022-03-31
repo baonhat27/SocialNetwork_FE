@@ -1,0 +1,138 @@
+.messagePage{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+.body{
+    flex: 1;
+    display: flex;
+    margin-top: 3px;
+}
+.body_listChatSession{
+    width: 33%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+.body_chatSession{
+    width: 42%;
+    background: blue;
+
+}
+.listChatSession_header{
+    height: 100px;
+    background: white;
+    position: relative;
+}
+.searchPeopleBox{
+    width: 95%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f2f5;
+    border-radius: 40px;
+    margin: 0 auto;
+    font-size: 25px;
+}
+.searchPeople{
+    width: 85%;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    background: none;
+    font-size: 17px;
+}
+.body_listChatSession{
+    display: flex;
+    flex-direction: column;
+}
+.listChatSession_body{
+    flex: 1;
+    overflow: auto;
+    padding: 10px;
+}
+.listChatSession_footer{
+    height: 70px;
+    background: white;
+    box-shadow: 1px 1px 5px #cbcdce;
+}
+.chatSession{
+    height: 80px;
+    background: #e9f3ff;
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+}  
+.avatarBox{
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.avatar{
+    min-height: 100%;
+    
+}
+.chatSession_rightBox{
+    flex: 1;
+    margin-left: 10px;
+}
+.sessionName{
+    font-size: 20px;
+    font-weight: 500;
+}
+.message{
+    color: gray;
+    font-size: 17px;
+}
+.searchResult{
+    max-height: 400px;
+    width: 90%;
+    position: absolute;
+    top:110px;
+    left: 20px;
+    overflow: auto;
+    padding: 10px;
+    background: white;
+    box-shadow:  1px 1px 5px #cbcdce;
+    border-radius: 10px;
+}
+.resultComponent_avatarBox{
+    height: 50px;
+    width: 50px;
+    border-radius: 40px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resultComponent{
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding: 0 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.resultComponent:hover{
+    background: rgb(224, 224, 224);
+}
+.resultComponent_avatar{
+    height: 100%;
+}
+.resultComponent_name{
+    flex: 1;
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    position: relative;
+    bottom: 5px;
+}
