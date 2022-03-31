@@ -112,7 +112,7 @@ export const createComment = async (text, postId) => {
   return await wrapResponseHandler(() =>
     axios.post(
       CREATE_COMMENT_URL,
-      { content: text, postId: postId },
+      { content: text, postId: postId},
       { headers: authHeader() }
     )
   );
@@ -179,11 +179,12 @@ export const getNotification = async (offset) => {
   );
 };
 
-export const listenNotification = (callback) => {
-  const evtSource = new EventSourcePolyfill(`${GET_NOTIFICATION_URL}/listen`, {
-    headers: authHeader(),
-  });
-  evtSource.addEventListener("notification", callback);
+const evtSource = new EventSourcePolyfill(`${GET_NOTIFICATION_URL}/listen`, {
+  headers: authHeader(),
+});
+
+export const listenNotification = (event, callback) => {
+  evtSource.addEventListener(event, callback);
 };
 
 export const readNotification = async (notificationId) => {

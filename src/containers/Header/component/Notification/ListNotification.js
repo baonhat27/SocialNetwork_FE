@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Notification.module.css";
-import { useSelector } from "react-redux";
 import NotificationItem from "./NotificationItem";
 
-function ListNotification({ showNoti, showMore }) {
+function ListNotification({ notifications, showNoti, showMore, readNoti }) {
   const notiBox = useRef(null);
-
-  const notifications = useSelector((state) => state.notifications);
-
   useEffect(() => {
     const node = notiBox.current;
 
@@ -21,9 +17,16 @@ function ListNotification({ showNoti, showMore }) {
 
   return (
     <div ref={notiBox} className={styles.noti}>
-      {notifications.map((noti) => (
-        <NotificationItem key={noti._id} noti={noti} showNoti={showNoti} />
-      ))}
+      {notifications.map((noti) => {
+        return (
+          <NotificationItem
+            key={noti._id}
+            noti={noti}
+            showNoti={showNoti}
+            readNoti={readNoti}
+          />
+        );
+      })}
     </div>
   );
 }

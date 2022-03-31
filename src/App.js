@@ -11,13 +11,13 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function App() {
-  const io=useSelector(state=>state.io);
-  useEffect(()=>{
-    io.emit("hear","alo");
-    io.on("alo",function(){
+  const io = useSelector((state) => state.io);
+  useEffect(() => {
+    io.emit("hear", "alo");
+    io.on("alo", function () {
       alert("hello");
     });
-  },[])
+  }, []);
   return (
     <div className="App">
       <Switch>
@@ -25,13 +25,13 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/profile">
-          <ProfilePage token={localStorage.getItem('token')}/>
+          <ProfilePage token={localStorage.getItem("token")} />
         </Route>
         <Route path="/search">
-          <SearchPageContainer/>
+          <SearchPageContainer />
         </Route>
         <Route path="/message">
-          <MessagePageContainer/>
+          <MessagePageContainer />
         </Route>
         <HomePage>
           <Switch>
