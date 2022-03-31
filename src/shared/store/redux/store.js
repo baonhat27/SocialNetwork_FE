@@ -24,7 +24,7 @@ const it = {
     comments: "",
   },
   notifications: [],
-  io:io("http://localhost:8000")
+  io:io("http://localhost:8000"),
 };
 export const store = createStore(reducer, it);
 
