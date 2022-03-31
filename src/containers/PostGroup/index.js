@@ -3,13 +3,14 @@ import PostCreateForm from "../PostCreateForm";
 import PostList from "../PostList";
 import { getPosts } from "../../shared/service";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment } from "../../shared/store/redux/actions";
 
 export default function PostGroup({ createdBy, limit }) {
   const [posts, setPosts] = useState([]);
   const total = useRef(0);
   const count = useRef(0);
   const more = useRef(false);
+
+  const io = useSelector((state) => state.io);
 
   const fetch = async () => {
     const res = await getPosts(count.current, limit, createdBy);
@@ -27,9 +28,11 @@ export default function PostGroup({ createdBy, limit }) {
 
   useEffect(() => {
     fetch();
+
     window.addEventListener("scroll", handleLoadMorePost);
     return () => {
       window.removeEventListener("scroll", handleLoadMorePost);
+      io.off("post:create");
     };
   }, [createdBy]);
 
