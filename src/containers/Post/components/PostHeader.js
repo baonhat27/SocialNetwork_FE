@@ -47,7 +47,7 @@ export default function PostHeader({
           <img
             className={styles["avatar"]}
             src={
-              user.avatar === "no infromation" ? defaultUserAvatar : user.avatar
+              user.avatar === "no information" ? defaultUserAvatar : user.avatar
             }
             alt=""
           />
