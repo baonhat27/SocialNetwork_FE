@@ -27,10 +27,11 @@ export async function getListSession(){
         return []
     }
 }
-export async function joinTheSession(userList){
+export async function joinTheSession(friendId,myId){
     try{
         const session=await axios.post(SERVER+"chat/session",{
-            listUser:userList
+            friendId:friendId,
+            myId:myId
         },{
             headers:{
                 Authorization:localStorage.getItem("token")
