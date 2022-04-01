@@ -13,10 +13,6 @@ import { useSelector } from "react-redux";
 function App() {
   const io = useSelector((state) => state.io);
   useEffect(() => {
-    io.emit("hear", "alo");
-    io.on("alo", function () {
-      alert("hello");
-    });
   }, []);
   return (
     <div className="App">

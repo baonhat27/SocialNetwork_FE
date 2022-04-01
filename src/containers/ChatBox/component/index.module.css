@@ -1,0 +1,111 @@
+.chatBox{
+    display: flex;
+    flex-direction: column;
+
+    height:90vh;
+    overflow: hidden;
+}
+.chatBox_header{
+    height: 75px;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.headers_avatarBox{
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 60px;
+    margin-left: 10px;
+}
+.headers_avatar{
+    height: 100%;
+}
+.headers_info{
+    margin-left: 10px;
+    flex: 1;
+}
+.headers_name{
+    font-size: 17px;
+    font-weight: bold;
+}
+.headers_timeActive{
+    font-weight: 15px;
+    color: gray;
+}
+.chatBox_body{
+    flex:1;
+    overflow: auto;
+}
+.chatBox_footer{
+    height: 70px;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 10px;
+}
+.messageInput{
+    flex: 1;
+    outline: none;
+    border: none;
+    height: 40px;
+    background: #f0f2f5;
+    border-radius: 40px;
+    margin: 0 10px;
+    padding-left: 15px;
+}
+.icon{
+    font-size: 25px;
+    color: #0084ff;
+    cursor: pointer;
+}
+.messageShow_content{
+    min-height: 40px; 
+    position: relative;
+    bottom: 10px;
+    display: flex;
+}
+.messageShow{
+    width: 100%;
+    position: relative;
+}
+.messageShow.me{
+    
+}
+.messageShow_avatarBox{
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:15px;
+    left: 5px;
+ 
+}
+.messageShow_avatarBox.me{
+    right: 5px;
+    left: unset;
+}
+.messageShow_avatar{
+    height: 50px;
+}
+.message_content{
+    border-radius: 40px;
+    height: 100%;
+    min-width: 50px;
+    padding: 15px;
+    background: #e4e6eb;
+    margin:20px 60px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
