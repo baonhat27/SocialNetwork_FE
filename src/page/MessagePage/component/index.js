@@ -34,7 +34,8 @@ function MessagePageComponent(props) {
                                 }
                             </div>:<></>}
                     </div>
-                    <div className={styles.listChatSession_body}>
+                    {
+                        props.chooseSession? <div className={styles.listChatSession_body}>
                         {
                             props.sessionList.map(session=>{
                                 return <div className={props.chooseSession._id==(session._id)?styles.chatSession+" "+styles.choose:styles.chatSession} onClick={function(){
@@ -56,13 +57,14 @@ function MessagePageComponent(props) {
                                     </div>
                             })
                         }
-                    </div>
+                    </div>:<div className={styles.listChatSession_body}></div>
+                    }
                     <div className={styles.listChatSession_footer}>
 
                     </div>
                 </div>
                 <div className={styles.body_chatSession}>
-                        <ChatBoxContainer session={props.chooseSession} user={props.user}/>
+                        {props.chooseSession && <ChatBoxContainer session={props.chooseSession} user={props.user}/>}
                 </div>
                 <div className={styles.body_infoChatSession}>
 
