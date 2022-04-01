@@ -3,6 +3,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .body{
     flex: 1;
@@ -19,6 +20,10 @@
     width: 42%;
     border-left: 1px solid #cbcdce;
     border-right: 1px solid #cbcdce;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
 }
 .listChatSession_header{
     height: 100px;
