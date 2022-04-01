@@ -62,7 +62,7 @@ function MessagePageComponent(props) {
                     </div>
                 </div>
                 <div className={styles.body_chatSession}>
-                        <ChatBoxContainer session={props.chooseSession}/>
+                        <ChatBoxContainer session={props.chooseSession} user={props.user}/>
                 </div>
                 <div className={styles.body_infoChatSession}>
 

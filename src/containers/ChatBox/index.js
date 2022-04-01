@@ -8,30 +8,46 @@ function ChatBoxContainer(props) {
     const [message,setMessage]=useState("");
     useEffect(()=>{
     //get message from another user
-    io.on("getMessage",function(data){
-        setMessageList([...messageList,data]);
-        alert(data)
-    })
+    
     },[])
     useEffect(()=>{
         io.emit("joinTheChatRoom",{
             sessionId:props.session.sessionId._id
         })
+
+
+        io.on("getMessage",function(data){
+            setMessageList(messageList=>{
+                return [...messageList,data]
+            });
+            
+        })
+    
+        return ()=>{
+            io.removeAllListeners("getMessage");
+            io.emit("leaveTheChatRoom",{
+                sessionId:props.session.sessionId._id
+            })
+            setMessageList([])
+        }
+        
     },[props.session])
     const sendMessage = () => {
         // send the message in the chat session
         io.emit("message",{
             sessionId:props.session.sessionId._id,
-            message:message
+            user:props.user,
+            content:message
         });
+        setMessage("")
       };
     const changeMessageInput=(item)=>{
         setMessage(item.target.value);
     }
     return (
-        <div>
-            <ChatBoxComponent changeMessageInput={changeMessageInput} session={props.session} messageList={messageList} sendMessage={sendMessage}/>
-        </div>
+        
+            <ChatBoxComponent message={message} changeMessageInput={changeMessageInput} session={props.session} messageList={messageList} sendMessage={sendMessage}/>
+      
     )
 }
 

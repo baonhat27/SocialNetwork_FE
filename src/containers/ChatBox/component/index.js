@@ -21,22 +21,36 @@ function ChatBoxComponent(props) {
             <div className={styles.chatBox_body}>
                 {
                     props.messageList.map(message=>{
-                        return <p>
-                            {
-                                message
-                            }
-                        </p>
+                        return <div className={message.user._id!=localStorage.getItem("userId")?styles.messageShow:styles.messageShow+" "+styles.me}>
+                                <div className={message.user._id!=localStorage.getItem("userId")?styles.messageShow_avatarBox:styles.messageShow_avatarBox+" "+styles.me}>
+                                    <img className={styles.messageShow_avatar} src={message.user.avatar}/>
+                                </div>
+                                <div className={styles.messageShow_content}>
+                                    {
+                                        message.user._id==localStorage.getItem("userId")?<div style={{flex:"1"}}>
+                                        </div>:<></>
+                                    }
+                                    <p className={styles.message_content}>
+                                        {
+                                            message.content
+                                        }
+                                    </p>
+                                    {
+                                        message.user._id!=localStorage.getItem("userId")?<div style={{flex:"1"}}>
+                                        </div>:<></>
+                                    }
+                                </div>
+                            </div>
                     })
                 }
-                    <input onChange={props.changeMessageInput}>
-
-                    </input>
-                    <span onClick={props.sendMessage}>
-                        Gửi
-                    </span>
+                    
             </div>
             <div className={styles.chatBox_footer}>
+                <i className={"fa-solid fa-image "+styles.icon}></i>
+                <input value={props.message} className={styles.messageInput} onChange={props.changeMessageInput} placeholder="Nhập tin nhắn">
 
+                </input>
+                <i className={"fa-solid fa-paper-plane "+styles.icon} onClick={props.sendMessage}></i>
             </div>
         </div>
     )

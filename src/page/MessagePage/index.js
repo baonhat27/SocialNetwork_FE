@@ -52,6 +52,7 @@ function MessagePageContainer(props) {
         createOrJoinSession={createOrJoinSession}
         changeSearchKey={changeSearchKey}
         sessionList={sessionList}
+        user={user}
         userList={userList} setUserList={setUserList}
       />}
     </div>
