@@ -39,7 +39,8 @@ function MessagePageContainer(props) {
     const sessionCheck = sessionList.filter((session) => session.userId.firstName+" "+session.userId.lastName === name);
     if (sessionCheck.length == 0) {
       const session = await joinTheSession(friendId, user._id);
-      setSessionList([...sessionList,session.data.data])
+      setSessionList([...sessionList,session.data.data]);
+      setChooseSession(session.data.data)
     } else {
       setChooseSession(sessionCheck[0]);
     }
@@ -47,7 +48,7 @@ function MessagePageContainer(props) {
   
   return (
     <div>
-      {chooseSession && <MessagePageComponent
+      { <MessagePageComponent
         chooseSession={chooseSession} setChooseSession={setChooseSession}
         createOrJoinSession={createOrJoinSession}
         changeSearchKey={changeSearchKey}
