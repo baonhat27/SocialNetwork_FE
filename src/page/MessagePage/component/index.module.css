@@ -18,8 +18,8 @@
 }
 .body_chatSession{
     width: 42%;
-    border-left: 1px solid #cbcdce;
-    border-right: 1px solid #cbcdce;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -62,7 +62,7 @@
 .listChatSession_footer{
     height: 70px;
     background: white;
-    box-shadow: 1px 1px 5px #cbcdce;
+    border-top: 1px solid #e5e5e5;
 }
 .chatSession{
     height: 80px;
