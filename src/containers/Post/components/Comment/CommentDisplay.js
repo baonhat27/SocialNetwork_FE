@@ -1,9 +1,7 @@
 import styles from "./styles.module.css";
 import Comment from "./Comment";
 
-function CommentDisplay({ comments, handleShowMore, onDeleteComment }) {
-  // console.log(checkEditButton);
-  // console.log(comments);
+function CommentDisplay({ comments, handleShowMore, onDeleteComment,total }) {
   return (
     <div>
       <div className={styles.showmore} onClick={handleShowMore}>

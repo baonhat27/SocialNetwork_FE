@@ -5,6 +5,7 @@ import { getAllComments, deleteComment } from "../../../../shared/service";
 import { useSelector } from "react-redux";
 
 function Comment({ postId, commentList, total }) {
+  console.log(total)
   const [comments, setComments] = useState(commentList);
   const [check, setCheck] = useState(false);
   const socket = useSelector((state) => state.io);
@@ -48,6 +49,7 @@ function Comment({ postId, commentList, total }) {
         check={check}
         handleShowMore={handleShowMore}
         onDeleteComment={onDeleteComment}
+        total={total}
       />
       <CommentCreator postId={postId} onCreateComment={onCreateComment} />
     </div>
