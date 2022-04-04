@@ -1,5 +1,7 @@
 import React from 'react'
+import withUploadImage from '../../UploadImage';
 import styles from "./index.module.css";
+import ImageShowContainer from "../../ImageShow";
 function ChatBoxComponent(props) {
     return (
         <div className={styles.chatBox}>
@@ -20,25 +22,45 @@ function ChatBoxComponent(props) {
             </div>
             <div className={styles.chatBox_body}>
                 {
-                    props.messageList.map(message=>{
-                        return <div className={message.user._id!=localStorage.getItem("userId")?styles.messageShow:styles.messageShow+" "+styles.me}>
+                    props.messageList.map((message,index)=>{
+                        return <div key={index} className={message.user._id!=localStorage.getItem("userId")?styles.messageShow:styles.messageShow+" "+styles.me}>
                                 <div className={message.user._id!=localStorage.getItem("userId")?styles.messageShow_avatarBox:styles.messageShow_avatarBox+" "+styles.me}>
                                     <img className={styles.messageShow_avatar} src={message.user.avatar}/>
                                 </div>
-                                <div className={styles.messageShow_content}>
-                                    {
-                                        message.user._id==localStorage.getItem("userId")?<div style={{flex:"1"}}>
-                                        </div>:<></>
-                                    }
-                                    <p className={styles.message_content}>
+                                <div className={message.user._id!=localStorage.getItem("userId")?styles.messageShow_content:styles.messageShow_content+" "+styles.me}>
+                                    <div className={message.user._id!=localStorage.getItem("userId")?styles.message:styles.message+" "+styles.me}>
+                                        <div className={message.user._id!=localStorage.getItem("userId")?styles.message_contentBox:styles.message_contentBox+" "+styles.me}>
+                                            <p className={styles.message_content}>
+                                                {
+                                                    message.content
+                                                }
+                                            </p>
+                                        </div>
                                         {
-                                            message.content
+                                            message.image.length>0? <div className={message.user._id!=localStorage.getItem("userId")?styles.message_imageList:styles.message_imageList+" "+styles.me} onClick={
+                                                function(){
+                                                    props.setImageShow(1);
+                                                }
+                                            }>
+                                                {
+                                                    message.image.map((image,index)=>{
+                                                        if(message.image.length==1){
+                                                            return <img key={index} className={styles.message_image} src={image}/>
+                                                        }
+                                                        else if(message.image.length==2){
+                                                            return <img key={index} className={styles.message_image2} src={image}/>
+                                                        }
+                                                        else{
+                                                            return <img key={index} className={styles.message_image3} src={image}/>
+                                                        }
+                                                    })
+                                                }
+                                            </div>:<></>
                                         }
-                                    </p>
-                                    {
-                                        message.user._id!=localStorage.getItem("userId")?<div style={{flex:"1"}}>
-                                        </div>:<></>
-                                    }
+                                        {
+                                            props.imageShow!=-1? <ImageShowContainer setImageShow={props.setImageShow} listImage={message.image}/>:<></>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                     })
@@ -46,14 +68,38 @@ function ChatBoxComponent(props) {
                     
             </div>
             <div className={styles.chatBox_footer}>
-                <i className={"fa-solid fa-image "+styles.icon}></i>
-                <input value={props.message} className={styles.messageInput} onChange={props.changeMessageInput} placeholder="Nhập tin nhắn">
+                <i className={"fa-solid fa-image "+styles.icon}
+                onClick={props.upload}></i>
+                <div className={props.images.length>0?styles.messageInputBox+" "+styles.image:styles.messageInputBox}>
+                    <div className={styles.chatBox_footer_imageList}>
+                        {
+                            props.images.map((image,index)=>{
+                                return <div className={styles.chatBox_footer_imageBox}>
+                                        <i className={"fa-solid fa-xmark "+styles.iconImage}
+                                        onClick={
+                                            function(){
+                                                props.setImages(props.images.filter((imagess,chiso)=>chiso!=index))
+                                            }
+                                        }></i>
+                                        <img src={image} key={index} className={styles.chatBox_footer_image}/>
+                                </div>
+                            })
+                        }
+                    </div>
+                    <input onKeyDown={function(e){
+                        if(e.key=='Enter'){
+                            props.sendMessage(props.images,props.clearImage);
+                        }
+                    }} value={props.message} className={styles.messageInput} onChange={props.changeMessageInput} placeholder="Nhập tin nhắn">
 
-                </input>
-                <i className={"fa-solid fa-paper-plane "+styles.icon} onClick={props.sendMessage}></i>
+                    </input>
+                </div>
+                <i className={"fa-solid fa-paper-plane "+styles.icon} onClick={function(){
+                    props.sendMessage(props.images,props.clearImage);
+                }}></i>
             </div>
         </div>
     )
 }
 
-export default ChatBoxComponent
+export default withUploadImage(ChatBoxComponent);
