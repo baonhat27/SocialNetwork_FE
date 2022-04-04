@@ -12,6 +12,7 @@ export default function Notification(props) {
   const count = useRef(0);
   const more = useRef(false);
   const [notifications, setNotifications] = useState([]);
+  const lastReceiveAt = useRef();
 
   const fetch = async () => {
     more.current = false;
@@ -24,6 +25,7 @@ export default function Notification(props) {
       setTotal(res.data.total);
       more.current = count.current + res.data.results.length < res.data.total;
       count.current += res.data.results.length;
+      lastReceiveAt.current = res.data.results[0].createdAt;
     }
   };
 
@@ -47,13 +49,23 @@ export default function Notification(props) {
   useEffect(() => {
     fetch();
 
+    listenNotification("open", async (e) => {
+      if (lastReceiveAt) {
+        const res = await getNotification(0, lastReceiveAt.current);
+        if (res.success) {
+          setNotifications((old) => [...res.data.results, ...old]);
+        }
+      }
+    });
+
     listenNotification("notification", (e) => {
-      console.log(e.data);
       const data = JSON.parse(e.data);
+      console.log(data);
       if (data) {
         setNotifications((old) => [data, ...old]);
         count.current += 1;
         setTotal((old) => old + 1);
+        lastReceiveAt.current = data.createdAt;
       }
     });
 

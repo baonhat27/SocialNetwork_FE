@@ -112,7 +112,7 @@ export const createComment = async (text, postId) => {
   return await wrapResponseHandler(() =>
     axios.post(
       CREATE_COMMENT_URL,
-      { content: text, postId: postId},
+      { content: text, post: postId },
       { headers: authHeader() }
     )
   );
@@ -137,11 +137,7 @@ export const editComment = async (text, commentId) => {
 //Reaction
 export const createReaction = async (postId) => {
   return await wrapResponseHandler(() =>
-    axios.post(
-      CREATE_REACTION_URL,
-      { postId: postId },
-      { headers: authHeader() }
-    )
+    axios.post(CREATE_REACTION_URL, { post: postId }, { headers: authHeader() })
   );
 };
 export const deleteReaction = async (postId) => {
@@ -169,9 +165,10 @@ export const getReaction = async (postId) => {
     })
   );
 };
-export const getNotification = async (offset) => {
+export const getNotification = async (offset, from) => {
   let query = "";
   query += offset ? `offset=${offset}` : "";
+  query += from ? `from=${from}` : "";
   return await wrapResponseHandler(() =>
     axios.get(`${GET_NOTIFICATION_URL}?${query}`, {
       headers: authHeader(),

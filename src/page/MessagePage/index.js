@@ -15,12 +15,11 @@ function MessagePageContainer(props) {
   const [id, setId] = useState();
   const io = useSelector((state) => state.io);
   const user = useSelector((state) => state.user);
-  const dispatch=useDispatch();
-  useEffect(()=>{
-    checkToken(getUserInfo(dispatch),dispatch);
-  },[localStorage.getItem("token")])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    checkToken(getUserInfo(dispatch), dispatch);
+  }, [localStorage.getItem("token")]);
   useEffect(async () => {
-    
     //get list session to render
     const listSession = await getListSession();
     setSessionList(listSession.data.data);
@@ -36,26 +35,33 @@ function MessagePageContainer(props) {
     }
   }, 1000);
   const createOrJoinSession = async (name, friendId) => {
-    const sessionCheck = sessionList.filter((session) => session.userId.firstName+" "+session.userId.lastName === name);
+    const sessionCheck = sessionList.filter(
+      (session) =>
+        session.userId.firstName + " " + session.userId.lastName === name
+    );
     if (sessionCheck.length == 0) {
       const session = await joinTheSession(friendId, user._id);
-      setSessionList([...sessionList,session.data.data]);
-      setChooseSession(session.data.data)
+      setSessionList([...sessionList, session.data.data]);
+      setChooseSession(session.data.data);
     } else {
       setChooseSession(sessionCheck[0]);
     }
   };
-  
+
   return (
     <div>
-      { <MessagePageComponent
-        chooseSession={chooseSession} setChooseSession={setChooseSession}
-        createOrJoinSession={createOrJoinSession}
-        changeSearchKey={changeSearchKey}
-        sessionList={sessionList}
-        user={user}
-        userList={userList} setUserList={setUserList}
-      />}
+      {
+        <MessagePageComponent
+          chooseSession={chooseSession}
+          setChooseSession={setChooseSession}
+          createOrJoinSession={createOrJoinSession}
+          changeSearchKey={changeSearchKey}
+          sessionList={sessionList}
+          user={user}
+          userList={userList}
+          setUserList={setUserList}
+        />
+      }
     </div>
   );
 }

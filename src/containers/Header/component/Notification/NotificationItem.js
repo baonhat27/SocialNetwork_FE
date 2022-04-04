@@ -16,9 +16,10 @@ export default function NotificationItem({ noti, readNoti, showNoti }) {
         readNoti(noti);
       }
     }
+
     switch (activity.targetModel) {
       case "Post":
-        history.push(`/posts/${activity.target._id}`);
+        history.push(`/posts/${activity.target}`);
         break;
       case "Comment":
         history.push(`/posts/${activity.target.postId}`);
