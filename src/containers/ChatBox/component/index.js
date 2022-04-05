@@ -49,12 +49,63 @@ function ChatBoxComponent(props) {
         </div>
         <div className={styles.headers_info}>
           <p className={styles.headers_name}>
-            {props.session.userId.firstName +
+            {props.sessionName=="noname"?props.session.userId.firstName +
               " " +
-              props.session.userId.lastName}
+              props.session.userId.lastName:props.sessionName}
           </p>
           <p className={styles.headers_timeActive}>Hoạt động 1h trước</p>
         </div>
+        <div className={styles.headers_buttonList}>
+          <i className={"fa-solid fa-phone "+styles.headers_button}></i>
+          <i className={"fa-solid fa-video "+styles.headers_button}></i>
+          <i className={"fa-solid fa-ellipsis-vertical "+styles.headers_button}
+          onClick={
+            function(){
+              props.setHandleSessionName(true)
+            }
+          }></i>
+        </div>
+          {
+            props.handleSessionName? <div className="background_dark show">
+            <div className={styles.handleSessionName}>
+                <div className={styles.handleSessionName_header}>
+                  <h1 style={{fontWeight:"bold"}}>Đổi tên đoạn chat</h1>
+                  <i className={"fa-regular fa-circle-xmark "+styles.handleSessionName_header_icon}
+                  onClick={
+                    function(){
+                      props.setHandleSessionName(false)
+                    }
+                  }></i>
+                </div>
+                <div className={styles.handleSessionName_body}>
+                    <p>Mọi người đều biết khi tên nhóm chat thay đổi.</p>
+                    <div className={styles.inputSessionNameBox}>
+                      <p className={styles.inputSessionName_headding}>Tên đoạn chat</p>
+                      <input value={props.sessionNameInput} onChange={
+                        function(item){
+                          props.setSessionNameInput(item.target.value);
+                        }
+                      } className={styles.inputSessionName}>
+
+                      </input>
+
+                    </div>
+                    <div className={styles.inputSessionName_footer}>
+                      <div style={{color:"#0084ff"}} className={styles.inputSessionName_footer_click} onClick={
+                        function(){
+                          props.setHandleSessionName(false)
+                        }
+                      }>
+                        Hủy
+                      </div>
+                      <div className={styles.inputSessionName_footer_click} onClick={props.saveSessionName}>
+                        Lưu
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>:<></>
+          }
       </div>
       <div
         ref={chatBoxBodyRef}
@@ -66,40 +117,40 @@ function ChatBoxComponent(props) {
             <div
               key={index}
               className={
-                message.user._id != localStorage.getItem("userId")
+                message.createdBy._id != localStorage.getItem("userId")
                   ? styles.messageShow
                   : styles.messageShow + " " + styles.me
               }
             >
               <div
                 className={
-                  message.user._id != localStorage.getItem("userId")
+                  message.createdBy._id != localStorage.getItem("userId")
                     ? styles.messageShow_avatarBox
                     : styles.messageShow_avatarBox + " " + styles.me
                 }
               >
                 <img
                   className={styles.messageShow_avatar}
-                  src={message.user.avatar}
+                  src={message.createdBy.avatar}
                 />
               </div>
               <div
                 className={
-                  message.user._id != localStorage.getItem("userId")
+                  message.createdBy._id != localStorage.getItem("userId")
                     ? styles.messageShow_content
                     : styles.messageShow_content + " " + styles.me
                 }
               >
                 <div
                   className={
-                    message.user._id != localStorage.getItem("userId")
+                    message.createdBy._id != localStorage.getItem("userId")
                       ? styles.message
                       : styles.message + " " + styles.me
                   }
                 >
                   <div
                     className={
-                      message.user._id != localStorage.getItem("userId")
+                      message.createdBy._id != localStorage.getItem("userId")
                         ? styles.message_contentBox
                         : styles.message_contentBox + " " + styles.me
                     }
@@ -109,7 +160,7 @@ function ChatBoxComponent(props) {
                   {message.image.length > 0 ? (
                     <div
                       className={
-                        message.user._id != localStorage.getItem("userId")
+                        message.createdBy._id != localStorage.getItem("userId")
                           ? styles.message_imageList
                           : styles.message_imageList + " " + styles.me
                       }
@@ -200,7 +251,7 @@ function ChatBoxComponent(props) {
             onKeyDown={function (e) {
               if (e.key == "Enter") {
                 props.sendMessage(props.images, props.clearImage);
-                scrollLastMessage();
+                // scrollLastMessage();
               }
             }}
             value={props.message}
@@ -213,7 +264,7 @@ function ChatBoxComponent(props) {
           className={"fa-solid fa-paper-plane " + styles.icon}
           onClick={function () {
             props.sendMessage(props.images, props.clearImage);
-            scrollLastMessage();
+            // scrollLastMessage();
           }}
         ></i>
       </div>
