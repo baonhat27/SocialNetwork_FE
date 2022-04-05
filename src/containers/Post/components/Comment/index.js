@@ -48,6 +48,7 @@ function Comment({ postId, commentList, total }) {
         check={check}
         handleShowMore={handleShowMore}
         onDeleteComment={onDeleteComment}
+        total={total}
       />
       <CommentCreator postId={postId} onCreateComment={onCreateComment} />
     </div>
