@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getMessage } from "../../shared/service";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
 import { handleSessionNameService } from "./service";
+import { getMessage } from "../../shared/service/index";
 
 function ChatBoxContainer(props) {
   const io = useSelector((state) => state.io);
   const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState("");
   const [imageShow, setImageShow] = useState(-1);
-  const [sessionName,setSessionName]=useState(props.session.sessionId.name);
-  const [handleSessionName,setHandleSessionName]=useState(false);
-  const [sessionNameInput,setSessionNameInput]=useState(props.session.sessionId.name);
+  const [sessionName, setSessionName] = useState(props.session.sessionId.name);
+  const [handleSessionName, setHandleSessionName] = useState(false);
+  const [sessionNameInput, setSessionNameInput] = useState(
+    props.session.sessionId.name
+  );
   const seenMessage = () => {
     io.emit("seenMessage", {
       user: props.user._id,
@@ -21,13 +23,14 @@ function ChatBoxContainer(props) {
     });
   };
   const callAPI = async () => {
-    const response = await getMessage(props.user, props.session.sessionId._id);
-    console.log(response);
+    const res = await getMessage(props.user._id, props.session.sessionId._id);
+    console.log(res.data);
+    // setMessageList(prev => prev + res.data )
+    setMessageList(messageList.concat(res.data.reverse()));
   };
   useEffect(() => {
     //get message from another user
     callAPI();
-    
   }, [props.session.sessionId._id]);
   useEffect(() => {
     setSessionName(props.session.sessionId.name);
@@ -40,19 +43,17 @@ function ChatBoxContainer(props) {
       setMessageList((messageList) => {
         return [...messageList, data];
       });
-      if(props.user._id==data.createdBy._id){
+      if (props.user._id == data.createdBy._id) {
         document
-      .querySelector("." + styles.chatBox_body)
-      .scrollTo(
-      0,
-      document.querySelector("." + styles.chatBox_body).scrollHeight
-      );
+          .querySelector("." + styles.chatBox_body)
+          .scrollTo(
+            0,
+            document.querySelector("." + styles.chatBox_body).scrollHeight
+          );
       }
     });
 
-    io.on("seenMessage", function (data) {
-
-    });
+    io.on("seenMessage", function (data) {});
 
     seenMessage();
 
@@ -64,6 +65,7 @@ function ChatBoxContainer(props) {
       setMessageList([]);
     };
   }, [props.session]);
+
   const sendMessage = (images, clearImage) => {
     // send the message in the chat session
     if (message != "" || images.length) {
@@ -75,26 +77,28 @@ function ChatBoxContainer(props) {
       });
       setMessage("");
       clearImage();
-      
     } else {
       alert("Vui lòng nhập tin nhắn");
     }
   };
-  const saveSessionName=()=>{
-    handleSessionNameService(props.session.sessionId._id,sessionNameInput)
-  }
+  const saveSessionName = () => {
+    handleSessionNameService(props.session.sessionId._id, sessionNameInput);
+  };
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
   };
   return (
     <ChatBoxComponent
-      sessionName={sessionName} setSessionName={setSessionName}
-      sessionNameInput={sessionNameInput}  
+      sessionName={sessionName}
+      setSessionName={setSessionName}
+      sessionNameInput={sessionNameInput}
       imageShow={imageShow}
       setImageShow={setImageShow}
       message={message}
-      changeMessageInput={changeMessageInput} setSessionNameInput={setSessionNameInput}
-      handleSessionName={handleSessionName} setHandleSessionName={setHandleSessionName}
+      changeMessageInput={changeMessageInput}
+      setSessionNameInput={setSessionNameInput}
+      handleSessionName={handleSessionName}
+      setHandleSessionName={setHandleSessionName}
       session={props.session}
       messageList={messageList}
       saveSessionName={saveSessionName}
