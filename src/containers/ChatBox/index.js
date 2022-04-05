@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { getMessage } from "../../shared/service";
 import ChatBoxComponent from "./component";
-<<<<<<< HEAD
-=======
 import styles from "./component/index.module.css";
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
 
 function ChatBoxContainer(props) {
   const io = useSelector((state) => state.io);
   const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState("");
   const [imageShow, setImageShow] = useState(-1);
-<<<<<<< HEAD
-=======
 
   const seenMessage = () => {
     io.emit("seenMessage", {
@@ -21,34 +17,24 @@ function ChatBoxContainer(props) {
       seenAt: Date.now(),
     });
   };
-
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
+  const callAPI = async () => {
+    const response = await getMessage(props.user, props.session.sessionId._id);
+    console.log(response);
+  };
   useEffect(() => {
     //get message from another user
-  }, []);
+    callAPI();
+    
+  }, [props.session.sessionId._id]);
   useEffect(() => {
     io.emit("joinTheChatRoom", {
       sessionId: props.session.sessionId._id,
-<<<<<<< HEAD
-      userId: props.user._id,
-=======
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
     });
 
     io.on("getMessage", function (data) {
       setMessageList((messageList) => {
         return [...messageList, data];
       });
-<<<<<<< HEAD
-      document
-        .querySelector(".component_chatBox_body__wIHjv")
-        .scrollTo(
-          0,
-          document.querySelector(".component_chatBox_body__wIHjv").scrollHeight
-        );
-    });
-
-=======
     });
 
     io.on("seenMessage", function (data) {
@@ -57,23 +43,14 @@ function ChatBoxContainer(props) {
 
     seenMessage();
 
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
     return () => {
       io.removeAllListeners("getMessage");
       io.emit("leaveTheChatRoom", {
         sessionId: props.session.sessionId._id,
-<<<<<<< HEAD
-        userId: props.user._id,
-=======
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
       });
       setMessageList([]);
     };
   }, [props.session]);
-<<<<<<< HEAD
-=======
-
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
   const sendMessage = (images, clearImage) => {
     // send the message in the chat session
     if (message != "" || images.length) {
@@ -85,15 +62,12 @@ function ChatBoxContainer(props) {
       });
       setMessage("");
       clearImage();
-<<<<<<< HEAD
-=======
       //document
       //.querySelector("." + styles.chatBox_body)
       //.scrollTo(
       //0,
       //document.querySelector("." + styles.chatBox_body).scrollHeight
       //);
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
     } else {
       alert("Vui lòng nhập tin nhắn");
     }
@@ -110,10 +84,7 @@ function ChatBoxContainer(props) {
       session={props.session}
       messageList={messageList}
       sendMessage={sendMessage}
-<<<<<<< HEAD
-=======
       seenMessage={seenMessage}
->>>>>>> 11a4ace270afd4aac12f59e20a490b55583325d2
     />
   );
 }
