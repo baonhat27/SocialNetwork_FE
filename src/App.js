@@ -12,8 +12,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const io = useSelector((state) => state.io);
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="App">
       <Switch>
