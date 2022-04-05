@@ -28,7 +28,6 @@
 }
 .headers_info{
     margin-left: 10px;
-    flex: 1;
 }
 .headers_name{
     font-size: 17px;
@@ -198,4 +197,77 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.headers_button{
+    font-size: 30px;
+    color: #0084ff;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.headers_buttonList{
+    display: flex;
+    flex: 1;
+    justify-content: right;
+}
+.handleSessionName{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    background: white;
+    width: 700px;
+    border-radius: 10px;
+}
+.handleSessionName_header_icon{
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+.handleSessionName_header{
+    position: relative;
+    height: 60px;
+    border-bottom: 1px solid #e4e6eb;
+     text-align: center;
+     padding-top: 5px;
+}
+.handleSessionName_body{
+    padding: 15px;
+    font-size: 19px;
+}
+.inputSessionNameBox{
+    height: 80px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid #ced0d4;
+    padding:10px;
+}
+.inputSessionName_headding{
+    font-size: 15px;
+    color: rgb(146, 146, 146);
+    font-weight: 400;
+}
+.inputSessionName{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.inputSessionName_footer{
+    display: flex;
+    justify-content: right;
+    padding-top: 30px;
+}
+.inputSessionName_footer_click{
+    font-size: 22px;
+    font-weight: 500;
+    height: 43px;
+    width: 60px;
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+.inputSessionName_footer_click:hover{
+    background: rgb(226, 226, 226);
 }
