@@ -8,6 +8,7 @@ import { getMessage } from "../../shared/service/index";
 function ChatBoxContainer(props) {
   const io = useSelector((state) => state.io);
   const [messageList, setMessageList] = useState([]);
+  const [total, setTotal] = useState(0);
   const [message, setMessage] = useState("");
   const [imageShow, setImageShow] = useState(-1);
   const [sessionName, setSessionName] = useState(props.session.sessionId.name);
@@ -15,6 +16,27 @@ function ChatBoxContainer(props) {
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
+  const countMessage = useRef(0);
+  const loadMore = useRef(false);
+
+  const callAPI = async () => {
+    const res = await getMessage(props.user._id, props.session.sessionId._id,countMessage.current);
+    setTotal(res.data.total)
+    setMessageList((messageList) =>
+      messageList.concat(res.data.result).reverse()
+    );
+    loadMore.current = countMessage.current + res.data.result.length < res.data.total;
+    countMessage.current += res.data.result.length;
+    scrollToBottom();
+  };
+  const showMore = async () => {
+    loadMore.current && (await callAPI());
+  };
+
+  useEffect(() => {
+    //get message from another user
+    callAPI();
+  }, [props.session.sessionId._id]);
 
   const isBottom = useRef(true);
   const [lock, setLock] = useState(false);
@@ -52,20 +74,7 @@ function ChatBoxContainer(props) {
     isBottom.current = true;
   };
 
-  const callAPI = async () => {
-    const res = await getMessage(props.user._id, props.session.sessionId._id);
-    // setMessageList(prev => prev + res.data )
-    setMessageList((messageList) => messageList.concat(res.data));
-    scrollToBottom();
-  };
-
   useEffect(() => {
-    //get message from another user
-    
-  }, [props.session.sessionId._id]);
-
-  useEffect(() => {
-    callAPI();
     setSessionName(props.session.sessionId.name);
     setSessionNameInput(props.session.sessionId.name);
     io.emit("joinTheChatRoom", {
@@ -84,6 +93,7 @@ function ChatBoxContainer(props) {
       if (isBottom.current) {
         scrollToBottom();
       }
+      seenMessage();
     });
 
     io.on("seenMessage", function (data) {
@@ -116,10 +126,8 @@ function ChatBoxContainer(props) {
       alert("Vui lòng nhập tin nhắn");
     }
   };
-  const saveSessionName = async () => {
-    const response= await handleSessionNameService(props.session.sessionId._id, sessionNameInput);
-    setHandleSessionName(false);
-    alert(response.message);
+  const saveSessionName = () => {
+    handleSessionNameService(props.session.sessionId._id, sessionNameInput);
   };
 
   const changeMessageInput = (item) => {
@@ -134,6 +142,7 @@ function ChatBoxContainer(props) {
       imageShow={imageShow}
       setImageShow={setImageShow}
       message={message}
+      showMore={showMore}
       changeMessageInput={changeMessageInput}
       setSessionNameInput={setSessionNameInput}
       handleSessionName={handleSessionName}

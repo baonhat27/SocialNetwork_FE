@@ -4,6 +4,17 @@ import styles from "./index.module.css";
 import ImageShowContainer from "../../ImageShow";
 
 function ChatBoxComponent(props, ref) {
+  const chatBox = useRef(null);
+  useEffect(() => {
+    const node = chatBox.current;
+
+    node &&
+      node.addEventListener("scroll", (e) => {
+        if (node.scrollHeight - node.scrollTop >= node.clientHeight + 1000) {
+          props.showMore();
+        }
+      });
+  }, []);
   return (
     <div className={styles.chatBox}>
       <div className={styles.chatBox_header}>
@@ -88,6 +99,7 @@ function ChatBoxComponent(props, ref) {
         )}
       </div>
       <div
+        ref={chatBox}
         onScroll={() => props.handleScroll()}
         className={styles.chatBox_body}
       >
