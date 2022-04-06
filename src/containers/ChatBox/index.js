@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
@@ -15,6 +15,10 @@ function ChatBoxContainer(props) {
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
+
+  const isBottom = useRef(true);
+  const [lock, setLock] = useState(false);
+
   const seenMessage = () => {
     io.emit("seenMessage", {
       user: props.user._id,
@@ -22,15 +26,44 @@ function ChatBoxContainer(props) {
       seenAt: Date.now(),
     });
   };
+
+  const checkBottom = () => {
+    const lastMessage = document.getElementById("lastMessage");
+    const rect = lastMessage.getBoundingClientRect();
+    if (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight ||
+          document.documentElement.clientHeight) /* or $(window).height() */ &&
+      rect.right <=
+        (window.innerWidth ||
+          document.documentElement.clientWidth) /* or $(window).width() */
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const scrollToBottom = () => {
+    const lastMessage = document.getElementById("lastMessage");
+    lastMessage.scrollIntoView();
+    isBottom.current = true;
+  };
+
   const callAPI = async () => {
     const res = await getMessage(props.user._id, props.session.sessionId._id);
     // setMessageList(prev => prev + res.data )
     setMessageList((messageList) => messageList.concat(res.data));
+    scrollToBottom();
   };
+
   useEffect(() => {
     //get message from another user
     callAPI();
   }, [props.session.sessionId._id]);
+
   useEffect(() => {
     setSessionName(props.session.sessionId.name);
     setSessionNameInput(props.session.sessionId.name);
@@ -42,17 +75,19 @@ function ChatBoxContainer(props) {
       setMessageList((messageList) => {
         return [...messageList, data];
       });
-      if (props.user._id == data.createdBy._id) {
-        document
-          .querySelector("." + styles.chatBox_body)
-          .scrollTo(
-            0,
-            document.querySelector("." + styles.chatBox_body).scrollHeight
-          );
+
+      if (data.createdBy._id !== props.user._id) {
+        setLock(false);
+      }
+
+      if (isBottom.current) {
+        scrollToBottom();
       }
     });
 
-    io.on("seenMessage", function (data) {});
+    io.on("seenMessage", function (data) {
+      console.log(data);
+    });
 
     seenMessage();
 
@@ -83,9 +118,11 @@ function ChatBoxContainer(props) {
   const saveSessionName = () => {
     handleSessionNameService(props.session.sessionId._id, sessionNameInput);
   };
+
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
   };
+
   return (
     <ChatBoxComponent
       sessionName={sessionName}
@@ -102,7 +139,13 @@ function ChatBoxContainer(props) {
       messageList={messageList}
       saveSessionName={saveSessionName}
       sendMessage={sendMessage}
-      seenMessage={seenMessage}
+      handleScroll={() => {
+        isBottom.current = checkBottom();
+        if (isBottom.current && !lock) {
+          setLock(true);
+          seenMessage();
+        }
+      }}
     />
   );
 }

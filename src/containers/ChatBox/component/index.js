@@ -3,40 +3,7 @@ import withUploadImage from "../../UploadImage";
 import styles from "./index.module.css";
 import ImageShowContainer from "../../ImageShow";
 
-function ChatBoxComponent(props) {
-  const chatBoxBodyRef = useRef(null);
-  const messageLastRef = useRef(null);
-
-  const checkSeenMessage = () => {
-    const messageLast = messageLastRef.current;
-    const rect = messageLast.getBoundingClientRect();
-    if (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight ||
-          document.documentElement.clientHeight) /* or $(window).height() */ &&
-      rect.right <=
-        (window.innerWidth ||
-          document.documentElement.clientWidth) /* or $(window).width() */
-    ) {
-      props.seenMessage();
-    }
-  };
-
-  const handleScroll = () => {
-    checkSeenMessage();
-  };
-
-  const scrollLastMessage = () => {
-    const messageLast = messageLastRef.current;
-    messageLast.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-      inline: "center",
-    });
-  };
-
+function ChatBoxComponent(props, ref) {
   return (
     <div className={styles.chatBox}>
       <div className={styles.chatBox_header}>
@@ -49,67 +16,79 @@ function ChatBoxComponent(props) {
         </div>
         <div className={styles.headers_info}>
           <p className={styles.headers_name}>
-            {props.sessionName=="noname"?props.session.userId.firstName +
-              " " +
-              props.session.userId.lastName:props.sessionName}
+            {props.sessionName == "noname"
+              ? props.session.userId.firstName +
+                " " +
+                props.session.userId.lastName
+              : props.sessionName}
           </p>
           <p className={styles.headers_timeActive}>Hoạt động 1h trước</p>
         </div>
         <div className={styles.headers_buttonList}>
-          <i className={"fa-solid fa-phone "+styles.headers_button}></i>
-          <i className={"fa-solid fa-video "+styles.headers_button}></i>
-          <i className={"fa-solid fa-ellipsis-vertical "+styles.headers_button}
-          onClick={
-            function(){
-              props.setHandleSessionName(true)
-            }
-          }></i>
+          <i className={"fa-solid fa-phone " + styles.headers_button}></i>
+          <i className={"fa-solid fa-video " + styles.headers_button}></i>
+          <i
+            className={"fa-solid fa-ellipsis-vertical " + styles.headers_button}
+            onClick={function () {
+              props.setHandleSessionName(true);
+            }}
+          ></i>
         </div>
-          {
-            props.handleSessionName? <div className="background_dark show">
+        {props.handleSessionName ? (
+          <div className="background_dark show">
             <div className={styles.handleSessionName}>
-                <div className={styles.handleSessionName_header}>
-                  <h1 style={{fontWeight:"bold"}}>Đổi tên đoạn chat</h1>
-                  <i className={"fa-regular fa-circle-xmark "+styles.handleSessionName_header_icon}
-                  onClick={
-                    function(){
-                      props.setHandleSessionName(false)
-                    }
-                  }></i>
+              <div className={styles.handleSessionName_header}>
+                <h1 style={{ fontWeight: "bold" }}>Đổi tên đoạn chat</h1>
+                <i
+                  className={
+                    "fa-regular fa-circle-xmark " +
+                    styles.handleSessionName_header_icon
+                  }
+                  onClick={function () {
+                    props.setHandleSessionName(false);
+                  }}
+                ></i>
+              </div>
+              <div className={styles.handleSessionName_body}>
+                <p>Mọi người đều biết khi tên nhóm chat thay đổi.</p>
+                <div className={styles.inputSessionNameBox}>
+                  <p className={styles.inputSessionName_headding}>
+                    Tên đoạn chat
+                  </p>
+                  <input
+                    value={props.sessionNameInput}
+                    onChange={function (item) {
+                      props.setSessionNameInput(item.target.value);
+                    }}
+                    className={styles.inputSessionName}
+                  ></input>
                 </div>
-                <div className={styles.handleSessionName_body}>
-                    <p>Mọi người đều biết khi tên nhóm chat thay đổi.</p>
-                    <div className={styles.inputSessionNameBox}>
-                      <p className={styles.inputSessionName_headding}>Tên đoạn chat</p>
-                      <input value={props.sessionNameInput} onChange={
-                        function(item){
-                          props.setSessionNameInput(item.target.value);
-                        }
-                      } className={styles.inputSessionName}>
-
-                      </input>
-
-                    </div>
-                    <div className={styles.inputSessionName_footer}>
-                      <div style={{color:"#0084ff"}} className={styles.inputSessionName_footer_click} onClick={
-                        function(){
-                          props.setHandleSessionName(false)
-                        }
-                      }>
-                        Hủy
-                      </div>
-                      <div className={styles.inputSessionName_footer_click} onClick={props.saveSessionName}>
-                        Lưu
-                      </div>
-                    </div>
+                <div className={styles.inputSessionName_footer}>
+                  <div
+                    style={{ color: "#0084ff" }}
+                    className={styles.inputSessionName_footer_click}
+                    onClick={function () {
+                      props.setHandleSessionName(false);
+                    }}
+                  >
+                    Hủy
+                  </div>
+                  <div
+                    className={styles.inputSessionName_footer_click}
+                    onClick={props.saveSessionName}
+                  >
+                    Lưu
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>:<></>
-          }
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <div
-        ref={chatBoxBodyRef}
-        onScroll={handleScroll}
+        onScroll={() => props.handleScroll()}
         className={styles.chatBox_body}
       >
         {props.messageList.map((message, index) => {
@@ -212,7 +191,7 @@ function ChatBoxComponent(props) {
             </div>
           );
         })}
-        <span ref={messageLastRef}></span>
+        <span id="lastMessage"></span>
       </div>
       <div className={styles.chatBox_footer}>
         <i
