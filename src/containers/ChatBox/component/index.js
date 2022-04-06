@@ -10,7 +10,7 @@ function ChatBoxComponent(props, ref) {
 
     node &&
       node.addEventListener("scroll", (e) => {
-        if (node.scrollHeight - node.scrollTop >= node.clientHeight + 240) {
+        if (node.scrollHeight - node.scrollTop >= node.clientHeight + 1000) {
           props.showMore();
         }
       });
