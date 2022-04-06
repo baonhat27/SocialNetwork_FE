@@ -26,13 +26,14 @@ function ChatBoxContainer(props) {
     const res = await getMessage(props.user._id, props.session.sessionId._id);
     console.log(res.data);
     // setMessageList(prev => prev + res.data )
-    setMessageList(messageList.concat(res.data.reverse()));
+    setMessageList(messageList=>messageList.concat(res.data.reverse()));
   };
   useEffect(() => {
     //get message from another user
-    callAPI();
+    
   }, [props.session.sessionId._id]);
   useEffect(() => {
+    callAPI();
     setSessionName(props.session.sessionId.name);
     setSessionNameInput(props.session.sessionId.name);
     io.emit("joinTheChatRoom", {
@@ -81,8 +82,10 @@ function ChatBoxContainer(props) {
       alert("Vui lòng nhập tin nhắn");
     }
   };
-  const saveSessionName = () => {
-    handleSessionNameService(props.session.sessionId._id, sessionNameInput);
+  const saveSessionName = async () => {
+    const response= await handleSessionNameService(props.session.sessionId._id, sessionNameInput);
+    setHandleSessionName(false);
+    alert(response.message);
   };
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
