@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
@@ -15,6 +15,8 @@ function ChatBoxContainer(props) {
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
+  const total =useRef(0)
+  const loadMore = useRef(false);
   const seenMessage = () => {
     io.emit("seenMessage", {
       user: props.user._id,
@@ -25,7 +27,7 @@ function ChatBoxContainer(props) {
   const callAPI = async () => {
     const res = await getMessage(props.user._id, props.session.sessionId._id);
     // setMessageList(prev => prev + res.data )
-    setMessageList((messageList) => messageList.concat(res.data));
+    setMessageList((messageList) => messageList.concat(res.data.result).reverse());
   };
   useEffect(() => {
     //get message from another user
