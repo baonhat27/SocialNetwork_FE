@@ -24,9 +24,8 @@ function ChatBoxContainer(props) {
   };
   const callAPI = async () => {
     const res = await getMessage(props.user._id, props.session.sessionId._id);
-    console.log(res.data);
     // setMessageList(prev => prev + res.data )
-    setMessageList(messageList.concat(res.data.reverse()));
+    setMessageList((messageList) => messageList.concat(res.data));
   };
   useEffect(() => {
     //get message from another user
@@ -64,7 +63,7 @@ function ChatBoxContainer(props) {
       });
       setMessageList([]);
     };
-  }, [props.session]);
+  }, [props.session.sessionId._id]);
 
   const sendMessage = (images, clearImage) => {
     // send the message in the chat session
