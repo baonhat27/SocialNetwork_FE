@@ -152,3 +152,50 @@
 .chatSession:hover{
     background: #e0e2e2;
 }
+.userOnlineBox_avatar{
+    height: 40px;
+}
+.userOnlineBox_avatarBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    margin:0 5px;
+}
+.userOnlineBox{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    height: 55px;
+    width: 100%;
+}
+.userOnlineBox:hover{
+    background: #cbcdce;
+}
+.userOnline_name{
+    flex:1;
+    font-weight: 500;
+    font-size: 17px;
+}
+.body_infoChatSession{
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+}
+.userOnline_Box{
+    position: relative;
+}
+.status{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    background: #31a24c;
+    bottom:0px;
+    right:5px;
+
+}
