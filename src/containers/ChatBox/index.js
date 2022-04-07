@@ -28,6 +28,7 @@ function ChatBoxContainer(props) {
     setMessageList((messageList) =>
       messageList.concat(res.data.result).reverse()
     );
+    console.log(res.data.result);
     //loadMore.current =
     //countBeforeMessage.current + res.data.result.length < res.data.total;
     //countBeforeMessage.current += res.data.result.length;

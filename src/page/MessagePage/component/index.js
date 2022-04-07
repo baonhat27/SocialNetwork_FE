@@ -95,19 +95,22 @@ function MessagePageComponent(props) {
           <h2 style={{color:"gray"}}>Đang hoạt động</h2>
           {
             props.userOnlineList.map(userOnline=>{
-              return <div className={styles.userOnlineBox} onClick={function(){
-                props.createOrJoinSession(userOnline.firstName+" "+userOnline.lastName,userOnline._id)
-              }}>
-                        <div className={styles.userOnline_Box}>
-                          <div className={styles.userOnlineBox_avatarBox}>
-                            <img src={userOnline.avatar} className={styles.userOnlineBox_avatar}/>
+              if(userOnline._id!=localStorage.getItem("userId")){
+                return <div className={styles.userOnlineBox} onClick={function(){
+                  props.createOrJoinSession(userOnline.firstName+" "+userOnline.lastName,userOnline._id)
+                }}>
+                          <div className={styles.userOnline_Box}>
+                            <div className={styles.userOnlineBox_avatarBox}>
+                              <img src={userOnline.avatar} className={styles.userOnlineBox_avatar}/>
+                            </div>
+                            <div className={styles.status}>
+  
+                            </div>
                           </div>
-                          <div className={styles.status}>
-
-                          </div>
-                        </div>
-                        <p className={styles.userOnline_name}>{userOnline.firstName+" "+userOnline.lastName}</p>
-                </div>
+                          <p className={styles.userOnline_name}>{userOnline.firstName+" "+userOnline.lastName}</p>
+                  </div>
+              }
+              return <></>
             })
           }
         </div>
