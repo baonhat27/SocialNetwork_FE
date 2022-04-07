@@ -198,20 +198,26 @@ export const readNotification = async (notificationId) => {
   );
 };
 //Messages
-export const getMessage = async (userId, sessionId, offset) => {
-  let query = ""
-  query += offset ? `offset=${offset}&` : ""
-  query += userId ? `userId=${userId}&` : ""
-  query += sessionId ? `sessionId=${sessionId}&` : ""
+export const getMessage = async ({
+  userId,
+  sessionId,
+  offset,
+  before,
+  after,
+}) => {
+  let query = "";
+  query += offset ? `offset=${offset}&` : "";
+  query += userId ? `userId=${userId}&` : "";
+  query += sessionId ? `sessionId=${sessionId}&` : "";
+  query += before ? `before=${before}&` : "";
+  query += after ? `after=${after}&` : "";
+
   return await wrapResponseHandler(() =>
     axios.request({
       url: GET_MESSAGES_URL + `?${query}`,
       method: "get",
       headers: authHeader(),
-      data: {
-      },
+      data: {},
     })
   );
 };
-
-

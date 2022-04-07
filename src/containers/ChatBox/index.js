@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
 import { handleSessionNameService } from "./service";
-import { getMessage } from "../../shared/service/index";
+import { getMessage } from "../../shared/service";
 
 function ChatBoxContainer(props) {
   const io = useSelector((state) => state.io);
@@ -16,26 +16,28 @@ function ChatBoxContainer(props) {
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
-  const countMessage = useRef(0);
-  const loadMore = useRef(false);
+  const countAfterMessage = useRef(0);
+  const countBeforeMessage = useRef(0);
+  const loadBeforeMore = useRef(true);
 
   const callAPI = async () => {
-    const res = await getMessage(props.user._id, props.session.sessionId._id,countMessage.current);
-    setTotal(res.data.total)
+    const res = await getMessage(
+      props.user._id,
+      props.session.sessionId._id,
+      countBeforeMessage.current
+    );
     setMessageList((messageList) =>
       messageList.concat(res.data.result).reverse()
     );
-    loadMore.current = countMessage.current + res.data.result.length < res.data.total;
-    countMessage.current += res.data.result.length;
-    scrollToBottom();
-  };
-  const showMore = async () => {
-    loadMore.current && (await callAPI());
+    //loadMore.current =
+    //countBeforeMessage.current + res.data.result.length < res.data.total;
+    //countBeforeMessage.current += res.data.result.length;
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     //get message from another user
-    callAPI();
+    await callAPI();
+    scrollToBottom();
   }, [props.session.sessionId._id]);
 
   const isBottom = useRef(true);
@@ -47,6 +49,12 @@ function ChatBoxContainer(props) {
       session: props.session.sessionId._id,
       seenAt: Date.now(),
     });
+  };
+
+  const checkTop = () => {
+    const chatBox = document.getElementById("chatBox");
+    if (chatBox.scrollTop === 0) return true;
+    return false;
   };
 
   const checkBottom = () => {
@@ -74,6 +82,31 @@ function ChatBoxContainer(props) {
     isBottom.current = true;
   };
 
+  const handleScroll = async () => {
+    isBottom.current = checkBottom();
+    if (isBottom.current && !lock) {
+      setLock(true);
+      seenMessage();
+    }
+
+    if (checkTop()) {
+      const firstMessage = messageList[0];
+      if (loadBeforeMore.current) {
+        loadBeforeMore.current = false;
+        const res = await getMessage({
+          userId: props.user._id,
+          sessionId: props.session.sessionId._id,
+          before: firstMessage.createdAt,
+        });
+
+        const newMessage = res.data.result.reverse();
+        setMessageList((messageList) => [...newMessage, ...messageList]);
+
+        loadBeforeMore.current = res.data.result.length !== 0;
+      }
+    }
+  };
+
   useEffect(() => {
     setSessionName(props.session.sessionId.name);
     setSessionNameInput(props.session.sessionId.name);
@@ -90,10 +123,13 @@ function ChatBoxContainer(props) {
         setLock(false);
       }
 
+      if (checkBottom()) {
+        seenMessage();
+      }
+
       if (isBottom.current) {
         scrollToBottom();
       }
-      seenMessage();
     });
 
     io.on("seenMessage", function (data) {
@@ -142,7 +178,6 @@ function ChatBoxContainer(props) {
       imageShow={imageShow}
       setImageShow={setImageShow}
       message={message}
-      showMore={showMore}
       changeMessageInput={changeMessageInput}
       setSessionNameInput={setSessionNameInput}
       handleSessionName={handleSessionName}
@@ -151,13 +186,7 @@ function ChatBoxContainer(props) {
       messageList={messageList}
       saveSessionName={saveSessionName}
       sendMessage={sendMessage}
-      handleScroll={() => {
-        isBottom.current = checkBottom();
-        if (isBottom.current && !lock) {
-          setLock(true);
-          seenMessage();
-        }
-      }}
+      handleScroll={handleScroll}
     />
   );
 }
