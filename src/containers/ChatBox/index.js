@@ -21,11 +21,10 @@ function ChatBoxContainer(props) {
   const loadBeforeMore = useRef(true);
 
   const callAPI = async () => {
-    const res = await getMessage(
-      props.user._id,
-      props.session.sessionId._id,
-      countBeforeMessage.current
-    );
+    const res = await getMessage({
+      userId: props.user._id,
+      sessionId: props.session.sessionId._id,
+    });
     setMessageList((messageList) =>
       messageList.concat(res.data.result).reverse()
     );
@@ -38,7 +37,7 @@ function ChatBoxContainer(props) {
     //get message from another user
     await callAPI();
     scrollToBottom();
-  }, [props.session.sessionId._id]);
+  }, [props.session]);
 
   const isBottom = useRef(true);
   const [lock, setLock] = useState(false);
