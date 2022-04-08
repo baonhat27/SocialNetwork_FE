@@ -90,12 +90,12 @@ function ChatBoxContainer(props) {
 
     if (checkTop()) {
       const firstMessage = messageList[0];
-      if (loadBeforeMore.current) {
+      if (loadBeforeMore.current && firstMessage) {
         loadBeforeMore.current = false;
         const res = await getMessage({
           userId: props.user._id,
           sessionId: props.session.sessionId._id,
-          before: firstMessage.createdAt,
+          before: firstMessage.createdAt || "",
         });
 
         const newMessage = res.data.result.reverse();

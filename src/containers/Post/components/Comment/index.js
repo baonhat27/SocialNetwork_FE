@@ -19,13 +19,13 @@ function Comment({ postId, commentList, total }) {
     }
   }, [check]);
   useEffect(() => {
-    socket.on("comment:create", (comment) => {
+    socket.on(`${postId}comment:create`, (comment) => {
       setComments(prev => [...prev, comment])
     });
-    socket.on("comment:delete", (comment) => {
+    socket.on(`${postId}comment:delete`, (comment) => {
       setComments(prev => prev.filter((com) => com._id !== comment._id));
     });
-    socket.on("comment:edit", (newComment) => {
+    socket.on(`${postId}comment:edit`, (newComment) => {
       setComments(comments => comments.map(comment => comment._id === newComment._id ? newComment : comment ))
     });
   }, []);

@@ -27,7 +27,6 @@ function MessagePageContainer(props) {
     .then(response=>response.data)
     .then(data=>{
       setSessionList(data.data);
-      setSessionList(data.data);
       setChooseSession(data.data[0]);
     });
    

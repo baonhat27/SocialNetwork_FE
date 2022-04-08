@@ -60,7 +60,7 @@ export default function Notification(props) {
 
     listenNotification("notification", (e) => {
       const data = JSON.parse(e.data);
-      console.log(data);
+      // console.log(data);
       if (data) {
         setNotifications((old) => [data, ...old]);
         count.current += 1;

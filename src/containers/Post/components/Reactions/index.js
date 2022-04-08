@@ -14,10 +14,10 @@ function ReactionBar({ postId, reactions, isReact }) {
   const [reactionCount, setReactionCount] = useState(reactions.total);
   const io = useSelector((state) => state.io);
   useEffect(() => {
-    io.on("reaction:create", (data) => {
+    io.on(`${postId}reaction:create`, (data) => {
       setReactionCount(prev => prev + 1)
     });
-    io.on("reaction:delete", (data) => {
+    io.on(`${postId}reaction:delete`, (data) => {
       setReactionCount(prev => prev - 1)
     });
   }, []);
