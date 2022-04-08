@@ -18,7 +18,7 @@ export default function Notification(props) {
     more.current = false;
     const res = await getNotification(count.current);
 
-    if (res.success) {
+    if (res.success && res.data.results.length !== 0) {
       setNotifications((old) => {
         return [...old, ...res.data.results];
       });

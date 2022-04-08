@@ -20,9 +20,14 @@ function ChatBoxContainer(props) {
   const countBeforeMessage = useRef(0);
   const loadBeforeMore = useRef(true);
 
-  const [seenList, setSeenList] = useState(
-    props.session.userLastSeen.filter((seen) => seen.user !== props.user._id)
-  );
+  const [seenList, setSeenList] = useState(() => {
+    return !props.session.userLastSeen ||
+      props.session.userLastSeen.length === 0
+      ? []
+      : props.session.userLastSeen.filter(
+          (seen) => seen.user !== props.user._id
+        );
+  });
 
   const callAPI = async () => {
     const res = await getMessage({
@@ -38,7 +43,7 @@ function ChatBoxContainer(props) {
   useEffect(async () => {
     //get message from another user
     await callAPI();
-    scrollToBottom();
+    //scrollToBottom();
   }, [props.session]);
 
   const isBottom = useRef(true);
@@ -123,6 +128,8 @@ function ChatBoxContainer(props) {
 
       if (data.createdBy._id !== props.user._id) {
         setLock(false);
+      } else {
+        scrollToBottom();
       }
 
       if (checkBottom()) {
@@ -188,26 +195,24 @@ function ChatBoxContainer(props) {
   };
 
   return (
-    messageList.length !== 0 && (
-      <ChatBoxComponent
-        sessionName={sessionName}
-        setSessionName={setSessionName}
-        sessionNameInput={sessionNameInput}
-        imageShow={imageShow}
-        setImageShow={setImageShow}
-        message={message}
-        seenList={seenList}
-        changeMessageInput={changeMessageInput}
-        setSessionNameInput={setSessionNameInput}
-        handleSessionName={handleSessionName}
-        setHandleSessionName={setHandleSessionName}
-        session={props.session}
-        messageList={messageList}
-        saveSessionName={saveSessionName}
-        sendMessage={sendMessage}
-        handleScroll={handleScroll}
-      />
-    )
+    <ChatBoxComponent
+      sessionName={sessionName}
+      setSessionName={setSessionName}
+      sessionNameInput={sessionNameInput}
+      imageShow={imageShow}
+      setImageShow={setImageShow}
+      message={message}
+      seenList={seenList}
+      changeMessageInput={changeMessageInput}
+      setSessionNameInput={setSessionNameInput}
+      handleSessionName={handleSessionName}
+      setHandleSessionName={setHandleSessionName}
+      session={props.session}
+      messageList={messageList}
+      saveSessionName={saveSessionName}
+      sendMessage={sendMessage}
+      handleScroll={handleScroll}
+    />
   );
 }
 

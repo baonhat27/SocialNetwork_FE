@@ -35,9 +35,10 @@ function MessagePageContainer(props) {
               if (
                 session.userLastSeen[i].user === localStorage.getItem("userId")
               ) {
-                session.isSeen =
-                  session.userLastSeen[i].seenAt >
-                  session.lastMessage.createdAt;
+                session.isSeen = session.lastMessage
+                  ? session.userLastSeen[i].seenAt >
+                    session.lastMessage.createdAt
+                  : true;
               }
             }
             return session;
@@ -65,8 +66,10 @@ function MessagePageContainer(props) {
       setSessionList((sessionList) =>
         sessionList.map((session) => {
           if (session.sessionId._id == data.sessionId) {
-            session.lastMessage.content = data.content;
-            session.lastMessage.createdAt = data.createdAt;
+            session.lastMessage = {
+              content: data.content,
+              createdAt: data.createdAt,
+            };
           }
           session.isSeen = false;
           return session;
@@ -90,6 +93,7 @@ function MessagePageContainer(props) {
       setUserList([]);
     }
   }, 1000);
+
   const createOrJoinSession = async (name, friendId) => {
     const sessionCheck = sessionList.filter(
       (session) =>
@@ -98,6 +102,7 @@ function MessagePageContainer(props) {
     if (sessionCheck.length == 0) {
       const session = await joinTheSession(friendId, user._id);
       setSessionList([...sessionList, session.data.data]);
+      console.log(session.data.data);
       setChooseSession(session.data.data);
     } else {
       setChooseSession(sessionCheck[0]);
@@ -114,22 +119,18 @@ function MessagePageContainer(props) {
   };
 
   return (
-    <div>
-      {
-        <MessagePageComponent
-          chooseSession={chooseSession}
-          setChooseSession={setChooseSession}
-          createOrJoinSession={createOrJoinSession}
-          changeSearchKey={changeSearchKey}
-          sessionList={sessionList}
-          user={user}
-          userList={userList}
-          setUserList={setUserList}
-          userOnlineList={userOnlineList}
-          handleSeenMessage={handleSeenMessage}
-        />
-      }
-    </div>
+    <MessagePageComponent
+      chooseSession={chooseSession}
+      setChooseSession={setChooseSession}
+      createOrJoinSession={createOrJoinSession}
+      changeSearchKey={changeSearchKey}
+      sessionList={sessionList}
+      user={user}
+      userList={userList}
+      setUserList={setUserList}
+      userOnlineList={userOnlineList}
+      handleSeenMessage={handleSeenMessage}
+    />
   );
 }
 

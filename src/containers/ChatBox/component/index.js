@@ -13,18 +13,21 @@ function compareTime(time1, time2) {
 
 function ChatBoxComponent(props, ref) {
   const messageList = props.messageList.map((message) => {
-    message.seen = undefined;
+    message.seen = null;
     return message;
   });
+
   const listCreatedAt = messageList.map((message) => message.createdAt);
 
-  props.seenList.forEach((seen) => {
-    let index = binarySearch(listCreatedAt, seen.seenAt, compareTime);
-    if (index < 0) {
-      index = -(2 + index);
-    }
-    messageList[index].seen = seen;
-  });
+  messageList.length !== 0 &&
+    props.seenList.forEach((seen) => {
+      let index = binarySearch(listCreatedAt, seen.seenAt, compareTime);
+      console.log(index);
+      if (index < 0) {
+        index = -(2 + index);
+      }
+      messageList[index < 0 ? 0 : index].seen = seen;
+    });
 
   return (
     <div className={styles.chatBox}>

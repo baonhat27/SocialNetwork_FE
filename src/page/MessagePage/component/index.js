@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import Header from "../../../containers/Header";
 import ChatBoxContainer from "../../../containers/ChatBox";
+
 function MessagePageComponent(props) {
   return (
     <div className={styles.messagePage}>
@@ -76,23 +77,25 @@ function MessagePageComponent(props) {
                           " " +
                           session.userId.lastName}
                       </p>
-                      <p className={styles.message}>
-                        {session.isSeen ? (
-                          session.lastMessage.content
-                        ) : (
-                          <div
-                            style={{
-                              fontWeight: "500",
-                              color: "black",
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            {session.lastMessage.content}
-                            <div className={styles.blue_dot}></div>
-                          </div>
-                        )}
-                      </p>
+                      {session.lastMessage && (
+                        <p className={styles.message}>
+                          {session.isSeen ? (
+                            session.lastMessage.content || ""
+                          ) : (
+                            <div
+                              style={{
+                                fontWeight: "500",
+                                color: "black",
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              {session.lastMessage.content}
+                              <div className={styles.blue_dot}></div>
+                            </div>
+                          )}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );
