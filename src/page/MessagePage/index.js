@@ -7,49 +7,79 @@ import { useDispatch } from "react-redux";
 import getUserInfo from "../../shared/service/getUserInfo";
 import { checkToken } from "../../shared/service/tokenCheck";
 import lodash from "lodash";
+
 function MessagePageContainer(props) {
   const [mess, setMess] = useState([]);
   const [sessionList, setSessionList] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [userOnlineList,setUserOnlineList]=useState([]);
+  const [userOnlineList, setUserOnlineList] = useState([]);
   const [chooseSession, setChooseSession] = useState();
   const [id, setId] = useState();
   const io = useSelector((state) => state.io);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [isSeen, setIsSeen] = useState(false);
+
   useEffect(() => {
     checkToken(getUserInfo(dispatch), dispatch);
   }, [localStorage.getItem("token")]);
-  
-  useEffect( () => {
+
+  useEffect(() => {
     //get list session to render
-    const listSession =  getListSession()
-    .then(response=>response.data)
-    .then(data=>{
-      setSessionList(data.data);
-      console.log(data.data);
-      setChooseSession(data.data[0]);
-    });
-   
-    
-    io.emit("joinTheMessagePage",localStorage.getItem("userId")
-    );
-    io.on("getListUserOnline",function(data){
+    getListSession()
+      .then((response) => response.data)
+      .then((data) => {
+        setSessionList(
+          data.data.map((session) => {
+            for (let i = 0; i < session.userLastSeen.length; i++) {
+              if (
+                session.userLastSeen[i].user === localStorage.getItem("userId")
+              ) {
+                session.isSeen =
+                  session.userLastSeen[i].seenAt >
+                  session.lastMessage.createdAt;
+              }
+            }
+            return session;
+          })
+        );
+        setChooseSession(data.data[0]);
+      });
+
+    io.emit("joinTheMessagePage", localStorage.getItem("userId"));
+
+    io.on("getListUserOnline", function (data) {
       setUserOnlineList(data);
-    })
-    io.on("aPersonOnline",function(data){
-      setUserOnlineList(userOnlineList=>[...userOnlineList,data]);
-    })
-    io.on("aPersonOffline",function(data){
-      setUserOnlineList(userOnlineList=>userOnlineList.filter(user=>user._id!=data));
-    })
-    return ()=>{
-      io.emit("leaveTheMessagePage",localStorage.getItem("userId"));
+    });
+
+    io.on("aPersonOnline", function (data) {
+      setUserOnlineList((userOnlineList) => [...userOnlineList, data]);
+    });
+    io.on("aPersonOffline", function (data) {
+      setUserOnlineList((userOnlineList) =>
+        userOnlineList.filter((user) => user._id != data)
+      );
+    });
+
+    io.on("getMessage", function (data) {
+      setSessionList((sessionList) =>
+        sessionList.map((session) => {
+          if (session.sessionId._id == data.sessionId) {
+            session.lastMessage.content = data.content;
+            session.lastMessage.createdAt = data.createdAt;
+          }
+          session.isSeen = false;
+          return session;
+        })
+      );
+    });
+
+    return () => {
+      io.emit("leaveTheMessagePage", localStorage.getItem("userId"));
       io.removeAllListeners("getListUserOnline");
       io.removeAllListeners("aPersonOnline");
       io.removeAllListeners("aPersonOffline");
-      
-    }
+    };
   }, []);
   //search user to join chat session
   const changeSearchKey = lodash.debounce(async (item) => {
@@ -74,6 +104,15 @@ function MessagePageContainer(props) {
     }
   };
 
+  const handleSeenMessage = (id) => {
+    setSessionList(
+      sessionList.map((session) => {
+        if (session.sessionId._id === id) session.isSeen = true;
+        return session;
+      })
+    );
+  };
+
   return (
     <div>
       {
@@ -87,6 +126,7 @@ function MessagePageContainer(props) {
           userList={userList}
           setUserList={setUserList}
           userOnlineList={userOnlineList}
+          handleSeenMessage={handleSeenMessage}
         />
       }
     </div>

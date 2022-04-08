@@ -19,9 +19,10 @@ function MessagePageComponent(props) {
             </div>
             {props.userList.length ? (
               <div className={styles.searchResult}>
-                {props.userList.map((user) => {
+                {props.userList.map((user, index) => {
                   return (
                     <div
+                      key={index}
                       className={styles.resultComponent}
                       onClick={function () {
                         props.createOrJoinSession(
@@ -75,7 +76,23 @@ function MessagePageComponent(props) {
                           " " +
                           session.userId.lastName}
                       </p>
-                      <p className={styles.message}>content</p>
+                      <p className={styles.message}>
+                        {session.isSeen ? (
+                          session.lastMessage.content
+                        ) : (
+                          <div
+                            style={{
+                              fontWeight: "500",
+                              color: "black",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            {session.lastMessage.content}
+                            <div className={styles.blue_dot}></div>
+                          </div>
+                        )}
+                      </p>
                     </div>
                   </div>
                 );
@@ -87,32 +104,46 @@ function MessagePageComponent(props) {
           <div className={styles.listChatSession_footer}></div>
         </div>
         <div className={styles.body_chatSession}>
-          {props.chooseSession && (
-            <ChatBoxContainer session={props.chooseSession} user={props.user} />
+          {props.chooseSession && props.user && (
+            <ChatBoxContainer
+              handleSeenMessage={props.handleSeenMessage}
+              session={props.chooseSession}
+              user={props.user}
+            />
           )}
         </div>
         <div className={styles.body_infoChatSession}>
-          <h2 style={{color:"gray"}}>Đang hoạt động</h2>
-          {
-            props.userOnlineList.map(userOnline=>{
-              if(userOnline._id!=localStorage.getItem("userId")){
-                return <div className={styles.userOnlineBox} onClick={function(){
-                  props.createOrJoinSession(userOnline.firstName+" "+userOnline.lastName,userOnline._id)
-                }}>
-                          <div className={styles.userOnline_Box}>
-                            <div className={styles.userOnlineBox_avatarBox}>
-                              <img src={userOnline.avatar} className={styles.userOnlineBox_avatar}/>
-                            </div>
-                            <div className={styles.status}>
-  
-                            </div>
-                          </div>
-                          <p className={styles.userOnline_name}>{userOnline.firstName+" "+userOnline.lastName}</p>
+          <h2 style={{ color: "gray" }}>Đang hoạt động</h2>
+          {props.userOnlineList.map((userOnline, index) => {
+            if (userOnline._id != localStorage.getItem("userId")) {
+              return (
+                <div
+                  key={index}
+                  className={styles.userOnlineBox}
+                  onClick={function () {
+                    props.createOrJoinSession(
+                      userOnline.firstName + " " + userOnline.lastName,
+                      userOnline._id
+                    );
+                  }}
+                >
+                  <div className={styles.userOnline_Box}>
+                    <div className={styles.userOnlineBox_avatarBox}>
+                      <img
+                        src={userOnline.avatar}
+                        className={styles.userOnlineBox_avatar}
+                      />
+                    </div>
+                    <div className={styles.status}></div>
                   </div>
-              }
-              return <></>
-            })
-          }
+                  <p className={styles.userOnline_name}>
+                    {userOnline.firstName + " " + userOnline.lastName}
+                  </p>
+                </div>
+              );
+            }
+            return <></>;
+          })}
         </div>
       </div>
     </div>

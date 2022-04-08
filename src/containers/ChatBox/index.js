@@ -20,18 +20,19 @@ function ChatBoxContainer(props) {
   const countBeforeMessage = useRef(0);
   const loadBeforeMore = useRef(true);
 
+  const [seenList, setSeenList] = useState(
+    props.session.userLastSeen.filter((seen) => seen.user !== props.user._id)
+  );
+
   const callAPI = async () => {
     const res = await getMessage({
       userId: props.user._id,
       sessionId: props.session.sessionId._id,
     });
-    setMessageList((messageList) =>
-      messageList.concat(res.data.result).reverse()
-    );
-    console.log(res.data.result);
-    //loadMore.current =
-    //countBeforeMessage.current + res.data.result.length < res.data.total;
-    //countBeforeMessage.current += res.data.result.length;
+
+    setMessageList((messageList) => {
+      return messageList.concat(res.data.result).reverse();
+    });
   };
 
   useEffect(async () => {
@@ -87,6 +88,7 @@ function ChatBoxContainer(props) {
     if (isBottom.current && !lock) {
       setLock(true);
       seenMessage();
+      props.handleSeenMessage(props.session.sessionId._id);
     }
 
     if (checkTop()) {
@@ -129,11 +131,26 @@ function ChatBoxContainer(props) {
 
       if (isBottom.current) {
         scrollToBottom();
+        props.handleSeenMessage(props.session.sessionId._id);
       }
+
+      setSeenList(
+        seenList.map((seen) => {
+          if (seen.user === data.createdBy._id) seen.seenAt = data.createdAt;
+          return seen;
+        })
+      );
     });
 
     io.on("seenMessage", function (data) {
-      console.log(data);
+      setSeenList(
+        seenList.map((seen) => {
+          if (seen.user === data.user) {
+            seen.seenAt = data.seenAt;
+          }
+          return seen;
+        })
+      );
     });
 
     seenMessage();
@@ -171,23 +188,26 @@ function ChatBoxContainer(props) {
   };
 
   return (
-    <ChatBoxComponent
-      sessionName={sessionName}
-      setSessionName={setSessionName}
-      sessionNameInput={sessionNameInput}
-      imageShow={imageShow}
-      setImageShow={setImageShow}
-      message={message}
-      changeMessageInput={changeMessageInput}
-      setSessionNameInput={setSessionNameInput}
-      handleSessionName={handleSessionName}
-      setHandleSessionName={setHandleSessionName}
-      session={props.session}
-      messageList={messageList}
-      saveSessionName={saveSessionName}
-      sendMessage={sendMessage}
-      handleScroll={handleScroll}
-    />
+    messageList.length !== 0 && (
+      <ChatBoxComponent
+        sessionName={sessionName}
+        setSessionName={setSessionName}
+        sessionNameInput={sessionNameInput}
+        imageShow={imageShow}
+        setImageShow={setImageShow}
+        message={message}
+        seenList={seenList}
+        changeMessageInput={changeMessageInput}
+        setSessionNameInput={setSessionNameInput}
+        handleSessionName={handleSessionName}
+        setHandleSessionName={setHandleSessionName}
+        session={props.session}
+        messageList={messageList}
+        saveSessionName={saveSessionName}
+        sendMessage={sendMessage}
+        handleScroll={handleScroll}
+      />
+    )
   );
 }
 

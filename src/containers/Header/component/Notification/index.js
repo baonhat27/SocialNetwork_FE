@@ -83,7 +83,7 @@ export default function Notification(props) {
           className={"fa-solid fa-bell " + styles.icon}
           onClick={handleShowNoti}
         ></i>
-        {totalUnread ? <i className={styles.red_text}>{totalUnread}</i> : ""}
+        {totalUnread ? <i className={styles.red_text}></i> : ""}
       </div>
       {showNoti && (
         <ListNotification

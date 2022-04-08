@@ -2,8 +2,30 @@ import React, { useEffect, useRef } from "react";
 import withUploadImage from "../../UploadImage";
 import styles from "./index.module.css";
 import ImageShowContainer from "../../ImageShow";
+import { binarySearch } from "../../../shared/utils/binsearch";
+import { message } from "antd";
+
+function compareTime(time1, time2) {
+  time1 = new Date(time1).getTime();
+  time2 = new Date(time2).getTime();
+  return time1 - time2;
+}
 
 function ChatBoxComponent(props, ref) {
+  const messageList = props.messageList.map((message) => {
+    message.seen = undefined;
+    return message;
+  });
+  const listCreatedAt = messageList.map((message) => message.createdAt);
+
+  props.seenList.forEach((seen) => {
+    let index = binarySearch(listCreatedAt, seen.seenAt, compareTime);
+    if (index < 0) {
+      index = -(2 + index);
+    }
+    messageList[index].seen = seen;
+  });
+
   return (
     <div className={styles.chatBox}>
       <div className={styles.chatBox_header}>
@@ -92,7 +114,7 @@ function ChatBoxComponent(props, ref) {
         onScroll={() => props.handleScroll()}
         className={styles.chatBox_body}
       >
-        {props.messageList.map((message, index) => {
+        {messageList.map((message, index) => {
           return (
             <div
               key={index}
@@ -102,6 +124,7 @@ function ChatBoxComponent(props, ref) {
                   : styles.messageShow + " " + styles.me
               }
             >
+              {message.seen && <span className={styles.seenList}>Da</span>}
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
