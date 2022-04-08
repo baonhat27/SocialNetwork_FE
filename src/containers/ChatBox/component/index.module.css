@@ -106,6 +106,7 @@
   display: flex;
   align-items: center;
   font-size: 18px;
+  position: relative;
   overflow: auto;
 }
 .message_image {
@@ -275,3 +276,32 @@
   right: 5px;
 }
 
+.message_delete{
+  position: absolute;
+  right: 30px;
+  top: 35px;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
+}
+.message_delete.me{
+  left: 20px;
+}
+.message_deleteBox{
+  position: relative;
+}
+.message_deleteBox:hover .message_delete{
+  display: block;
+}
+.message_deleteIcon{
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background: rgb(223, 223, 223);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
