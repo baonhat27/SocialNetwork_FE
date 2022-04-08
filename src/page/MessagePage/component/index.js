@@ -109,6 +109,7 @@ function MessagePageComponent(props) {
         <div className={styles.body_chatSession}>
           {props.chooseSession && props.user && (
             <ChatBoxContainer
+            updateSessionContent={props.updateSessionContent}
               handleSeenMessage={props.handleSeenMessage}
               session={props.chooseSession}
               user={props.user}

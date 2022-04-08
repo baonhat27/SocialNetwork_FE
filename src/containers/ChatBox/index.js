@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
-import { handleSessionNameService } from "./service";
+import { deleteMessageService, handleSessionNameService } from "./service";
 import { getMessage } from "../../shared/service";
 
 function ChatBoxContainer(props) {
@@ -13,6 +13,7 @@ function ChatBoxContainer(props) {
   const [imageShow, setImageShow] = useState(-1);
   const [sessionName, setSessionName] = useState(props.session.sessionId.name);
   const [handleSessionName, setHandleSessionName] = useState(false);
+  const [showDeleteMessage,setShowDeleteMessage]=useState(false);
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
@@ -193,10 +194,34 @@ function ChatBoxContainer(props) {
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
   };
+  const deleteMessage= async (_id)=>{
+    
+    const check=await deleteMessageService(_id);
+    if(check){
+      setMessageList(messageList=>messageList.map((message,index)=>{
+        if(index==messageList.length-1){
+          props.updateSessionContent(props.session.sessionId._id);
+        }
+        if(message._id==_id){
+          return {
+            ...message,
+            content:"Tin nhắn đã gỡ",
+            image:[]
+          }
+        }
+        return message
+      }));
+    }
+    else{
+      alert("Xóa tin nhắn thất bại, vui lòng thử lại sau");
+    }
+
+  }
 
   return (
     <ChatBoxComponent
       sessionName={sessionName}
+      setShowDeleteMessage={setShowDeleteMessage}
       setSessionName={setSessionName}
       sessionNameInput={sessionNameInput}
       imageShow={imageShow}
@@ -212,6 +237,7 @@ function ChatBoxContainer(props) {
       saveSessionName={saveSessionName}
       sendMessage={sendMessage}
       handleScroll={handleScroll}
+      deleteMessage={deleteMessage}
     />
   );
 }

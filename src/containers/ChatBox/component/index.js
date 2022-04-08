@@ -140,6 +140,7 @@ function ChatBoxComponent(props, ref) {
                   src={message.createdBy.avatar}
                 />
               </div>
+              
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
@@ -161,7 +162,20 @@ function ChatBoxComponent(props, ref) {
                         : styles.message_contentBox + " " + styles.me
                     }
                   >
-                    <p className={styles.message_content}>{message.content}</p>
+                    <div className={styles.message_deleteBox}>
+                      <div className={ message.createdBy._id != localStorage.getItem("userId")?styles.message_delete:styles.message_delete+" "+styles.me}>
+                        <i className={"fa-solid fa-trash-can "+styles.message_deleteIcon} onClick={
+                          function(){
+                            props.deleteMessage(message._id);
+                            
+                          }
+                        }></i>
+                      </div>
+                      <p className={styles.message_content}>
+                      
+                      {message.content===""?"Tin nhắn đã gỡ":message.content}</p>
+                    </div>
+                    
                   </div>
                   {message.image.length > 0 ? (
                     <div
