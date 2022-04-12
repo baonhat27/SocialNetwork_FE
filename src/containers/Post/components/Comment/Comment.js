@@ -12,7 +12,7 @@ function Comment({ comment, onDeleteComment }) {
   const [text, setText] = useState("");
   const user = comment.createdBy;
   const localUserId = localStorage.getItem("userId");
-
+  
   const handleOption = () => {
     setOptionOn(!optionOn);
   };
