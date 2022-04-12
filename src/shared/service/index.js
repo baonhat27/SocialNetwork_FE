@@ -32,7 +32,7 @@ const GET_REACTION_URL = CREATE_REACTION_URL;
 export const GET_NOTIFICATION_URL = `${HOST}/v1/notifications`;
 export const READ_NOTIFICATION_URL = GET_NOTIFICATION_URL;
 
-export const GET_MESSAGES_URL = `${HOST}chat/message`;
+export const GET_MESSAGES_URL = `${HOST}/chat/message`;
 
 export const uploadImages = async (files) => {
   const formData = new FormData();
