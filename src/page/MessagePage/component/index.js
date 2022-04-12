@@ -82,7 +82,7 @@ function MessagePageComponent(props) {
                           {session.isSeen ? (
                             session.lastMessage.content || ""
                           ) : (
-                            <div
+                            <span
                               style={{
                                 fontWeight: "500",
                                 color: "black",
@@ -91,8 +91,8 @@ function MessagePageComponent(props) {
                               }}
                             >
                               {session.lastMessage.content}
-                              <div className={styles.blue_dot}></div>
-                            </div>
+                              <i className={styles.blue_dot}></i>
+                            </span>
                           )}
                         </p>
                       )}
@@ -109,7 +109,7 @@ function MessagePageComponent(props) {
         <div className={styles.body_chatSession}>
           {props.chooseSession && props.user && (
             <ChatBoxContainer
-            updateSessionContent={props.updateSessionContent}
+              updateSessionContent={props.updateSessionContent}
               handleSeenMessage={props.handleSeenMessage}
               session={props.chooseSession}
               user={props.user}

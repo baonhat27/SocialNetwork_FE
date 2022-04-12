@@ -17,7 +17,7 @@ function ChatBoxComponent(props, ref) {
   const socket = useSelector(state => state.io)
 
   const messageList = props.messageList.map((message) => {
-    message.seen = null;
+    message.seen = [];
     return message;
   });
 
@@ -26,11 +26,10 @@ function ChatBoxComponent(props, ref) {
   messageList.length !== 0 &&
     props.seenList.forEach((seen) => {
       let index = binarySearch(listCreatedAt, seen.seenAt, compareTime);
-      console.log(index);
       if (index < 0) {
         index = -(2 + index);
       }
-      messageList[index < 0 ? 0 : index].seen = seen;
+      messageList[index < 0 ? 0 : index].seen.push(seen);
     });
 
   const handleCall = type => {
@@ -141,7 +140,17 @@ function ChatBoxComponent(props, ref) {
                   : styles.messageShow + " " + styles.me
               }
             >
-              {message.seen && <span className={styles.seenList}>Da</span>}
+              {message.seen.length !== 0 &&
+                message.seen.map((seen) => {
+                  return (
+                    <div key={seen._id} className={styles.round_img}>
+                      <img
+                        src={seen.user.avatar}
+                        className={styles.seen_avatar}
+                      />
+                    </div>
+                  );
+                })}
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
@@ -154,7 +163,7 @@ function ChatBoxComponent(props, ref) {
                   src={message.createdBy.avatar}
                 />
               </div>
-              
+
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
@@ -177,19 +186,29 @@ function ChatBoxComponent(props, ref) {
                     }
                   >
                     <div className={styles.message_deleteBox}>
-                      <div className={ message.createdBy._id != localStorage.getItem("userId")?styles.message_delete:styles.message_delete+" "+styles.me}>
-                        <i className={"fa-solid fa-trash-can "+styles.message_deleteIcon} onClick={
-                          function(){
-                            props.deleteMessage(message._id);
-                            
+                      <div
+                        className={
+                          message.createdBy._id !=
+                          localStorage.getItem("userId")
+                            ? styles.message_delete
+                            : styles.message_delete + " " + styles.me
+                        }
+                      >
+                        <i
+                          className={
+                            "fa-solid fa-trash-can " + styles.message_deleteIcon
                           }
-                        }></i>
+                          onClick={function () {
+                            props.deleteMessage(message._id);
+                          }}
+                        ></i>
                       </div>
                       <p className={styles.message_content}>
-                      
-                      {message.content===""?"Tin nhắn đã gỡ":message.content}</p>
+                        {message.content === ""
+                          ? "Tin nhắn đã gỡ"
+                          : message.content}
+                      </p>
                     </div>
-                    
                   </div>
                   {message.image.length > 0 ? (
                     <div

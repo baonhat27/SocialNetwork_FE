@@ -1,79 +1,89 @@
-.headerSetting{
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    width: 400px;
-    background: white;
-    z-index: 3;
-    border-radius: 10px;
-    border: 0.5px solid #dddcdc80;
-    box-shadow: 6px 6px 8px #dddcdc80;
-    color: black;
+.headerSetting {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 400px;
+  background: white;
+  z-index: 3;
+  border-radius: 10px;
+  border: 0.5px solid #dddcdc80;
+  box-shadow: 6px 6px 8px #dddcdc80;
+  color: black;
 }
-.setting_button{
-    height: 100%;
-    border-radius: 10px;
-    background: white;
-    height: auto;
-    display: flex;
-    margin: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.setting_button {
+  height: 100%;
+  border-radius: 10px;
+  background: white;
+  height: auto;
+  display: flex;
+  margin: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.setting_button:hover{
-    background: #f0f2f5;
+.setting_button:hover {
+  background: #f0f2f5;
 }
-.name{
-    height: 80px;
-    width: 310px;
-    position: relative;
+.name {
+  height: 80px;
+  width: 310px;
+  position: relative;
 }
-.avatar{
-    height: 60px;
-    width: 60px;
-    border-radius: 80px;
+
+.round_img {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 80px;
 }
-.user_name{
-    position: absolute;
-    top:10px;
-    left: 10px;
+
+.avatar {
+  height: 100%;
 }
-.text{
-    color: #888a8d;
-    font-size: 17px;
-    position: absolute;
-    bottom: 15px;
-    left: 10px;
+.user_name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
-.line{
-    width: 90%;
-    height: 1px;
-    background: #ced0d4;
-    margin: 0 auto;
+.text {
+  color: #888a8d;
+  font-size: 17px;
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
 }
-.icon{
-    height: 45px;
-    width: 45px;
-    border-radius: 40px;
-    background: #e4e6eb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-    font-size: 23px;
+.line {
+  width: 90%;
+  height: 1px;
+  background: #ced0d4;
+  margin: 0 auto;
 }
-.settingName{
-    font-size: 19px;
-    position: absolute;
-    top:25px;
-    left: 10px;
+.icon {
+  height: 45px;
+  width: 45px;
+  border-radius: 40px;
+  background: #e4e6eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 23px;
 }
-.icon_right{
-    font-size: 25px;
-    position: absolute;
-    right: 5px;
-    top:25px;
+.settingName {
+  font-size: 19px;
+  position: absolute;
+  top: 25px;
+  left: 10px;
 }
+.icon_right {
+  font-size: 25px;
+  position: absolute;
+  right: 5px;
+  top: 25px;
+}
+

@@ -13,7 +13,7 @@ function ChatBoxContainer(props) {
   const [imageShow, setImageShow] = useState(-1);
   const [sessionName, setSessionName] = useState(props.session.sessionId.name);
   const [handleSessionName, setHandleSessionName] = useState(false);
-  const [showDeleteMessage,setShowDeleteMessage]=useState(false);
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false);
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
@@ -25,9 +25,9 @@ function ChatBoxContainer(props) {
     return !props.session.userLastSeen ||
       props.session.userLastSeen.length === 0
       ? []
-      : props.session.userLastSeen.filter(
-          (seen) => seen.user !== props.user._id
-        );
+      : props.session.userLastSeen.filter((seen) => {
+          return seen.user._id !== props.user._id;
+        });
   });
 
   const callAPI = async () => {
@@ -44,7 +44,7 @@ function ChatBoxContainer(props) {
   useEffect(async () => {
     //get message from another user
     await callAPI();
-    //scrollToBottom();
+    scrollToBottom();
   }, [props.session]);
 
   const isBottom = useRef(true);
@@ -88,7 +88,6 @@ function ChatBoxContainer(props) {
     lastMessage.scrollIntoView();
     isBottom.current = true;
   };
-
   const handleScroll = async () => {
     isBottom.current = checkBottom();
     if (isBottom.current && !lock) {
@@ -99,6 +98,7 @@ function ChatBoxContainer(props) {
 
     if (checkTop()) {
       const firstMessage = messageList[0];
+      console.log(firstMessage);
       if (loadBeforeMore.current) {
         loadBeforeMore.current = false;
         const res = await getMessage({
@@ -153,7 +153,7 @@ function ChatBoxContainer(props) {
     io.on("seenMessage", function (data) {
       setSeenList(
         seenList.map((seen) => {
-          if (seen.user === data.user) {
+          if (seen.user._id === data.user) {
             seen.seenAt = data.seenAt;
           }
           return seen;
@@ -194,29 +194,28 @@ function ChatBoxContainer(props) {
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
   };
-  const deleteMessage= async (_id)=>{
-    
-    const check=await deleteMessageService(_id);
-    if(check){
-      setMessageList(messageList=>messageList.map((message,index)=>{
-        if(index==messageList.length-1){
-          props.updateSessionContent(props.session.sessionId._id);
-        }
-        if(message._id==_id){
-          return {
-            ...message,
-            content:"Tin nhắn đã gỡ",
-            image:[]
+  const deleteMessage = async (_id) => {
+    const check = await deleteMessageService(_id);
+    if (check) {
+      setMessageList((messageList) =>
+        messageList.map((message, index) => {
+          if (index == messageList.length - 1) {
+            props.updateSessionContent(props.session.sessionId._id);
           }
-        }
-        return message
-      }));
-    }
-    else{
+          if (message._id == _id) {
+            return {
+              ...message,
+              content: "Tin nhắn đã gỡ",
+              image: [],
+            };
+          }
+          return message;
+        })
+      );
+    } else {
       alert("Xóa tin nhắn thất bại, vui lòng thử lại sau");
     }
-
-  }
+  };
 
   return (
     <ChatBoxComponent
