@@ -199,7 +199,7 @@ function ChatBoxComponent(props, ref) {
                             "fa-solid fa-trash-can " + styles.message_deleteIcon
                           }
                           onClick={function () {
-                            props.deleteMessage(message._id);
+                            props.setShowDeleteMessage(message._id);
                           }}
                         ></i>
                       </div>
@@ -321,6 +321,29 @@ function ChatBoxComponent(props, ref) {
           }}
         ></i>
       </div>
+      {
+      props.showDeleteMessage!=""?<div className="background_dark show">
+        <div className={styles.deleteMessageForm}>
+        <i className={"fa-regular fa-circle-xmark "+styles.deleteMessageForm_icon} onClick={
+          function(){
+            props.setShowDeleteMessage("")
+          }
+        }></i>
+          <div className={styles.deleteMessageForm_button} onClick={
+            function(){
+              props.deleteMessage(props.showDeleteMessage);
+              props.setShowDeleteMessage("");
+            }
+          }>Xóa phía mình</div>
+          <div className={styles.deleteMessageForm_button} onClick={
+            function(){
+              props.deleteMessageEveryBody();
+              props.setShowDeleteMessage("");
+            }
+          }>Xóa phía mọi người</div>
+        </div>
+      </div>:<></> 
+      }
     </div>
   );
 }
