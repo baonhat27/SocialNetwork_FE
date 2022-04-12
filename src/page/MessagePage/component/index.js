@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import Header from "../../../containers/Header";
 import ChatBoxContainer from "../../../containers/ChatBox";
+
 function MessagePageComponent(props) {
   return (
     <div className={styles.messagePage}>
@@ -76,7 +77,25 @@ function MessagePageComponent(props) {
                           " " +
                           session.userId.lastName}
                       </p>
-                      <p className={styles.message}>content</p>
+                      {session.lastMessage && (
+                        <p className={styles.message}>
+                          {session.isSeen ? (
+                            session.lastMessage.content || ""
+                          ) : (
+                            <div
+                              style={{
+                                fontWeight: "500",
+                                color: "black",
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              {session.lastMessage.content}
+                              <div className={styles.blue_dot}></div>
+                            </div>
+                          )}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );
@@ -88,38 +107,46 @@ function MessagePageComponent(props) {
           <div className={styles.listChatSession_footer}></div>
         </div>
         <div className={styles.body_chatSession}>
-          {props.chooseSession && (
-            <ChatBoxContainer session={props.chooseSession} user={props.user} />
+          {props.chooseSession && props.user && (
+            <ChatBoxContainer
+            updateSessionContent={props.updateSessionContent}
+              handleSeenMessage={props.handleSeenMessage}
+              session={props.chooseSession}
+              user={props.user}
+            />
           )}
         </div>
         <div className={styles.body_infoChatSession}>
           <h2 style={{ color: "gray" }}>Đang hoạt động</h2>
           {props.userOnlineList.map((userOnline, index) => {
-            return (
-              <div
-                key={index}
-                className={styles.userOnlineBox}
-                onClick={function () {
-                  props.createOrJoinSession(
-                    userOnline.firstName + " " + userOnline.lastName,
-                    userOnline._id
-                  );
-                }}
-              >
-                <div className={styles.userOnline_Box}>
-                  <div className={styles.userOnlineBox_avatarBox}>
-                    <img
-                      src={userOnline.avatar}
-                      className={styles.userOnlineBox_avatar}
-                    />
+            if (userOnline._id != localStorage.getItem("userId")) {
+              return (
+                <div
+                  key={index}
+                  className={styles.userOnlineBox}
+                  onClick={function () {
+                    props.createOrJoinSession(
+                      userOnline.firstName + " " + userOnline.lastName,
+                      userOnline._id
+                    );
+                  }}
+                >
+                  <div className={styles.userOnline_Box}>
+                    <div className={styles.userOnlineBox_avatarBox}>
+                      <img
+                        src={userOnline.avatar}
+                        className={styles.userOnlineBox_avatar}
+                      />
+                    </div>
+                    <div className={styles.status}></div>
                   </div>
-                  <div className={styles.status}></div>
+                  <p className={styles.userOnline_name}>
+                    {userOnline.firstName + " " + userOnline.lastName}
+                  </p>
                 </div>
-                <p className={styles.userOnline_name}>
-                  {userOnline.firstName + " " + userOnline.lastName}
-                </p>
-              </div>
-            );
+              );
+            }
+            return <></>;
           })}
         </div>
       </div>

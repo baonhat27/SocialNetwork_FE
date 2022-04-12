@@ -18,7 +18,7 @@ export default function Notification(props) {
     more.current = false;
     const res = await getNotification(count.current);
 
-    if (res.success) {
+    if (res.success && res.data.results.length !== 0) {
       setNotifications((old) => {
         return [...old, ...res.data.results];
       });
@@ -83,7 +83,7 @@ export default function Notification(props) {
           className={"fa-solid fa-bell " + styles.icon}
           onClick={handleShowNoti}
         ></i>
-        {totalUnread ? <i className={styles.red_text}>{totalUnread}</i> : ""}
+        {totalUnread ? <i className={styles.red_text}></i> : ""}
       </div>
       {showNoti && (
         <ListNotification

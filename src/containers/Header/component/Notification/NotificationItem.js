@@ -19,7 +19,7 @@ export default function NotificationItem({ noti, readNoti, showNoti }) {
 
     switch (activity.targetModel) {
       case "Post":
-        history.push(`/posts/${activity.target}`);
+        history.push(`/posts/${activity.target._id}`);
         break;
       case "Comment":
         history.push(`/posts/${activity.target.postId}`);
@@ -44,6 +44,7 @@ export default function NotificationItem({ noti, readNoti, showNoti }) {
         <img
           className={styles.avatar}
           src={
+            !activity.createdBy ||
             activity.createdBy.avatar === "no information"
               ? defaultUserAvatar
               : activity.createdBy.avatar

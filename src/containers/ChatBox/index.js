@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ChatBoxComponent from "./component";
 import styles from "./component/index.module.css";
-import { handleSessionNameService } from "./service";
+import { deleteMessageService, handleSessionNameService } from "./service";
 import { getMessage } from "../../shared/service";
 
 function ChatBoxContainer(props) {
@@ -13,6 +13,7 @@ function ChatBoxContainer(props) {
   const [imageShow, setImageShow] = useState(-1);
   const [sessionName, setSessionName] = useState(props.session.sessionId.name);
   const [handleSessionName, setHandleSessionName] = useState(false);
+  const [showDeleteMessage,setShowDeleteMessage]=useState(false);
   const [sessionNameInput, setSessionNameInput] = useState(
     props.session.sessionId.name
   );
@@ -20,23 +21,30 @@ function ChatBoxContainer(props) {
   const countBeforeMessage = useRef(0);
   const loadBeforeMore = useRef(true);
 
+  const [seenList, setSeenList] = useState(() => {
+    return !props.session.userLastSeen ||
+      props.session.userLastSeen.length === 0
+      ? []
+      : props.session.userLastSeen.filter(
+          (seen) => seen.user !== props.user._id
+        );
+  });
+
   const callAPI = async () => {
     const res = await getMessage({
       userId: props.user._id,
       sessionId: props.session.sessionId._id,
     });
-    setMessageList((messageList) =>
-      messageList.concat(res.data.result).reverse()
-    );
-    //loadMore.current =
-    //countBeforeMessage.current + res.data.result.length < res.data.total;
-    //countBeforeMessage.current += res.data.result.length;
+
+    setMessageList((messageList) => {
+      return messageList.concat(res.data.result).reverse();
+    });
   };
 
   useEffect(async () => {
     //get message from another user
     await callAPI();
-    scrollToBottom();
+    //scrollToBottom();
   }, [props.session]);
 
   const isBottom = useRef(true);
@@ -86,6 +94,7 @@ function ChatBoxContainer(props) {
     if (isBottom.current && !lock) {
       setLock(true);
       seenMessage();
+      props.handleSeenMessage(props.session.sessionId._id);
     }
 
     if (checkTop()) {
@@ -120,6 +129,8 @@ function ChatBoxContainer(props) {
 
       if (data.createdBy._id !== props.user._id) {
         setLock(false);
+      } else {
+        scrollToBottom();
       }
 
       if (checkBottom()) {
@@ -128,11 +139,26 @@ function ChatBoxContainer(props) {
 
       if (isBottom.current) {
         scrollToBottom();
+        props.handleSeenMessage(props.session.sessionId._id);
       }
+
+      setSeenList(
+        seenList.map((seen) => {
+          if (seen.user === data.createdBy._id) seen.seenAt = data.createdAt;
+          return seen;
+        })
+      );
     });
 
     io.on("seenMessage", function (data) {
-      console.log(data);
+      setSeenList(
+        seenList.map((seen) => {
+          if (seen.user === data.user) {
+            seen.seenAt = data.seenAt;
+          }
+          return seen;
+        })
+      );
     });
 
     seenMessage();
@@ -168,15 +194,40 @@ function ChatBoxContainer(props) {
   const changeMessageInput = (item) => {
     setMessage(item.target.value);
   };
+  const deleteMessage= async (_id)=>{
+    
+    const check=await deleteMessageService(_id);
+    if(check){
+      setMessageList(messageList=>messageList.map((message,index)=>{
+        if(index==messageList.length-1){
+          props.updateSessionContent(props.session.sessionId._id);
+        }
+        if(message._id==_id){
+          return {
+            ...message,
+            content:"Tin nhắn đã gỡ",
+            image:[]
+          }
+        }
+        return message
+      }));
+    }
+    else{
+      alert("Xóa tin nhắn thất bại, vui lòng thử lại sau");
+    }
+
+  }
 
   return (
     <ChatBoxComponent
       sessionName={sessionName}
+      setShowDeleteMessage={setShowDeleteMessage}
       setSessionName={setSessionName}
       sessionNameInput={sessionNameInput}
       imageShow={imageShow}
       setImageShow={setImageShow}
       message={message}
+      seenList={seenList}
       changeMessageInput={changeMessageInput}
       setSessionNameInput={setSessionNameInput}
       handleSessionName={handleSessionName}
@@ -186,6 +237,7 @@ function ChatBoxContainer(props) {
       saveSessionName={saveSessionName}
       sendMessage={sendMessage}
       handleScroll={handleScroll}
+      deleteMessage={deleteMessage}
     />
   );
 }
