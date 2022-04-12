@@ -77,3 +77,9 @@ export const searchInfo = (u) => {
     searchkey: u,
   };
 };
+export const incomingCall = (value) => {
+  return {
+    type: "incomingCall",
+    value: value
+  };
+};

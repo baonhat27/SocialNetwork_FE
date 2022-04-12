@@ -25,6 +25,15 @@ const it = {
   },
   notifications: [],
   io:io("http://localhost:8000"),
+  incomingCall: {
+    isShow: false,
+    firstName: '', 
+    lastName: '', 
+    avatar: 'https://avatarfiles.alphacoders.com/121/121046.jpg', 
+    caller_socket_id: '', 
+    caller_user_id: '',
+    has_video: false
+  }
 };
 export const store = createStore(reducer, it);
 

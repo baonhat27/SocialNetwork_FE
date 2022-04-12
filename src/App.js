@@ -8,11 +8,31 @@ import PostPage from "./page/PostPage";
 import NewsFeed from "./containers/NewsFeed";
 import MessagePageContainer from "./page/MessagePage";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import IncomingCallModal from "./containers/IncomingCallModal";
+import videoCallHandle from "./shared/service/videoCallHandle";
+import VideoCallPage from "./page/VideoCallPage";
 
 function App() {
-  const io = useSelector((state) => state.io);
-  useEffect(() => {}, []);
+  const socket = useSelector((state) => state.io);
+  const incomingCall = useSelector((state) => state.incomingCall);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    console.log('veriy', socket)
+    socket.emit('verify', localStorage.getItem('refreshToken') || '')
+    socket.on('verify', result => {
+      if (result === 'OK')
+        videoCallHandle(socket, dispatch)
+      else {
+        alert('token khong hop le, vui long dang nhap lai')
+      }
+    })
+
+    return () => {
+      console.log('unmount')
+      socket.disconnect()
+    }
+  }, []);
   return (
     <div className="App">
       <Switch>
@@ -21,6 +41,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <ProfilePage token={localStorage.getItem("token")} />
+        </Route>
+        <Route path="/call">
+          <VideoCallPage />
         </Route>
         <Route path="/search">
           <SearchPageContainer />
@@ -39,6 +62,10 @@ function App() {
           </Switch>
         </HomePage>
       </Switch>
+
+      {
+        incomingCall.isShow && !["/call", "/login"].includes(window.location.pathname) && <IncomingCallModal {...incomingCall} />
+      }
     </div>
   );
 }

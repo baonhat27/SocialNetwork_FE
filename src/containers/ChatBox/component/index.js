@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import ImageShowContainer from "../../ImageShow";
 import { binarySearch } from "../../../shared/utils/binsearch";
 import { message } from "antd";
+import { useSelector } from "react-redux";
 
 function compareTime(time1, time2) {
   time1 = new Date(time1).getTime();
@@ -12,6 +13,9 @@ function compareTime(time1, time2) {
 }
 
 function ChatBoxComponent(props, ref) {
+  const { _id: friend_id } = props.session.userId
+  const socket = useSelector(state => state.io)
+
   const messageList = props.messageList.map((message) => {
     message.seen = null;
     return message;
@@ -28,6 +32,16 @@ function ChatBoxComponent(props, ref) {
       }
       messageList[index < 0 ? 0 : index].seen = seen;
     });
+
+  const handleCall = type => {
+    const popup = window.open(`/call?user_to_ring=${friend_id}&has_video=${type === 'video'}`,'_blank',`height=${window.screen.height},width=${window.screen.width}`)
+    window.registerCancelCall = function(receiver_socket_id) {
+      popup.addEventListener("beforeunload", () => {
+        console.log('oke', receiver_socket_id)
+        socket.emit('end_call', receiver_socket_id)
+      })
+    }
+  }
 
   return (
     <div className={styles.chatBox}>
@@ -50,8 +64,8 @@ function ChatBoxComponent(props, ref) {
           <p className={styles.headers_timeActive}>Hoạt động 1h trước</p>
         </div>
         <div className={styles.headers_buttonList}>
-          <i className={"fa-solid fa-phone " + styles.headers_button}></i>
-          <i className={"fa-solid fa-video " + styles.headers_button}></i>
+          <i className={"fa-solid fa-phone " + styles.headers_button} onClick={() => handleCall('audio')}></i>
+          <i className={"fa-solid fa-video " + styles.headers_button} onClick={() => handleCall('video')}></i>
           <i
             className={"fa-solid fa-ellipsis-vertical " + styles.headers_button}
             onClick={function () {

@@ -71,6 +71,12 @@ export const reducer = (state, action) => {
         ...state,
         notifications: newNotification,
       };
+    case "incomingCall":
+      return {
+        ...state,
+        incomingCall: action.value
+      }
+      
 
     default:
       return state;
