@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import ImageShowContainer from "../../ImageShow";
 import { binarySearch } from "../../../shared/utils/binsearch";
 import { message } from "antd";
+import { useSelector } from "react-redux";
 
 function compareTime(time1, time2) {
   time1 = new Date(time1).getTime();
@@ -12,8 +13,11 @@ function compareTime(time1, time2) {
 }
 
 function ChatBoxComponent(props, ref) {
+  const { _id: friend_id } = props.session.userId
+  const socket = useSelector(state => state.io)
+
   const messageList = props.messageList.map((message) => {
-    message.seen = null;
+    message.seen = [];
     return message;
   });
 
@@ -22,12 +26,21 @@ function ChatBoxComponent(props, ref) {
   messageList.length !== 0 &&
     props.seenList.forEach((seen) => {
       let index = binarySearch(listCreatedAt, seen.seenAt, compareTime);
-      console.log(index);
       if (index < 0) {
         index = -(2 + index);
       }
-      messageList[index < 0 ? 0 : index].seen = seen;
+      messageList[index < 0 ? 0 : index].seen.push(seen);
     });
+
+  const handleCall = type => {
+    const popup = window.open(`/call?user_to_ring=${friend_id}&has_video=${type === 'video'}`,'_blank',`height=${window.screen.height},width=${window.screen.width}`)
+    window.registerCancelCall = function(receiver_socket_id) {
+      popup.addEventListener("beforeunload", () => {
+        console.log('oke', receiver_socket_id)
+        socket.emit('end_call', receiver_socket_id)
+      })
+    }
+  }
 
   return (
     <div className={styles.chatBox}>
@@ -50,8 +63,8 @@ function ChatBoxComponent(props, ref) {
           <p className={styles.headers_timeActive}>Hoạt động 1h trước</p>
         </div>
         <div className={styles.headers_buttonList}>
-          <i className={"fa-solid fa-phone " + styles.headers_button}></i>
-          <i className={"fa-solid fa-video " + styles.headers_button}></i>
+          <i className={"fa-solid fa-phone " + styles.headers_button} onClick={() => handleCall('audio')}></i>
+          <i className={"fa-solid fa-video " + styles.headers_button} onClick={() => handleCall('video')}></i>
           <i
             className={"fa-solid fa-ellipsis-vertical " + styles.headers_button}
             onClick={function () {
@@ -127,7 +140,17 @@ function ChatBoxComponent(props, ref) {
                   : styles.messageShow + " " + styles.me
               }
             >
-              {message.seen && <span className={styles.seenList}>Da</span>}
+              {message.seen.length !== 0 &&
+                message.seen.map((seen) => {
+                  return (
+                    <div key={seen._id} className={styles.round_img}>
+                      <img
+                        src={seen.user.avatar}
+                        className={styles.seen_avatar}
+                      />
+                    </div>
+                  );
+                })}
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
@@ -140,7 +163,7 @@ function ChatBoxComponent(props, ref) {
                   src={message.createdBy.avatar}
                 />
               </div>
-              
+
               <div
                 className={
                   message.createdBy._id != localStorage.getItem("userId")
@@ -163,19 +186,29 @@ function ChatBoxComponent(props, ref) {
                     }
                   >
                     <div className={styles.message_deleteBox}>
-                      <div className={ message.createdBy._id != localStorage.getItem("userId")?styles.message_delete:styles.message_delete+" "+styles.me}>
-                        <i className={"fa-solid fa-trash-can "+styles.message_deleteIcon} onClick={
-                          function(){
-                            props.deleteMessage(message._id);
-                            
+                      <div
+                        className={
+                          message.createdBy._id !=
+                          localStorage.getItem("userId")
+                            ? styles.message_delete
+                            : styles.message_delete + " " + styles.me
+                        }
+                      >
+                        <i
+                          className={
+                            "fa-solid fa-trash-can " + styles.message_deleteIcon
                           }
-                        }></i>
+                          onClick={function () {
+                            props.setShowDeleteMessage(message._id);
+                          }}
+                        ></i>
                       </div>
                       <p className={styles.message_content}>
-                      
-                      {message.content===""?"Tin nhắn đã gỡ":message.content}</p>
+                        {message.content === ""
+                          ? "Tin nhắn đã gỡ"
+                          : message.content}
+                      </p>
                     </div>
-                    
                   </div>
                   {message.image.length > 0 ? (
                     <div
@@ -288,6 +321,29 @@ function ChatBoxComponent(props, ref) {
           }}
         ></i>
       </div>
+      {
+      props.showDeleteMessage!=""?<div className="background_dark show">
+        <div className={styles.deleteMessageForm}>
+        <i className={"fa-regular fa-circle-xmark "+styles.deleteMessageForm_icon} onClick={
+          function(){
+            props.setShowDeleteMessage("")
+          }
+        }></i>
+          <div className={styles.deleteMessageForm_button} onClick={
+            function(){
+              props.deleteMessage(props.showDeleteMessage);
+              props.setShowDeleteMessage("");
+            }
+          }>Xóa phía mình</div>
+          <div className={styles.deleteMessageForm_button} onClick={
+            function(){
+              props.deleteMessageEveryBody();
+              props.setShowDeleteMessage("");
+            }
+          }>Xóa phía mọi người</div>
+        </div>
+      </div>:<></> 
+      }
     </div>
   );
 }

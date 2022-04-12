@@ -22,10 +22,10 @@ export default function NotificationItem({ noti, readNoti, showNoti }) {
         history.push(`/posts/${activity.target._id}`);
         break;
       case "Comment":
-        history.push(`/posts/${activity.target.postId}`);
+        history.push(`/posts/${activity.target.post}`);
         break;
       case "Reaction":
-        history.push(`/posts/${activity.target.postId}`);
+        history.push(`/posts/${activity.target.post}`);
         break;
       default:
         console.log("targetModel error");

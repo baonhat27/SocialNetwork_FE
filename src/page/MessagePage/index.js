@@ -85,17 +85,19 @@ function MessagePageContainer(props) {
     };
   }, []);
   //search user to join chat session
-  const updateSessionContent=(_id)=>{
-    setSessionList(sessionList=>sessionList.map((session)=>{
-      if(session.sessionId._id==_id){
-        session.lastMessage={
-          ...session.lastMessage,
-          content:"Tin nhắn đã gỡ"
+  const updateSessionContent = (_id) => {
+    setSessionList((sessionList) =>
+      sessionList.map((session) => {
+        if (session.sessionId._id == _id) {
+          session.lastMessage = {
+            ...session.lastMessage,
+            content: "Tin nhắn đã gỡ",
+          };
         }
-      }
-      return session;
-    }))
-  }
+        return session;
+      })
+    );
+  };
   const changeSearchKey = lodash.debounce(async (item) => {
     if (item.target.value) {
       const userList = await searchUserService(item.target.value);
@@ -131,7 +133,7 @@ function MessagePageContainer(props) {
 
   return (
     <MessagePageComponent
-    updateSessionContent={updateSessionContent}
+      updateSessionContent={updateSessionContent}
       chooseSession={chooseSession}
       setChooseSession={setChooseSession}
       createOrJoinSession={createOrJoinSession}
