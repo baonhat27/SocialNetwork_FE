@@ -8,7 +8,7 @@ const EventSource = NativeEventSource || EventSourcePolyfill;
 global.EventSource = NativeEventSource || EventSourcePolyfill;
 
 // export const HOST = "http://localhost:8000";
-export const HOST = "https://socialnetworkbe-production.up.railway.app/";
+export const HOST = "https://socialnetworkbe-production.up.railway.app";
 
 export const GET_IMAGE_URL = `${HOST}/v1/images`;
 export const UPLOAD_IMAGES_URL = GET_IMAGE_URL;

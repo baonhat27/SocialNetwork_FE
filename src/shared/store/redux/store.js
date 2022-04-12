@@ -24,7 +24,7 @@ const it = {
     comments: "",
   },
   notifications: [],
-  io:io("http://localhost:8000"),
+  io:io("https://socialnetworkbe-production.up.railway.app"),
   incomingCall: {
     isShow: false,
     firstName: '', 
