@@ -19,7 +19,6 @@ function ReactionBar({ postId, reactions, isReact }) {
       setReactionCount((prev) => prev + 1);
     });
     io.on(postId + "reaction:delete", (data) => {
-      console.log("bum");
       setReactionCount((prev) => prev - 1);
     });
   }, []);
